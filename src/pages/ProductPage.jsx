@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Image, ListGroup, Card, Button, Form, Carousel } from "react-bootstrap";
-import Rating from "../components/Rating";
+import { Row, Col, ListGroup, Card, Button, Form, Carousel } from "react-bootstrap";
+// import Rating from "../components/Rating";
 import { useEffect, useState } from "react";
 import { listProductDetails } from "../actions/productActions";
 import Loader from "../components/Loader";
@@ -16,7 +16,7 @@ const ProductPage = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   const productdetail = { ...product[0].attributes };
-  console.log("product", { ...product[0].attributes });
+  console.log("product", product);
 
   useEffect(() => {
     console.log("useeffect dispatched");
@@ -42,7 +42,6 @@ const ProductPage = (props) => {
               {productdetail.product_inventories &&
                 productdetail.product_inventories.data.map((sku) => {
                   return sku.attributes.images.data.map((im) => {
-                    console.log(im.attributes.formats.medium.url);
                     return (
                       <Carousel.Item key={im.id}>
                         <img className="d-block w-100" src={im.attributes.formats.medium.url} alt={im.id} />
@@ -99,7 +98,12 @@ const ProductPage = (props) => {
                   </ListGroup.Item>
                 )}
                 <ListGroup.Item>
-                  <Button onClick={addToCartHandler} className="btn-block" type="button" disabled={product.countInStock === 0}>
+                  <Button
+                    onClick={addToCartHandler}
+                    className="btn-block"
+                    type="button"
+                    disabled={productdetail.product_inventories.data[0].attributes.quantity === 0}
+                  >
                     Add To Cart
                   </Button>
                 </ListGroup.Item>

@@ -1,17 +1,19 @@
 import React from "react";
+// import {Router} from 'react-router-dom'
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-
+import SearchBar from "./SearchBar";
 const Header = () => {
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Rent Anything</Navbar.Brand>
+            <Navbar.Brand>PLANK</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <SearchBar />
             <Nav className="ms-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
