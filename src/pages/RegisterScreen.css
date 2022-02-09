@@ -1,0 +1,68 @@
+.control-styling{
+    background-color: white;
+    border: 1px solid;
+    border-color: #7070707C;
+    color: #7070707C;
+}
+.create-account-btn {
+    background-color: #C2CFDE;
+    color: white;
+  margin-left: 23%;
+    margin-right: 23%;
+    border: 1px solid;
+}
+.login-btn {
+   color: #C2CFDE;
+   background-color: white;
+   border: 1px solid;
+   border-color: #7070707C;
+}
+.login-btn:hover{
+    color:white;
+    background-color:  #C2CFDE ;
+    border: 1px solid;
+    border-color: #7070707C;
+    border-color: white;
+ }
+
+.create-account-btn:hover {
+    background-color: white;
+    color:#C2CFDE;
+    border-color: #C2CFDE;
+    border: 1px solid;
+}
+.reddo{
+    
+background-color: blue;
+}
+.hr-margin{
+    margin-left: 16%;
+    margin-right: 16%;
+}
+.form-inline {
+    width: 100%;
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .input-group {
+    width: 100% !important;
+  }
+  
+  .form-control {
+    width: 100% !important;
+ 
+  }
+  .adding-margins{
+      margin-left: 20%;
+      margin-right: 20%;
+  }  
+  .create-account-text{
+      font-size: 32px;
+      color: #333333;
+      font-weight:900;
+      font-family: "Adrianna-9";
+  }
+  

@@ -11,3 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: "Adrianna-1";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 1.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-2";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 2.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-3";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 3.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-4";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 4.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-5";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 5.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-6";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 6.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-7";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 7.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-8";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 8.otf) format("opentype");
+}
+@font-face {
+  font-family: "Adrianna-9";
+  src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 9.otf) format("opentype");
+}
+@font-face {
+  font-family: "Circe-Rounded-Bold";
+  src: local("Circe Rounded"), url(./fonts/Circe-Rounded/CirceRounded-Bold.otf) format("opentype");
+}
+@font-face {
+  font-family: "Circe-Rounded-Light";
+  src: local("Circe Rounded"), url(./fonts/Circe-Rounded/CirceRounded-Light.otf) format("opentype");
+}
+@font-face {
+  font-family: "poppins-regular";
+  src: local("Poppins"), url(./fonts/Poppins/Poppins-Regular.ttf) format("opentype");
+}
