@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { listProducts } from "../actions/productActions";
 import Message from "../components/Message";
@@ -19,9 +19,6 @@ const HomePage = () => {
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);
 
-  const filterHandler = () => {
-    console.log("filter");
-  };
   // console.log("products", products);
   return (
     <>
@@ -41,7 +38,6 @@ const HomePage = () => {
           })}
         </Row>
       )}
-      <Button onClick={filterHandler}>Type</Button>
     </>
   );
 };

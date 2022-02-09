@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { listProductDetails } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-const ProductPage = (props) => {
+const ProductPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,11 +15,13 @@ const ProductPage = (props) => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+
   const productdetail = { ...product[0].attributes };
-  console.log("product", product);
+
+  console.log("product", productdetail, productDetails);
 
   useEffect(() => {
-    console.log("useeffect dispatched");
+    // console.log("useffect dispatched");
     dispatch(listProductDetails(slug));
   }, [dispatch, slug]);
 
@@ -35,7 +37,7 @@ const ProductPage = (props) => {
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
-      ) : (
+      ) : productdetail !== {} ? (
         <Row>
           <Col md={6}>
             <Carousel interval={null}>
@@ -74,14 +76,19 @@ const ProductPage = (props) => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+
                 <ListGroup.Item>
                   <Row>
                     <Col>Status:</Col>
-                    <Col>{productdetail.product_inventories.data[0].attributes.quantity > 0 ? "In Stock" : "Out Of Stock"}</Col>
+                    <Col>
+                      {productdetail.product_inventories.data[0] && productdetail.product_inventories.data[0].attributes.quantity > 0
+                        ? "In Stock"
+                        : "Out Of Stock"}
+                    </Col>
                   </Row>
                 </ListGroup.Item>
 
-                {productdetail.product_inventories.data[0].attributes.quantity > 0 && (
+                {productdetail.product_inventories.data[0] && productdetail.product_inventories.data[0].attributes.quantity > 0 && (
                   <ListGroup.Item>
                     <Row>
                       <Col>Qty</Col>
@@ -102,7 +109,7 @@ const ProductPage = (props) => {
                     onClick={addToCartHandler}
                     className="btn-block"
                     type="button"
-                    disabled={productdetail.product_inventories.data[0].attributes.quantity === 0}
+                    disabled={productdetail.product_inventories.data[0] && productdetail.product_inventories.data[0].attributes.quantity === 0}
                   >
                     Add To Cart
                   </Button>
@@ -111,6 +118,8 @@ const ProductPage = (props) => {
             </Card>
           </Col>
         </Row>
+      ) : (
+        <div>Loading...</div>
       )}
     </>
   );

@@ -39,6 +39,11 @@ export const listProducts = (keyword) => async (dispatch) => {
           $containsi: keyword,
         },
       },
+      {
+        product_desc: {
+          $containsi: keyword,
+        },
+      },
     ],
   };
   if (keyword) {
@@ -51,17 +56,17 @@ export const listProducts = (keyword) => async (dispatch) => {
       populate: populate,
     });
   }
-  console.log("query", query, keyword);
+  // console.log("query", query, keyword);
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get(`/api/products?${query}`);
-    // console.log('response',data);
+    // console.log("response", data);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data.data,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch({
       type: PRODUCT_LIST_FAIL,
       payload: error,
@@ -70,7 +75,7 @@ export const listProducts = (keyword) => async (dispatch) => {
 };
 
 export const listProductDetails = (slug) => async (dispatch) => {
-  console.log("action called");
+  console.log("details action called");
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(`/api/products/product/${slug}`);

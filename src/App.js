@@ -17,6 +17,8 @@ const App = () => {
         <Container>
           <Routes>
             <Route path="/" element={<HomePage />} exact />
+            {/* <Route path="/products" element={<AllProductsPage />} /> */}
+            {/* <Route path="/service" element={<ServicePage />} /> */}
             <Route path="/search/:keyword" element={<HomePage />} />
             <Route path="/product/:slug" element={<ProductPage />} />
             <Route path="/login" element={<LoginPage />} />
