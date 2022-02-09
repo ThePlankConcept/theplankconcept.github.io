@@ -52,16 +52,15 @@ const Header = () => {
                     <img src="/cartIcon.svg" alt="cart" />
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavDropdown title={<img src="/avatarIcon.svg" alt="login" />} id="basic-nav-dropdown" className="float-right">
-                    <NavDropdown.Item href="/register" className="dropdownheader px-2 m-3">
-                      Create an Account
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/login" className="dropdownheader px-2 m-3">
-                      Login
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </LinkContainer>
+
+                <NavDropdown title={<img src="/avatarIcon.svg" alt="login" />} id="basic-nav-dropdown" className="float-right">
+                  <LinkContainer to="/register">
+                    <NavDropdown.Item className="dropdownheader px-2 m-3">Create an Account</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <NavDropdown.Item className="dropdownheader px-2 m-3">Login</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               </Nav>
             </Navbar.Collapse>
           </div>
