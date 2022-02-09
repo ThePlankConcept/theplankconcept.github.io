@@ -1,0 +1,52 @@
+.headerNav {
+  background: rgba(194, 207, 222, 0.3) 0% 0% no-repeat padding-box;
+}
+
+.navContainer {
+  padding-right: 3%;
+  padding-left: 5%;
+}
+.cls {
+  display: block;
+  position: absolute;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  top: 50% !important;
+  transform: translate(-50%, 40%) !important;
+}
+
+.headerNav div {
+  opacity: 1;
+}
+.navItems img {
+  padding-right: 20px;
+}
+
+.initialLinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listing {
+  font-family: Circe-Rounded-Bold;
+  size: 17px;
+}
+
+.dropdown-menu {
+  margin-top: 10px;
+}
+
+.dropdownheader {
+  text-align: left;
+  font-family: Adrianna-5;
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
