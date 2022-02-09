@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
@@ -14,28 +14,40 @@ import CartPage from "./pages/CartPage";
 const App = () => {
   return (
     <Router>
-      <Header />
-      <main >
-        <Container fluid="true">
-          <Routes>
-            <Route path="/" element={<HomePage />} exact />
-            {/* <Route path="/products" element={<AllProductsPage />} /> */}
-            {/* <Route path="/service" element={<ServicePage />} /> */}
-            <Route path="/search/:keyword" element={<HomePage />} />
-            <Route path="/product/:slug" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />}>
-              <Route path=":slug" element={<CartPage />} />
-              <Route path="" element={<CartPage />} />
-            </Route>
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/register" element={<RegisterScreen />} />
-            <Route path="/Addresses" element={<UserAddresses />} />
-            <Route path="/Create-Address" element={<CreateAddress />} />
-          </Routes>
+      <main>
+        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Row>
+            <Col>
+              <Header />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Routes>
+                <Route path="/" element={<HomePage />} exact />
+                {/* <Route path="/products" element={<AllProductsPage />} /> */}
+                {/* <Route path="/service" element={<ServicePage />} /> */}
+                <Route path="/search/:keyword" element={<HomePage />} />
+                <Route path="/product/:slug" element={<ProductPage />} />
+                <Route path="/cart" element={<CartPage />}>
+                  <Route path=":slug" element={<CartPage />} />
+                  <Route path="" element={<CartPage />} />
+                </Route>
+                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/login" element={<LoginScreen />} />
+                <Route path="/register" element={<RegisterScreen />} />
+                <Route path="/Addresses" element={<UserAddresses />} />
+                <Route path="/Create-Address" element={<CreateAddress />} />
+              </Routes>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Footer />
+            </Col>
+          </Row>
         </Container>
       </main>
-      <Footer />
     </Router>
   );
 };

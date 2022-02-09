@@ -53,7 +53,7 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
 
-                <NavDropdown title={<img src="/avatarIcon.svg" alt="login" />} id="basic-nav-dropdown" className="float-right">
+                <NavDropdown title={<img src="/avatarIcon.svg" alt="login" />} id="basic-nav-dropdown">
                   <LinkContainer to="/register">
                     <NavDropdown.Item className="dropdownheader px-2 m-3">Create an Account</NavDropdown.Item>
                   </LinkContainer>
