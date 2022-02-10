@@ -1,7 +1,5 @@
 .firstContainer {
   height: 90vh;
-
-  background-color: red;
 }
 
 .firstRow {
@@ -18,7 +16,6 @@
 }
 .firstrowfirstcol {
   padding-top: 10%;
-  padding-bottom: 10%;
 }
 .firstrowfirstcol .heading {
   top: 289px;
@@ -66,16 +63,30 @@
   opacity: 1;
 }
 
+.categoryRow .row {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.popularRow .row {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
 .categoryHeader {
+  padding-top: 5%;
   font: normal normal bold 42px/76px Adrianna-5;
-  margin-left: 4%;
   margin-bottom: -10px;
+  padding-left: 6%;
   letter-spacing: 0px;
   color: #333333;
   opacity: 1;
 }
 
+.categorycardcol {
+  justify-content: center;
+}
 .cardItemHome {
+  padding-right: 1%;
   width: 22%;
   height: 100%;
   background-color: transparent;
@@ -96,9 +107,37 @@
   opacity: 1;
 }
 
-.start-browsing-btn2 {
+.startbrowsing {
+  cursor: pointer;
   text-align: left;
   font: normal normal bold 20px/28px Circe-Rounded-Extra-Bold;
+  letter-spacing: 0px;
+  color: #c2cfde;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.hrstyling {
+  border-top: 3px solid #c2cfde;
+  margin-top: 0;
+  margin-right: 77%;
+}
+
+.hrstyling::before,
+.hrstyling::after {
+  position: absolute;
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background: c2cfde;
+  bottom: -4px;
+}
+
+.popularRow h3 {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  font: normal normal bold 22px/28px Circe-Rounded-Extra-Bold;
   letter-spacing: 0px;
   color: #c2cfde;
   text-transform: uppercase;

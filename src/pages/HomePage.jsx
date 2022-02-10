@@ -28,7 +28,7 @@ const HomePage = () => {
     <>
       <Container className="firstContainer" fluid>
         <Row className="firstRow">
-          <Col className="firstrowfirstcol" style={{ backgroundColor: "green" }}>
+          <Col className="firstrowfirstcol">
             <Container className=" ms-5 me-0" fluid>
               <Row>
                 <Col>
@@ -51,34 +51,34 @@ const HomePage = () => {
               </Row>
             </Container>
           </Col>
-          <Col className="m-0 p-0">
-            <Image src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="firstColImg" />
+          <Col>
+            <img src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="firstColImg img-responsive" />
           </Col>
         </Row>
       </Container>
-      <Container className="categoryRow" fluid>
-        <Row className="p-5 pt-0 mb-5">
+      <Container className="categoryRow " fluid>
+        <Row className=" pt-0 mb-5 ">
           <p className="categoryHeader">Shop by room</p>
-          <Col className="d-flex p-3 justify-content-center">
-            <Card className="mx-2 cardItemHome">
+          <Col className="d-flex categorycardcol">
+            <Card className=" cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
                 <Card.Title className="text-capitalize">Living Room</Card.Title>
               </Card.Body>
             </Card>
-            <Card className="mx-2 cardItemHome">
+            <Card className="cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
                 <Card.Title className="text-capitalize">Bed Room</Card.Title>
               </Card.Body>
             </Card>
-            <Card className="mx-2 cardItemHome">
+            <Card className=" cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
                 <Card.Title className="text-capitalize">Dining</Card.Title>
               </Card.Body>
             </Card>
-            <Card className="mx-2 cardItemHome">
+            <Card className=" cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
                 <Card.Title className="text-capitalize">Accessories</Card.Title>
@@ -90,7 +90,7 @@ const HomePage = () => {
       <Container fluid className="firstContainer">
         <Row className="firstRow">
           <Col fluid>
-            <Image src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="img-responsive firstColImg" width="100%" height="100%" />
+            <Image src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="img-responsive firstColImg" width="100%" height="auto" />
           </Col>
           <Col className="firstrowfirstcol">
             <Container className=" ms-5">
@@ -105,46 +105,50 @@ const HomePage = () => {
                 </Col>
               </Row>
               <Row>
-                <Col className="d-flex justify-content-start">
-                  <div className="d-grid gap-2">
-                    <Button onClick={startBrowsingHandler} className=" start-browsing-btn mt-2" variant="link">
-                      Start Browsing
-                    </Button>
-                  </div>
+                <Col className="mt-2 startbrowsing">
+                  <p className="mb-0" onClick={startBrowsingHandler}>
+                    START BROWSING
+                  </p>
+                  <hr className="hrstyling" />
                 </Col>
               </Row>
             </Container>
           </Col>
         </Row>
       </Container>
-      <Container className="m-5" fluid>
-        <Row className="p-5 pt-0 mb-5">
-          <p className="categoryHeader">Shop by room</p>
-          <Col className="d-flex p-3 justify-content-center">
-            <Card className="mx-2 cardItemHome">
+      <Container className="popularRow" fluid>
+        <Row className=" pt-0 mb-5 ">
+          <p className="categoryHeader">Shop most popular</p>
+          <Col className="d-flex categorycardcol">
+            <Card className=" cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
-                <Card.Title className="text-capitalize">Living Room</Card.Title>
+                <Card.Title className="text-capitalize">Ogden Bookcase</Card.Title>
               </Card.Body>
             </Card>
-            <Card className="mx-2 cardItemHome">
+            <Card className="cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
-                <Card.Title className="text-capitalize">Bed Room</Card.Title>
+                <Card.Title className="text-capitalize">Nicobar Table Lamp</Card.Title>
               </Card.Body>
             </Card>
-            <Card className="mx-2 cardItemHome">
+            <Card className=" cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
-                <Card.Title className="text-capitalize">Dining</Card.Title>
+                <Card.Title className="text-capitalize">Bower Floor Lamp</Card.Title>
               </Card.Body>
             </Card>
-            <Card className="mx-2 cardItemHome">
+            <Card className=" cardItemHome">
               <Card.Img variant="top" src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               <Card.Body>
-                <Card.Title className="text-capitalize">Accessories</Card.Title>
+                <Card.Title className="text-capitalize">Barrow Console</Card.Title>
               </Card.Body>
             </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <h3>Shop All most popular</h3>
           </Col>
         </Row>
       </Container>
