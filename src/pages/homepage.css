@@ -2,9 +2,6 @@
   height: 90vh;
 }
 
-.firstRow {
-  height: 100%;
-}
 .row {
   --bs-gutter-x: 0;
   --bs-gutter-y: 0;
@@ -72,6 +69,9 @@
   padding-right: 5%;
 }
 
+.popularRow .shopLink {
+  cursor: pointer;
+}
 .categoryHeader {
   padding-top: 5%;
   font: normal normal bold 42px/76px Adrianna-5;
@@ -142,4 +142,125 @@
   color: #c2cfde;
   text-transform: uppercase;
   opacity: 1;
+}
+
+.cardInWhyPlank {
+  padding: 1.5em 0.5em 0.5em;
+  /* border-radius: 2em; */
+  text-align: center;
+  border: none;
+}
+
+.whyPlankIconContainer {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  background: #c2cfde 0% 0% no-repeat padding-box;
+  border-radius: 45px;
+  opacity: 1;
+}
+
+.whyPlankIcon {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+  border-radius: 45px;
+  opacity: 1;
+}
+
+.featureText {
+  text-align: center;
+  font-family: Adrianna-5;
+  font-size: 18px;
+
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.featureDesc {
+  text-align: center;
+  font: normal normal normal 12px/24px Adrianna-1;
+  color: #808080;
+  opacity: 1;
+}
+.content {
+  text-align: center;
+  margin-bottom: 2%;
+  font: normal normal 300 29px/39px Adrianna-3;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.lastContainer {
+  height: 80vh;
+}
+
+.lastContainerRow {
+  height: 100%;
+}
+.lastrowfirstcol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.lastrowfirstcol .heading {
+  text-align: right;
+  font: normal normal 50px/76px Adrianna-5;
+  font-weight: 900;
+  line-gap-override: 0%;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+.lastrowfirstcol .brief {
+  text-align: right;
+  font-family: Adrianna-3;
+  font-size: large;
+  font-weight: bold;
+
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+
+.lastrowfirstcol .linkhow {
+  text-align: right;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font: normal normal bold 20px/28px Circe-Rounded-Extra-Bold;
+  letter-spacing: 0px;
+  color: #c2cfde;
+  opacity: 1;
+}
+
+.subscribe-btn {
+  background-color: #c2cfde;
+  color: white;
+  border: 1px solid;
+}
+.subscribe-btn:hover {
+  background-color: white;
+  color: #c2cfde;
+  border-color: #c2cfde;
+  border: 1px solid;
+}
+.OfferLine {
+  padding-left: 10%;
+  padding-right: 5%;
+  text-align: right;
+  font: normal normal normal 29px/38px poppins-regular;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+
+.whyplankit {
+  margin-top: 5%;
+  margin-bottom: 8%;
 }

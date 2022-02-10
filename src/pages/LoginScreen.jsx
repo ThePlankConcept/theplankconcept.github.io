@@ -43,7 +43,7 @@ const LoginScreen = () => {
           <Container fluid="true" className="mt-2 mb-2">
             <Row>
               <Col className=" d-flex justify-content-center">
-                <p className="create-account-text">Log In</p>
+                <p className="create-account-text ">Log In</p>
               </Col>
             </Row>
             <Row>
@@ -98,18 +98,18 @@ const LoginScreen = () => {
             </Row>
             <Row>
               <Col>
-                <hr className="hr-margin"></hr>
+                <hr className="hr-login-margin"></hr>
               </Col>
             </Row>
             <Row>
-              <Col className="d-flex justify-content-center">
+              <Col className="d-flex justify-content-center already-account-text">
                 <p>No Account Yet ?</p>
               </Col>
             </Row>
             <Row>
               <Col className="d-flex justify-content-center">
                 <Button onClick={routeChange} className="rounded-pill login-btn pt-1 pb-1 ">
-                  CREATE ACCOUNT{" "}
+                  CREATE ACCOUNT
                 </Button>
               </Col>
             </Row>

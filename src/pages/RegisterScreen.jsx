@@ -44,12 +44,12 @@ const RegisterScreen = () => {
 
   return (
     <Container fluid="true">
-      <Row>
+      <Row className="bg-image">
         <Col>
-          <img src="/signup.jpg" height="100%" width="110%"></img>
+          <img src="/signup.jpg" height="95%" width="110%"></img>
         </Col>
         <Col>
-          <Container fluid="true" className="mt-2 mb-2">
+          <Container fluid="true" className="p-5 ">
             <Row>
               <Col className=" d-flex justify-content-center">
                 <p className="create-account-text">Create Account</p>
@@ -122,7 +122,7 @@ const RegisterScreen = () => {
             </Row>
             <Row>
               <Col className="d-flex justify-content-center">
-                <p>Already Have Account ?</p>
+                <p className="already-account-text">Already have an account ?</p>
               </Col>
             </Row>
             <Row>

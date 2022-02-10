@@ -3,6 +3,13 @@
   overflow-x: hidden;
 }
 
+.innerContainer {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  padding-top: 2%;
+}
+
 .plank-brief {
   top: 4285px;
   left: 173px;
@@ -35,7 +42,7 @@
 }
 
 .textcard {
-  text-align: left;
+  text-decoration: none;
   font-family: Circe-Rounded-Light;
   font-size: 13px;
   letter-spacing: 0px;

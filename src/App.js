@@ -42,9 +42,7 @@ const App = () => {
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Footer />
-            </Col>
+            <Col>{window.location.pathname !== "/login" && window.location.pathname !== "/register" && <Footer />}</Col>
           </Row>
         </Container>
       </main>

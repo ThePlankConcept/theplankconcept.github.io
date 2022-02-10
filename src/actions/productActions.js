@@ -7,6 +7,9 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  PRODUCT_HOMEPAGE_REQUEST,
+  PRODUCT_HOMEPAGE_SUCCESS,
+  PRODUCT_HOMEPAGE_FAIL,
 } from "../constants/productConstants";
 
 export const listProducts = (keyword) => async (dispatch) => {

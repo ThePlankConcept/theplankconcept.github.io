@@ -4,6 +4,9 @@
     border-color: #7070707C;
     color: #7070707C;
 }
+.bg-image{
+  background-image: "./signup.jpg";
+}
 .create-account-btn {
     background-color: #C2CFDE;
     color: white;
@@ -60,9 +63,13 @@ background-color: blue;
       margin-right: 20%;
   }  
   .create-account-text{
-      font-size: 32px;
+      font-size:xx-large;
       color: #333333;
-      font-weight:900;
-      font-family: "Adrianna-9";
+      font-weight: 900;
+      letter-spacing: 0;
+      font-family: "Adrianna-5";
   }
-  
+  .already-account-text{
+    font: normal normal normal 13px/34px Adrianna-5;
+letter-spacing: 0px;
+  }

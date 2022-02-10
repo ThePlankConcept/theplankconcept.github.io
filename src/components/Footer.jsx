@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer>
       <Container className="main-Container mt-5 pt-5 " fluid>
-        <Container className="pb-3 ms-5 mb-3" fluid>
+        <Container className=" innerContainer ms-5 mb-3 " fluid>
           <Row>
             <Col md={4} lg={5} sm={1}>
               <Container className="d-flex flex-column">
