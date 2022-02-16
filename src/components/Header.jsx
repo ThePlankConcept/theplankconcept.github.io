@@ -29,7 +29,7 @@ const Header = () => {
           <div>
             <LinkContainer to="/">
               <Navbar.Brand>
-                <img width="148px" height="auto" className="img-responsive" src="./logo.png" alt="logo" />
+                <img width="20%" height="50%" className="img-responsive logo" src="/logo.png" alt="logo" />
               </Navbar.Brand>
             </LinkContainer>
           </div>
@@ -39,21 +39,21 @@ const Header = () => {
               <Nav className="d-flex justify-content-between navItems" flush="true">
                 <LinkContainer to="/cart">
                   <Nav.Link>
-                    <img src="/searchIcon.svg" alt="search" />
+                    <img src="/searchIcon.svg" alt="search" width="70px" />
                   </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/wishlist">
                   <Nav.Link>
-                    <img src="/cartIcon.svg" alt="cart" />
+                    <img src="/wishlisticon.png" alt="cart" width="70px" />
                   </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/cart">
                   <Nav.Link>
-                    <img src="/cartIcon.svg" alt="cart" />
+                    <img src="/cartIcon.svg" alt="cart" width="70px" />
                   </Nav.Link>
                 </LinkContainer>
 
-                <NavDropdown title={<img src="/avatarIcon.svg" alt="login" />} id="basic-nav-dropdown">
+                <NavDropdown className="accnt" title={<img src="/avatarIcon.svg" alt="login" width="70px" />} id="basic-nav-dropdown">
                   <LinkContainer to="/register">
                     <NavDropdown.Item className="dropdownheader px-2 m-3">Create an Account</NavDropdown.Item>
                   </LinkContainer>

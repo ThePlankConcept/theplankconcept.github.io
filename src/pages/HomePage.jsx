@@ -34,38 +34,24 @@ const HomePage = () => {
         <>
           <Container className="firstContainer" fluid>
             <Row className="firstRow h-100">
-              <Col className="firstrowfirstcol">
-                <Container className=" ms-5 me-0" fluid>
-                  <Row>
-                    <Col>
-                      <p className="heading">Make your house into a home</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <p className="brief">Free delivery and assembly with flexibility to rent your furniture</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="d-flex justify-content-start">
-                      <div className="d-grid gap-2">
-                        <Button onClick={startBrowsingHandler} className=" start-browsing-btn rounded-pill mt-2">
-                          Start Browsing
-                        </Button>
-                      </div>
-                    </Col>
-                  </Row>
-                </Container>
+              <Col className="firstrowfirstcol text-left" lg={6} md={6} sm={12}>
+                <p className="heading display-1 font-weight-bold ">Make your house into a home.</p>
+                <p className="brief text-wrap" style={{ width: "80%" }}>
+                  Free delivery and assembly with flexibility to rent your furniture!
+                </p>
+                <Button onClick={startBrowsingHandler} className=" start-browsing-btn rounded-pill mt-2">
+                  Start Browsing
+                </Button>
               </Col>
-              <Col>
+              <Col lg={6} md={6} sm={12}>
                 <img src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="firstColImg img-responsive" alt="spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               </Col>
             </Row>
           </Container>
-          <Container className="categoryRow " fluid>
-            <Row className=" pt-0 mb-5 ">
-              <p className="categoryHeader">Shop by room</p>
-              <Col className="d-flex categorycardcol">
+          <Container className="categoryRow" fluid>
+            <Row className="h-100">
+              <p className="categoryHeader ">Shop by room</p>
+              <Col className="categorycardcol">
                 <Card className=" cardItemHome">
                   <Card.Img variant="top" src="/Images/spacejoy-ctyssSFmXmU-unsplash.jpg" />
                   <Card.Body>
@@ -93,17 +79,17 @@ const HomePage = () => {
               </Col>
             </Row>
           </Container>
-          <Container className=" whyplankit text-center">
+          <Container className=" whyplankit text-center" fluid>
             <Row>
               <Col className="content">
                 <p>Why would you Plank it ?</p>
               </Col>
             </Row>
-            <Row className="d-flex justify-content-between">
+            <Row className="d-flex justify-content-between row2plankit">
               <Col>
                 <Card className="cardInWhyPlank">
                   <div className="whyPlankIconContainer">
-                    <Card.Img variant="top" src="/noun_payment_2281176.png" className="whyPlankIcon" />
+                    <Card.Img variant="top" src="/icon2.png" className="whyPlankIcon" />
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Free Delivery</Card.Title>
@@ -114,7 +100,7 @@ const HomePage = () => {
               <Col>
                 <Card className="cardInWhyPlank">
                   <div className="whyPlankIconContainer">
-                    <Card.Img variant="top" src="/noun_payment_2281176.png" className="whyPlankIcon" />
+                    <Card.Img variant="top" src="/icon1.png" className="whyPlankIcon" />
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Easy Payments</Card.Title>
@@ -125,7 +111,7 @@ const HomePage = () => {
               <Col>
                 <Card className="cardInWhyPlank">
                   <div className="whyPlankIconContainer">
-                    <Card.Img variant="top" src="/noun_guarantee_2519048.png" className="whyPlankIcon" />
+                    <Card.Img variant="top" src="/icon4.png" className="whyPlankIcon" />
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Money-Back Guarantee</Card.Title>
@@ -138,7 +124,7 @@ const HomePage = () => {
               <Col>
                 <Card className="cardInWhyPlank">
                   <div className="whyPlankIconContainer">
-                    <Card.Img variant="top" src="/noun_materials_308312.png" className="whyPlankIcon" />
+                    <Card.Img variant="top" src="/icon3.png" className="whyPlankIcon" />
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Finest Quality</Card.Title>
@@ -148,21 +134,26 @@ const HomePage = () => {
               </Col>
             </Row>
           </Container>
-          <Container fluid>
-            <Row className="h-100">
-              <Col fluid>
-                <Image src="/Images/spacejoy-io5Tvjh7vCc-unsplash_copy.jpg" className="img-responsive firstColImg" width="100%" height="100%" />
+          <Container className="middleContainer" sm={6} fluid>
+            <Row className="firstRow h-100">
+              <Col lg={6} md={6} sm={6}>
+                <img src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="firstColImg img-responsive" alt="spacejoy-RqO6kwm4tZY-unsplash.jpg" />
               </Col>
-              <Col className="firstrowfirstcol">
+              <Col className="middleContainerSecondcol text-left" lg={6} md={6} sm={6}>
                 <Container className=" ms-5">
                   <Row>
                     <Col>
-                      <p className="heading">Don't pay upfront for your furniture</p>
+                      <p className="heading text-wrap" style={{ width: "60%" }}>
+                        Don't pay upfront for your furniture!
+                      </p>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
-                      <p className="brief">Rent your furniture for a tiny amount per month with flexible pricing from Dhs100/month.</p>
+                      <p className="brief">
+                        Rent your furniture for a tiny amount <br />
+                        per month with flexible pricing from Dhs100/month.
+                      </p>
                     </Col>
                   </Row>
                   <Row>
@@ -170,17 +161,17 @@ const HomePage = () => {
                       <p className="mb-0" onClick={startBrowsingHandler}>
                         START BROWSING
                       </p>
-                      <hr className="hrstyling" />
                     </Col>
                   </Row>
                 </Container>
               </Col>
             </Row>
           </Container>
+
           <Container className="popularRow" fluid>
-            <Row className=" pt-0 mb-5 ">
-              <p className="categoryHeader">Shop most popular</p>
-              <Col className="d-flex categorycardcol">
+            <Row className="h-100">
+              <p className="categoryHeader ">Shop most popular</p>
+              <Col className="categorycardcol">
                 <Card className=" cardItemHome">
                   <Card.Img variant="top" src="/Images/ogdenbookcase.jpg" />
                   <Card.Body>
@@ -188,21 +179,21 @@ const HomePage = () => {
                   </Card.Body>
                 </Card>
                 <Card className="cardItemHome">
-                  <Card.Img variant="top" src="/Images/nicobartablelamp.jpg" />
+                  <Card.Img variant="top" src="/Images/spacejoy-IARlbQa6Kc8-unsplash.jpg" />
                   <Card.Body>
-                    <Card.Title className="text-capitalize">Nicobar Table Lamp</Card.Title>
+                    <Card.Title className="text-capitalize">Bed Room</Card.Title>
                   </Card.Body>
                 </Card>
                 <Card className=" cardItemHome">
-                  <Card.Img variant="top" src="/Images/bowerfloorlamb.jpg" />
+                  <Card.Img variant="top" src="/Images/spacejoy-io5Tvjh7vCc-unsplash.jpg" />
                   <Card.Body>
-                    <Card.Title className="text-capitalize">Bower Floor Lamp</Card.Title>
+                    <Card.Title className="text-capitalize">Dining</Card.Title>
                   </Card.Body>
                 </Card>
                 <Card className=" cardItemHome">
-                  <Card.Img variant="top" src="/Images/barrowconsole.jpg" />
+                  <Card.Img variant="top" src="/Images/spacejoy-7fX2YfJIrOQ-unsplash.jpg" />
                   <Card.Body>
-                    <Card.Title className="text-capitalize">Barrow Console</Card.Title>
+                    <Card.Title className="text-capitalize">Accessories</Card.Title>
                   </Card.Body>
                 </Card>
               </Col>
@@ -221,9 +212,9 @@ const HomePage = () => {
                     <p className="heading">
                       Never, ever <br /> assemble furniture again.
                     </p>
-                    <p className="brief">
-                      &nbsp; We move a lot. There are countless floor plans and roommates (oh, and your evolving tastes) between here and there. With
-                      Plank, furnish your space without breaking a sweat or reaching for a screwdriver.
+                    <p className="brief ">
+                      We move a lot. There are countless floor plans and roommates (oh, and your evolving tastes) between here and there. With Plank,
+                      furnish your space without breaking a sweat or reaching for a screwdriver.
                     </p>
                     <p className=" linkhow text-uppercase">How it works </p>
                   </Col>
@@ -234,27 +225,27 @@ const HomePage = () => {
               </Col>
             </Row>
           </Container>
-          <Container fluid>
-            <Row className="p-5">
-              <Col>
-                <p className="OfferLine">Get 10% off your first month when you decide to Plank your furniture!</p>
+          <Container fluid className="newsletter">
+            <Row className="p-5 ">
+              <Col md={3} lg={6}>
+                <p className="OfferLine fs-1  float-end">Get 10% off your first month when you decide to Plank your furniture!</p>
               </Col>
-              <Col>
+              <Col md={3} lg={6}>
                 <Form>
                   <Row>
-                    <Col lg={8} md={8} className="pe-3">
+                    <Col className="pe-3 " lg={5}>
                       <Form.Group controlId="email">
                         <Form.Control
                           className="rounded-pill control-styling"
                           type="email"
-                          placeholder="Email"
+                          placeholder="Enter your email"
                           value={subemail}
                           onChange={(e) => setSubEmail(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    <Col lg={4} md={4}>
-                      <Button type="submit" size="md" className=" subscribe-btn rounded-pill mb-2">
+                    <Col lg={7}>
+                      <Button type="submit" className=" subscribe-btn rounded-pill mb-2">
                         Subscribe
                       </Button>
                     </Col>
@@ -270,39 +261,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-// const HomePage = () => {
-//   const dispatch = useDispatch();
-//   const { keyword } = useParams();
-//   const productList = useSelector((state) => state.productList);
-
-//   const { loading, error, products } = productList;
-
-//   useEffect(() => {
-//     dispatch(listProducts(keyword));
-//   }, [dispatch, keyword]);
-
-//   // console.log("products", products);
-//   return (
-//     <>
-//       <h1>Grab Your furniture</h1>
-// {loading ? (
-//   <Loader />
-// ) : error ? (
-//   <Message variant="danger">{error}</Message>
-// ) : (
-//         <Row>
-//           {products.map((product) => {
-//             return (
-//               <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
-//                 <Product product={product} />
-//               </Col>
-//             );
-//           })}
-//         </Row>
-//       )}
-//     </>
-//   );
-// };
-
-// export default HomePage;

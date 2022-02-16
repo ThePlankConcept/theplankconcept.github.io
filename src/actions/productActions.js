@@ -47,6 +47,13 @@ export const listProducts = (keyword) => async (dispatch) => {
           $containsi: keyword,
         },
       },
+      {
+        categories: {
+          category_name: {
+            $containsi: keyword,
+          },
+        },
+      },
     ],
   };
   if (keyword) {

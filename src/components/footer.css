@@ -1,24 +1,26 @@
 .main-Container {
   border: 1px solid rgba(194, 207, 222, 1);
-  overflow-x: hidden;
 }
 
+.footerlogo .logo {
+  width: 150px;
+  height: 50px;
+  margin-bottom: 4%;
+}
 .innerContainer {
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 5%;
-  padding-top: 2%;
+  padding-bottom: 3%;
+  padding-top: 1%;
 }
 
 .plank-brief {
-  top: 4285px;
-  left: 173px;
   width: 412px;
   height: 77px;
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-family: Poppins-regular;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0px;
   color: #808080;
   opacity: 1;
@@ -29,7 +31,7 @@
 }
 
 .plank-footer-links {
-  width: 50%;
+  width: 30%;
 }
 /* .plank-footer-links .Images {
   margin-left: 20px;
@@ -37,14 +39,15 @@
 
 .cardtitle {
   text-align: left;
-  font: normal normal bold 16px/29px Circe-Rounded-Bold;
+  font: normal normal bold 18px/29px Circe-Rounded-Bold;
   letter-spacing: 0px;
 }
 
 .textcard {
   text-decoration: none;
   font-family: Circe-Rounded-Light;
-  font-size: 13px;
+  font-size: 15px;
+  padding-bottom: 2px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;

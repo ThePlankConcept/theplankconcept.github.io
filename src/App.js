@@ -9,6 +9,7 @@ import LoginScreen from "./pages/LoginScreen";
 import RegisterScreen from "./pages/RegisterScreen";
 import UserAddresses from "./pages/UserAddresses";
 import CreateAddress from "./pages/CreateAddress";
+import ProductsListingPage from "./pages/ProductsListingPage";
 import CartPage from "./pages/CartPage";
 
 const App = () => {
@@ -25,15 +26,15 @@ const App = () => {
             <Col>
               <Routes>
                 <Route path="/" element={<HomePage />} exact />
-                {/* <Route path="/products" element={<AllProductsPage />} /> */}
-                {/* <Route path="/service" element={<ServicePage />} /> */}
-                <Route path="/search/:keyword" element={<HomePage />} />
                 <Route path="/product/:slug" element={<ProductPage />} />
                 <Route path="/cart" element={<CartPage />}>
                   <Route path=":slug" element={<CartPage />} />
                   <Route path="" element={<CartPage />} />
                 </Route>
-                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/products" element={<ProductsListingPage />}>
+                  <Route path=":keyword" element={<ProductsListingPage />} />
+                  <Route path="" element={<ProductsListingPage />} />
+                </Route>
                 <Route path="/login" element={<LoginScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/Addresses" element={<UserAddresses />} />

@@ -1,0 +1,34 @@
+.productsListRow {
+  padding-left: 2% !important;
+  padding-right: 2% !important;
+}
+
+.productListHeading h1 {
+  font-family: "Poppins", "sans-Serif";
+  font-size: 3.5rem !important;
+}
+
+.sortForm {
+  margin-left: auto;
+  font-family: "Poppins", "sans-Serif";
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-right: 3.5%;
+  padding-bottom: 0.5%;
+}
+
+hr {
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 8%;
+  width: 100%;
+  background-color: rgb(189, 189, 189);
+  opacity: 1;
+}
+
+@media (max-width: 784px) {
+  .productListHeading h1 {
+    font-size: 2.2rem !important;
+  }
+}

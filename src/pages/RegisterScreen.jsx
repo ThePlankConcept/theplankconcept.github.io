@@ -46,7 +46,7 @@ const RegisterScreen = () => {
     <Container fluid="true">
       <Row className="bg-image">
         <Col>
-          <img src="/signup.jpg" height="95%" width="110%"></img>
+          <img src="/Images/signup.jpg" height="100%" width="100%"></img>
         </Col>
         <Col>
           <Container fluid="true" className="p-5 ">

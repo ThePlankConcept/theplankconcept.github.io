@@ -37,10 +37,10 @@ const LoginScreen = () => {
     <Container fluid="true">
       <Row>
         <Col>
-          <img src="/signin.jpg" height="100%" width="110%"></img>
+          <img src="/Images/signin.jpg" height="100%" width="100%"></img>
         </Col>
         <Col>
-          <Container fluid="true" className="mt-2 mb-2">
+          <Container fluid="true" className="m-5 pt-5 pb-5">
             <Row>
               <Col className=" d-flex justify-content-center">
                 <p className="create-account-text ">Log In</p>

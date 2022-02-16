@@ -1,0 +1,23 @@
+.producttitle {
+  font-family: Adrianna-5;
+  font-size: 1.2rem;
+}
+
+.productprice {
+  text-align: left;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: Adrianna-5;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+@media (max-width: 784px) {
+  .productprice {
+    font-size: 1.18rem;
+  }
+  .producttitle {
+    font-size: 0.9rem;
+  }
+}

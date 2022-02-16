@@ -9,8 +9,8 @@ const Footer = () => {
         <Container className=" innerContainer ms-5 mb-3 " fluid>
           <Row>
             <Col md={4} lg={5} sm={1}>
-              <Container className="d-flex flex-column">
-                <img src="/logo.png" alt="logo" style={{ width: "107px", height: "37px", marginBottom: "5%" }} />
+              <Container className="d-flex flex-column footerlogo">
+                <img src="/logo.png" alt="logo" className="logo" />
                 <div className="plank-brief">
                   High quality furniture made designed to fit modern and minimalist apartments with the flexibility to rent and swap.
                 </div>
@@ -20,7 +20,7 @@ const Footer = () => {
 
                     <Image src="/twitter.svg" />
 
-                    <Image src="linkedin.svg" />
+                    <Image src="/linkedin.svg" />
 
                     <Image src="/instagram.svg" />
 
