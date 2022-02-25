@@ -5,15 +5,13 @@ import { Container, Row, Col, Image, Card } from "react-bootstrap";
 const Footer = () => {
   return (
     <footer>
-      <Container className="main-Container mt-5 pt-5 " fluid>
-        <Container className=" innerContainer ms-5 mb-3 " fluid>
+      <Container className="main-Container mt-5 pt-4 " fluid>
+        <Container className=" innerContainer ms-5 mb-2 " fluid>
           <Row>
             <Col md={4} lg={5} sm={1}>
               <Container className="d-flex flex-column footerlogo">
                 <img src="/logo.png" alt="logo" className="logo" />
-                <div className="plank-brief">
-                  High quality furniture made designed to fit modern and minimalist apartments with the flexibility to rent and swap.
-                </div>
+                <div className="plank-brief">High quality furniture made designed to fit modern and minimalist apartments with the flexibility to rent and swap.</div>
                 <Row className="plank-footer-links">
                   <Col className="d-flex justify-content-between">
                     <Image src="/facebook-logo.svg" />

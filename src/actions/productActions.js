@@ -1,16 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import {
-  PRODUCT_LIST_FAIL,
-  PRODUCT_LIST_SUCCESS,
-  PRODUCT_LIST_REQUEST,
-  PRODUCT_DETAILS_REQUEST,
-  PRODUCT_DETAILS_SUCCESS,
-  PRODUCT_DETAILS_FAIL,
-  PRODUCT_HOMEPAGE_REQUEST,
-  PRODUCT_HOMEPAGE_SUCCESS,
-  PRODUCT_HOMEPAGE_FAIL,
-} from "../constants/productConstants";
+import { PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_REQUEST, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_FILTER_REQUEST, PRODUCT_FILTER_SUCCESS, PRODUCT_FILTER_FAIL, PRODUCT_RELATED_ITEMS_REQUEST, PRODUCT_RELATED_ITEMS_SUCCESS, PRODUCT_RELATED_ITEMS_FAIL } from "../constants/productConstants";
 
 export const listProducts = (keyword) => async (dispatch) => {
   let query = "";
@@ -97,6 +87,110 @@ export const listProductDetails = (slug) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const filterProducts =
+  ({ keyword, type, brand }) =>
+  async (dispatch) => {
+    let query = "";
+    const populate = {
+      brandId: {
+        fields: ["brand_name"],
+      },
+      typeId: {
+        fields: ["type_name"],
+      },
+      categories: {
+        fields: ["category_name"],
+      },
+      product_inventories: {
+        populate: "*",
+      },
+    };
+    const filter = {
+      $and: [
+        {
+          typeId: {
+            type_name: {
+              $in: type,
+            },
+          },
+        },
+        {
+          brandId: {
+            brand_name: {
+              $in: brand,
+            },
+          },
+        },
+        {
+          categories: {
+            category_name: {
+              $in: keyword,
+            },
+          },
+        },
+      ],
+    };
+    if (keyword) {
+      query = qs.stringify({
+        populate: populate,
+        filters: filter,
+      });
+    } else {
+      query = qs.stringify({
+        populate: populate,
+      });
+    }
+    // console.log("query", query, keyword);
+    try {
+      dispatch({ type: PRODUCT_FILTER_REQUEST });
+      const { data } = await axios.get(`/api/products?${query}`);
+      // console.log("response", data.data);
+      dispatch({
+        type: PRODUCT_FILTER_SUCCESS,
+        payload: data.data,
+      });
+    } catch (error) {
+      // console.log(error);
+      dispatch({
+        type: PRODUCT_FILTER_FAIL,
+        payload: error,
+      });
+    }
+  };
+
+export const relatedItems = (category) => async (dispatch) => {
+  console.log("relatedItems action called");
+  const filter = {
+    categories: {
+      id: {
+        $eq: category,
+      },
+    },
+  };
+  const query = qs.stringify({
+    populate: {
+      product_inventories: {
+        populate: "*",
+      },
+    },
+    filters: filter,
+  });
+  try {
+    dispatch({ type: PRODUCT_RELATED_ITEMS_REQUEST });
+    const { data } = await axios.get(`/api/products?${query}`);
+    console.log("related items", { ...data.data });
+    dispatch({
+      type: PRODUCT_RELATED_ITEMS_SUCCESS,
+      payload: [...data.data],
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_RELATED_ITEMS_FAIL,
       payload: error.message,
     });
   }

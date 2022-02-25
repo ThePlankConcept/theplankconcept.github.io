@@ -73,3 +73,9 @@ background-color: blue;
     font: normal normal normal 13px/34px Adrianna-5;
 letter-spacing: 0px;
   }
+  
+  .the-login{
+    object-fit: cover;
+    height: 150%;
+    width: 100%;
+  }

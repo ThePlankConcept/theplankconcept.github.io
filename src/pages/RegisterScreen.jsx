@@ -7,9 +7,12 @@ import Loader from "../components/Loader";
 import { register } from "../actions/userActions";
 import "./RegisterScreen.css";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF , faGoogle} from '@fortawesome/free-brands-svg-icons'
+import useWindowDimensions from './../hooks/ScreenSizeHook'
 // import signupImage from  "../assets/signup.jpg"
 const RegisterScreen = () => {
+  const { height, width } = useWindowDimensions();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fName, setFirstName] = useState("");
@@ -46,15 +49,37 @@ const RegisterScreen = () => {
     <Container fluid="true">
       <Row className="bg-image">
         <Col>
-          <img src="/Images/signup.jpg" height="100%" width="100%"></img>
+          <img src="/Images/signup.jpg" className="the-login"></img>
         </Col>
         <Col>
           <Container fluid="true" className="p-5 ">
-            <Row>
+         
+            <Row >
               <Col className=" d-flex justify-content-center">
                 <p className="create-account-text">Create Account</p>
               </Col>
             </Row>
+            <Row className="mb-3">
+                        <Col className={(width>1309 ? ( " d-flex justify-content-end me-2") : ( " d-flex justify-content-center") )}>
+                        <Button className="rounded-pill  btn btn-sm google-btn"
+        onClick={() =>
+          (window.location = 'http://localhost:1337/api/connect/google')
+        }
+      >
+   <FontAwesomeIcon icon={faGoogle} fontSize="medium" className="pe-2 "   /> sign up via Google
+      </Button>
+                        </Col>
+                        <Col className={(width>1309 ? ( " d-flex justify-content-start ") : ( " d-flex justify-content-center") )}>
+                        <Button className="rounded-pill btn btn-sm facebook-btn"
+        onClick={() =>
+          (window.location = 'http://localhost:1337/api/connect/facebook')
+        }
+      >
+       
+         <span>  <FontAwesomeIcon icon={faFacebookF} fontSize="medium" className="pe-2 "   />  <span  className="text-top" > sign up via Facebook</span></span>
+      </Button>
+                        </Col>
+                      </Row>
             <Row>
               <Col className="   adding-margins    ">
                 {message && <Message variant="danger">{message}</Message>}

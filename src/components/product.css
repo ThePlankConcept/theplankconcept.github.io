@@ -7,11 +7,147 @@
   text-align: left;
   /* font-family: "Poppins", sans-serif; */
   font-family: Adrianna-5;
-  font-size: 1.85rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 500 !important;
   letter-spacing: 0px;
   color: #333333;
   opacity: 1;
+}
+.block-icon {
+  position: relative;
+  display: inline-flex;
+}
+
+.icon-tag {
+  cursor: pointer;
+  position: absolute;
+  background: none;
+  top: 3%;
+  right: 4%;
+  z-index: 0;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.modal-heading {
+  padding-bottom: 5px;
+  font-family: "Poppins";
+  font-size: 1.5rem;
+  letter-spacing: 0px;
+  text-transform: none;
+}
+.plank-wishlist-create-button {
+  text-transform: none;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border: 1px dotted #c2cfde;
+  background-color: transparent;
+  color: black;
+}
+.plank-wishlist-create-button-primary:hover,
+.plank-wishlist-create-button-primary:focus,
+.plank-wishlist-create-button-primary:active,
+.plank-wishlist-create-button-primary:active:focus:not(:disabled):not(.disabled),
+.plank-wishlist-create-button:focus,
+.plank-wishlist-create-button:active,
+.plank-wishlist-create-button:hover {
+  background-color: transparent;
+  color: black;
+  box-shadow: none !important;
+  outline: 0;
+}
+
+.wishlistButton {
+  width: 100%;
+  text-transform: none;
+  font-family: "Poppins";
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  background-color: #c2cfde;
+  color: white;
+}
+.wishlistButton-primary:hover,
+.wishlistButton-primary:focus,
+.wishlistButton-primary:active,
+.wishlistButton-primary:active:focus:not(:disabled):not(.disabled),
+.wishlistButton:focus,
+.wishlistButton:active,
+.wishlistButton:hover {
+  background-color: white;
+  color: black;
+  box-shadow: none !important;
+  border: 1px solid #c2cfde;
+  outline: 0;
+}
+.modal-btn {
+  width: 65%;
+  text-transform: none;
+  font-family: "Poppins";
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  background-color: #c2cfde;
+  color: white;
+}
+.modal-btn-primary:hover,
+.modal-btn-primary:focus,
+.modal-btn-primary:active,
+.modal-btn-primary:active:focus:not(:disabled):not(.disabled),
+.modal-btn:focus,
+.modal-btn:active,
+.modal-btn:hover {
+  background-color: white;
+  color: black;
+  box-shadow: none !important;
+  border: 1px solid #c2cfde;
+  outline: 0;
+}
+.modal-btn-login {
+  width: 65%;
+  text-transform: none;
+  font-family: "Poppins";
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid #c2cfde;
+  background-color: transparent;
+  color: black;
+}
+.modal-btn-login-primary:hover,
+.modal-btn-login-primary:focus,
+.modal-btn-login-primary:active,
+.modal-btn-login-primary:active:focus:not(:disabled):not(.disabled),
+.modal-btn-login:focus,
+.modal-btn-login:active,
+.modal-btn-login:hover {
+  background-color: #c2cfde;
+  color: black;
+  box-shadow: none !important;
+  border: 1px solid #c2cfde;
+  outline: 0;
+}
+
+.popup-submit-btn {
+  background-color: #f68e65;
+  color: white;
+  border: 1px solid #f68e65;
+}
+.popup-submit-btn:hover {
+  background-color: white;
+  color: #f68e65;
+  border: 1px solid #f68e65;
+}
+.cancel {
+  background-color: white;
+  color: black;
+  text-decoration: underline;
+}
+.cancel:hover {
+  background-color: white;
+  color: black;
+  text-decoration: underline;
 }
 @media (max-width: 784px) {
   .productprice {

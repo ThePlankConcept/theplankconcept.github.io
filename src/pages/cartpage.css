@@ -1,0 +1,39 @@
+.cartMainContainer {
+  padding: 5% 8% 5% 6%;
+}
+
+.noOfItemsNote {
+  padding-right: 2% !important;
+}
+.cartPageCheckoutCol {
+  background: rgba(194, 207, 222, 0.3) 0% 0% no-repeat padding-box;
+}
+.cartPageCheckoutCol .list-group-item {
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+}
+.noOfitems {
+  padding-top: 2%;
+}
+
+.cartItemsListGroup {
+  padding-left: 0 !important;
+  padding-bottom: 1.5%;
+}
+.checkOutBtn {
+  padding: 1rem 3.5rem 1rem 3.5rem;
+  background-color: #c2cfde;
+  color: white;
+  border: 1px solid;
+  font-family: Circe-Rounded-Bold;
+  font-size: 1.5rem !important;
+  letter-spacing: 1px;
+  font-size: 110%;
+}
+.checkOutBtn:hover {
+  background-color: white;
+  color: #c2cfde;
+  border-color: #c2cfde;
+  border: 1px solid;
+}

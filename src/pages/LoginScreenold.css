@@ -1,0 +1,18 @@
+.login-account-btn {
+    background-color: #C2CFDE;
+    color: white;
+  margin-left: 35%;
+    margin-right: 35%;
+    border: 1px solid;
+}
+.login-account-btn:hover {
+    background-color: white;
+    color:#C2CFDE;
+    border-color: #C2CFDE;
+    border: 1px solid;
+}
+
+.hr-login-margin{
+  margin-left: 20%;
+  margin-right: 20%;
+}

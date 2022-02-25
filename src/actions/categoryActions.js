@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import { CATEGORY_LIST_FAIL, CATEGORY_LIST_SUCCESS, CATEGORY_LIST_REQUEST } from "../constants/categoryConstants";
+import { CATEGORY_LIST_FAIL, CATEGORY_LIST_SUCCESS, CATEGORY_LIST_REQUEST, ALL_PRODUCT_CATEGORY_REQUEST, ALL_PRODUCT_CATEGORY_SUCCESS, ALL_PRODUCT_CATEGORY_FAIL } from "../constants/categoryConstants";
 
 export const listCategory = (keyword) => async (dispatch) => {
   if (keyword) {
@@ -11,6 +11,9 @@ export const listCategory = (keyword) => async (dispatch) => {
       },
       types: {
         fields: ["type_name"],
+      },
+      products: {
+        populate: "product_inventories.images",
       },
     };
     const filter = {
@@ -28,11 +31,11 @@ export const listCategory = (keyword) => async (dispatch) => {
         populate: populate,
       });
     }
-    console.log("query", query, keyword);
+    // console.log("query", query, keyword);
     try {
       dispatch({ type: CATEGORY_LIST_REQUEST });
       const { data } = await axios.get(`/api/categories?${query}`);
-      // console.log("response", data);
+      console.log("response", data);
       dispatch({
         type: CATEGORY_LIST_SUCCESS,
         payload: data.data,
@@ -64,7 +67,7 @@ export const listCategory = (keyword) => async (dispatch) => {
       }
     );
 
-    console.log("query", query1, keyword);
+    // console.log("query", query1, keyword);
     let promises = [`/api/types?${query1}`, `/api/brands?${query2}`];
 
     try {
@@ -72,7 +75,7 @@ export const listCategory = (keyword) => async (dispatch) => {
 
       axios.all(promises.map((promise) => axios.get(promise))).then(
         axios.spread((types, brands) => {
-          console.log("res", { types, brands });
+          // console.log("res", { types, brands });
           dispatch({
             type: CATEGORY_LIST_SUCCESS,
             payload: { types: types.data, brands: brands.data },
@@ -86,5 +89,40 @@ export const listCategory = (keyword) => async (dispatch) => {
         payload: error,
       });
     }
+  }
+};
+
+export const allProductCategories = (keyword) => async (dispatch) => {
+  let query = "";
+  const populate = {
+    images: {
+      populate: "*",
+    },
+    brands: {
+      fields: ["brand_name"],
+    },
+    types: {
+      populate: "*",
+    },
+  };
+
+  query = qs.stringify({
+    populate: populate,
+  });
+  // console.log("query", query, keyword);
+  try {
+    dispatch({ type: ALL_PRODUCT_CATEGORY_REQUEST });
+    const { data } = await axios.get(`/api/categories?${query}`);
+    console.log("response", data);
+    dispatch({
+      type: ALL_PRODUCT_CATEGORY_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    // console.log(error);
+    dispatch({
+      type: ALL_PRODUCT_CATEGORY_FAIL,
+      payload: error,
+    });
   }
 };

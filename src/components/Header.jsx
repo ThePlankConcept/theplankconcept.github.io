@@ -1,71 +1,133 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./header.css";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+
 import { LinkContainer } from "react-router-bootstrap";
+import { Nav, Badge, Navbar, Container, Button, Image, Dropdown, NavDropdown, Col, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RoomsMenu from "./RoomsMenu";
+import ProductMenu from "./ProductsMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../actions/userActions";
 const Header = () => {
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  const [menu, setMenu] = useState();
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  // console.log("header", userInfo);
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+  function chbg(value) {
+    // display: none;
+    // position: absolute;
+
+    // width: 100%;
+    // left: 0;
+    // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    // z-index: 1;
+    setMenu(value);
+    document.getElementById("b").style.maxHeight = "500px";
+    document.getElementById("b").style.display = "";
+    document.getElementById("b").style.position = "absolute";
+    document.getElementById("b").style.zIndex = "1";
+    document.getElementById("b").style.opacity = 1;
+    // document.getElementById('b').style.maxHeight= "500px"
+  }
+  window.onscroll = function (e) {
+    // print "false" if direction is down and "true" if up
+    console.log(this.oldScroll > this.scrollY);
+    this.oldScroll = this.scrollY;
+    if (this.oldScroll > this.scrollY) {
+    } else {
+      document.getElementById("b").style.transition = "max-height 0.3s ease-out";
+      document.getElementById("b").style.opacity = 0;
+      document.getElementById("b").style.maxHeight = 0;
+    }
+  };
   return (
     <header>
-      <Navbar expand="lg" collapseOnSelect className="headerNav">
-        <Container fluid className="d-flex justify-content-between navContainer">
-          <div>
-            <Nav as="ul" className="d-flex initialLinks justify-content-between">
-              <Nav.Item as="li" className="listing text-capitalize">
-                <Nav.Link href="/products" active>
-                  Products
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item as="li" className="listing text-capitalize">
-                <Nav.Link href="#" active>
-                  Rooms
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item as="li" className="listing text-capitalize">
-                <Nav.Link href="/services" active>
-                  Services
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </div>
-          <div>
-            <LinkContainer to="/">
-              <Navbar.Brand>
-                <img width="20%" height="50%" className="img-responsive logo" src="/logo.png" alt="logo" />
-              </Navbar.Brand>
-            </LinkContainer>
-          </div>
-          <div>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav cls" justify="true">
-              <Nav className="d-flex justify-content-between navItems" flush="true">
-                <LinkContainer to="/cart">
-                  <Nav.Link>
-                    <img src="/searchIcon.svg" alt="search" width="70px" />
-                  </Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/wishlist">
-                  <Nav.Link>
-                    <img src="/wishlisticon.png" alt="cart" width="70px" />
-                  </Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/cart">
-                  <Nav.Link>
-                    <img src="/cartIcon.svg" alt="cart" width="70px" />
-                  </Nav.Link>
+      <Container fluid>
+        <Row>
+          <Col>
+            <Navbar expand="lg" collapseOnSelect className="headerNav plank-px ">
+              <Container className="" fluid>
+                <Nav as="ul" className="">
+                  <Nav.Item as="li" className="listing text-capitalize ">
+                    <Nav.Link href="/products" onMouseOver={() => chbg("products")} id="a" active>
+                      Products
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item as="li" onMouseOver={() => chbg("rooms")} className="listing text-capitalize">
+                    <Nav.Link href="/products/living%20room" active>
+                      Rooms
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item as="li" className="listing text-capitalize">
+                    <Nav.Link href="/services" active>
+                      Services
+                    </Nav.Link>
+                  </Nav.Item>
+                </Nav>
+
+                <LinkContainer to="/" className="d-flex justify-content-center">
+                  <Navbar.Brand className=" ">
+                    <img width="70%" height="80%" className=" " src="/logo.ico" alt="logo" />
+                  </Navbar.Brand>
                 </LinkContainer>
 
-                <NavDropdown className="accnt" title={<img src="/avatarIcon.svg" alt="login" width="70px" />} id="basic-nav-dropdown">
-                  <LinkContainer to="/register">
-                    <NavDropdown.Item className="dropdownheader px-2 m-3">Create an Account</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/login">
-                    <NavDropdown.Item className="dropdownheader px-2 m-3">Login</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </div>
-        </Container>
-      </Navbar>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav cls " className="ms-5" justify="true">
+                  <Nav className="ms-auto  navItems" flush="true">
+                    <LinkContainer className="d-flex justify-content-center" to="/cart">
+                      <Nav.Link>
+                        <img src="/searchIcon.svg" alt="search" width="100%" />
+                      </Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/wishlists">
+                      <Nav.Link>
+                        <img src="/heart-regular.svg" alt="cart" width="40px" />
+                      </Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/cart">
+                      <Nav.Link>
+                        <div className="cartIcon">
+                          <Image src="/cartIcon.svg" alt="cart" width="100%" height="100%" />
+                          {cartItems.length > 0 ? <Badge className="cart-basket">{cartItems.length}</Badge> : <></>}
+                        </div>
+                      </Nav.Link>
+                    </LinkContainer>
+                    {userInfo ? (
+                      <NavDropdown title={<img src="/avatarIcon.svg" alt="login" width="100%" />} id="basic-nav-dropdown">
+                        <LinkContainer to="/profile">
+                          <NavDropdown.Item className="dropdownheader px-2 m-3">Profile</NavDropdown.Item>
+                        </LinkContainer>
+                        <NavDropdown.Item className="dropdownheader px-2 m-3" onClick={logoutHandler}>
+                          Logout
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    ) : (
+                      <NavDropdown title={<img src="/avatarIcon.svg" alt="login" width="100%" />} id="basic-nav-dropdown">
+                        <LinkContainer to="/register">
+                          <NavDropdown.Item className="dropdownheader px-2 m-3">Create an Account</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/login">
+                          <NavDropdown.Item className="dropdownheader px-2 m-3">Login</NavDropdown.Item>
+                        </LinkContainer>
+                      </NavDropdown>
+                    )}
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
+          </Col>
+        </Row>
+        <Row id="b" className="specialDropDown">
+          <Col>{menu == "rooms" ? <RoomsMenu /> : <ProductMenu />}</Col>
+        </Row>
+      </Container>
     </header>
   );
 };
@@ -99,7 +161,7 @@ export default Header;
 //               <Navbar.Brand>
 //                 <img width="148px" height="auto" className="img-responsive" src="./logo.png" alt="logo" />
 //               </Navbar.Brand>
-//             </LinkContainer>
+//           </LinkContainer>
 //           </div>
 //           <div>
 //             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -109,22 +171,22 @@ export default Header;
 //                   <Nav.Link>
 //                     <img src="/searchIcon.svg" alt="search" />
 //                   </Nav.Link>
-//                 </LinkContainer>
+//               </LinkContainer>
 //                 <LinkContainer to="/wishlist">
 //                   <Nav.Link>
 //                     <img src="/cartIcon.svg" alt="cart" />
 //                   </Nav.Link>
-//                 </LinkContainer>
+//               </LinkContainer>
 //                 <LinkContainer to="/cart">
 //                   <Nav.Link>
 //                     <img src="/cartIcon.svg" alt="cart" />
 //                   </Nav.Link>
-//                 </LinkContainer>
+//               </LinkContainer>
 //                 <LinkContainer to="/login">
 //                   <Nav.Link>
 //                     <img src="/avatarIcon.svg" alt="login" />
 //                   </Nav.Link>
-//                 </LinkContainer>
+//               </LinkContainer>
 //               </Nav>
 //             </Navbar.Collapse>
 //           </div>

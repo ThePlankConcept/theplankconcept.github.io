@@ -1,9 +1,31 @@
 .login-account-btn {
     background-color: #C2CFDE;
     color: white;
-  margin-left: 35%;
-    margin-right: 35%;
+    max-width: 100%;
     border: 1px solid;
+    white-space: nowrap;
+}
+.facebook-btn{
+  background-color: #85B2EF;
+  color: white;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.hide{
+  display: none;
+}
+.facebook-btn:hover{
+color: #85B2EF;
+background-color: white;
+border-color: #85B2EF;
+white-space: nowrap;
+}
+
+
+
+.the-login{
+  object-fit: cover;
+  height: 100vh;
 }
 .login-account-btn:hover {
     background-color: white;
@@ -11,7 +33,19 @@
     border-color: #C2CFDE;
     border: 1px solid;
 }
-
+.google-btn{
+  background-color: #E39292;
+  color: white;
+  white-space: nowrap;
+  border: 1px solid;
+}
+.google-btn:hover{
+  background-color: white;
+  border: 1px solid;
+  border-color: #E39292;
+  color: #E39292;
+  
+}
 .hr-login-margin{
   margin-left: 20%;
   margin-right: 20%;

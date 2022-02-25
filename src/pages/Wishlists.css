@@ -1,0 +1,68 @@
+.add-new-wishlist{
+    border: 1px dashed #f68e65;
+    cursor: pointer;
+    
+}
+.wishlistImages{
+
+    
+        width:  100px;
+        height: 155px;
+        object-fit: cover;
+    
+
+}
+.wishlists-header{
+  font-size: xx-large;
+  font-weight: 600;
+  font-family: poppins;
+  letter-spacing: 0ch;
+color: black;
+
+}
+input[type="text"] {
+   background-color: white !important;
+   border : 1px solid black
+ }
+.popup-submit-btn{
+    background-color: #f68e65;
+    color: white;
+    border : 1px solid #f68e65
+}
+.popup-submit-btn:hover{
+    background-color: white;
+    color: #f68e65;
+    border : 1px solid #f68e65
+}
+.cancel{
+    background-color: white;
+    color: black;
+
+    text-decoration: underline;
+}
+.cancel:hover{
+    background-color: white;
+    color: black;
+
+    text-decoration: underline;
+}
+.middle-it{
+    padding: 50%;
+}
+.plus-sign{
+    color: #f68e65;
+    font-size: xx-large;
+}
+.view-images{
+    background-color: gray;
+}
+.responsive {
+  /* width: 202.5px; */
+  /* height: 155px; */
+  object-fit: cover;
+}
+.responsive-2 {
+  /* //  width: 101.25px; */
+    /* height: 77.5px; */
+    object-fit: cover;
+  }
