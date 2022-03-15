@@ -1,0 +1,131 @@
+.plankDeliveryInfoForm .form-control,
+.plankDeliveryInfoForm .form-control:hover,
+.plankDeliveryInfoForm .form-control:focus,
+.plankDeliveryInfoForm .form-select,
+.plankDeliveryInfoForm .form-select:hover,
+.plankDeliveryInfoForm .form-select:focus {
+  box-shadow: none;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: transparent;
+  border-radius: 25px !important;
+}
+
+.plankDeliveryInfoForm .form-label {
+  font-size: smaller;
+  font-family: "Poppins";
+  font-weight: 400;
+}
+
+.deliveryInfoContainer {
+  padding: 6% 22% 0% 22%;
+}
+
+.deliveryInfoSavebtn {
+  width: 100%;
+  padding-top: 2.5% !important;
+  padding-bottom: 2.5% !important;
+  font-size: 1.2rem;
+  text-transform: none;
+  font-family: "Poppins";
+  font-weight: 500;
+  letter-spacing: 0px;
+  border: none;
+  background-color: #c2cfde;
+  color: white;
+  border: 1px solid #c2cfde;
+}
+.deliveryInfoSavebtn-primary:hover,
+.deliveryInfoSavebtn-primary:focus,
+.deliveryInfoSavebtn-primary:active,
+.deliveryInfoSavebtn-primary:active:focus:not(:disabled):not(.disabled),
+.deliveryInfoSavebtn:focus,
+.deliveryInfoSavebtn:active,
+.deliveryInfoSavebtn:hover {
+  background-color: transparent;
+  color: black;
+  box-shadow: none !important;
+  border: 1px solid #c2cfde;
+  outline: 0;
+}
+
+.deliveryInfoHr {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.deliveryInfoHr2 {
+  width: 30%;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.deliveryInfoHr3 {
+  width: 70%;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.schedulingDelivery h6 {
+  text-transform: none;
+  font-family: "Poppins";
+  font-size: 1.5rem;
+  letter-spacing: 0px;
+  font-weight: 400;
+  padding-bottom: 1%;
+}
+
+.plankcovidquote {
+  text-transform: none;
+  font-family: "Poppins";
+  font-size: 0.9rem;
+  letter-spacing: 0px;
+  font-weight: 400;
+  padding-bottom: 4%;
+}
+
+.xyzcol {
+  width: fit-content !important;
+  font-family: "Roboto";
+  font-weight: 500;
+  color: black;
+}
+.xyzcol p {
+  font-weight: 700;
+  margin-bottom: 2px !important;
+}
+.xyzcol small {
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+.xyzcol p a {
+  color: rgb(130, 130, 130);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.addressSelector .form-check-input:checked {
+  background-color: rgb(130, 130, 130);
+  box-shadow: none !important;
+}
+
+.addressSelectorRow {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 2%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+.customerInfoStepContainerRowCol {
+  width: fit-content;
+  flex: 0;
+  padding-left: 5%;
+}
+.customerInfoStepContainerRow {
+  margin-bottom: 5% !important;
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+}
+
+.customerInfoStepContainer {
+  width: max-content !important;
+}

@@ -1,5 +1,5 @@
 .headerNav {
-  background: rgba(194, 207, 222, 0.3) 0% 0% no-repeat padding-box;
+  background-color: rgba(194, 207, 222, 0.3);
 
   /* display: none;
    position: absolute;
@@ -11,12 +11,11 @@
   z-index: 1; */
 }
 
-.navbar-brand {
-  /* display: flex; */
-  align-items: center;
-  justify-content: center !important;
+.navbranding {
+  object-fit: fill;
+  min-width: "100%";
+  min-height: "100%";
 }
-
 .navContainer {
   padding-top: 0.3%;
   padding-right: 3%;
@@ -73,6 +72,7 @@
   max-height: 0;
   overflow: hidden;
   background: white;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 #a:hover + #b {
   background: rgb(235, 10, 10);
@@ -95,7 +95,7 @@
 }
 
 .listing {
-  font-family: Circe-Rounded-Bold;
+  font-family: "Poppins";
   font-size: large;
 }
 .plank-px {
@@ -150,6 +150,9 @@
   color: #333333;
   opacity: 1;
   background-color: transparent;
+}
+.bdnav {
+  margin-right: 0 !important;
 }
 /* add by fahad */
 /* .nav-link {
@@ -226,4 +229,20 @@
   z-index: 1;
   font-size: 0.5rem;
   border-radius: 50%;
+}
+
+.cardInRoomsMenu {
+  border: none;
+}
+.cardInRoomsMenu .cardImageinRoomsMenu {
+  width: 14rem;
+  height: 18rem;
+  object-fit: cover;
+}
+
+.cardBodyInRoomsMenu .cardTitleinRoomsMenu {
+  font-family: "Poppins";
+  font-size: 1rem !important;
+  letter-spacing: normal;
+  font-weight: 500 !important;
 }

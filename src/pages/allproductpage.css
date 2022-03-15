@@ -54,5 +54,11 @@
 
 .allProductsShopbyItemCol {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+}
+
+.cardInAllProductstypes .cardIimage {
+  width: 100%;
+  height: 22rem;
+  object-fit: cover;
 }

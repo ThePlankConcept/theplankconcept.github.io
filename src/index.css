@@ -1,12 +1,30 @@
 main {
-  min-height: 80vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
 .rating span {
   margin: 0.1rem;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(194, 207, 222, 0.3);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(194, 207, 222, 0.8);
+}
 @font-face {
   font-family: "Adrianna-1";
   src: local("Adrianna"), url(./fonts/Adrianna/Adrianna\ 1.otf) format("opentype");
@@ -54,7 +72,8 @@ main {
 }
 @font-face {
   font-family: "Circe-Rounded-Extra-Bold";
-  src: local("Circe Rounded"), url(./fonts/Circe-Rounded/CirceRounded-Alt-ExtraBold.otf) format("opentype");
+  src: local("Circe Rounded"),
+    url(./fonts/Circe-Rounded/CirceRounded-Alt-ExtraBold.otf) format("opentype");
 }
 @font-face {
   font-family: "poppins-regular";

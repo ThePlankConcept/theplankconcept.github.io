@@ -1,24 +1,38 @@
-import { WISHLIST_CREATE_REQUEST, WISHLIST_CREATE_SUCCESS, WISHLIST_CREATE_FAIL, WISHLIST_GET_REQUEST, WISHLIST_GET_SUCCESS, WISHLIST_GET_FAIL, WISHLIST_UPDATE_REQUEST, WISHLIST_UPDATE_SUCCESS, WISHLIST_UPDATE_FAIL } from "../constants/wishlistConstants";
+import {
+  WISHLIST_CREATE_REQUEST,
+  WISHLIST_CREATE_SUCCESS,
+  WISHLIST_CREATE_FAIL,
+  WISHLIST_GET_REQUEST,
+  WISHLIST_GET_SUCCESS,
+  WISHLIST_GET_FAIL,
+  WISHLIST_UPDATE_REQUEST,
+  WISHLIST_UPDATE_SUCCESS,
+  WISHLIST_UPDATE_FAIL,
+} from "../constants/wishlistConstants";
 import axios from "axios";
 import qs from "qs";
 export const createWishlist =
-  ({ user, name }) =>
-  async (dispatch) => {
-    console.log("action called", user, name);
+  ({ name }) =>
+  async (dispatch, getState) => {
+    const {
+      userLogin: { userInfo },
+    } = getState();
     try {
-      console.log("hi");
       dispatch({
         type: WISHLIST_CREATE_REQUEST,
       });
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + user.jwt,
+          Authorization: "Bearer " + userInfo.jwt,
         },
       };
-
-      const { data } = await axios.post("http://localhost:1337/api/wishlists", { data: { wishlist_name: name, user: user.user.id } }, config);
-      console.log("Wishlist", data);
+      const { data } = await axios.post(
+        "http://localhost:1337/api/wishlists",
+        { data: { wishlist_name: name, user: userInfo.user.id } },
+        config
+      );
+      console.log("createWish", data);
       dispatch({
         type: WISHLIST_CREATE_SUCCESS,
         payload: data,
@@ -27,7 +41,10 @@ export const createWishlist =
       console.log("hi from catch");
       dispatch({
         type: WISHLIST_CREATE_FAIL,
-        payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
       });
     }
   };
@@ -35,9 +52,6 @@ export const createWishlist =
 export const getUserWishListAction = (userInfo) => async (dispatch) => {
   let query = "";
   const populate = {
-    user: {
-      populate: "*",
-    },
     products: {
       populate: "product_inventories.images",
     },
@@ -54,7 +68,6 @@ export const getUserWishListAction = (userInfo) => async (dispatch) => {
     filters: filter,
   });
   try {
-    console.log("hi");
     dispatch({
       type: WISHLIST_GET_REQUEST,
     });
@@ -65,7 +78,7 @@ export const getUserWishListAction = (userInfo) => async (dispatch) => {
       },
     };
     const { data } = await axios.get(`http://localhost:1337/api/wishlists?${query}`, config);
-    // console.log("userwishlist", data);
+    // console.log("getUserWishListAction", data);
     dispatch({
       type: WISHLIST_GET_SUCCESS,
       payload: data,
@@ -74,7 +87,8 @@ export const getUserWishListAction = (userInfo) => async (dispatch) => {
     console.log("hi from catch");
     dispatch({
       type: WISHLIST_GET_FAIL,
-      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
     });
   }
 };
@@ -85,8 +99,6 @@ export const updateuserwishlist =
     const {
       userLogin: { userInfo },
     } = getState();
-    console.log(userInfo);
-    console.log("in action", product, wishlistid);
     let usercurrentwishlist = [product];
     wishlistid.attributes.products.data.map((prod) => {
       usercurrentwishlist.push(prod.id);
@@ -101,7 +113,12 @@ export const updateuserwishlist =
           Authorization: "Bearer " + userInfo.jwt,
         },
       };
-      const { data } = await axios.put(`http://localhost:1337/api/wishlists/${wishlistid.id}`, { data: { products: usercurrentwishlist } }, config);
+      const { data } = await axios.put(
+        `http://localhost:1337/api/wishlists/${wishlistid.id}`,
+        { data: { products: usercurrentwishlist } },
+        config
+      );
+      console.log("updateuserwishlist", data);
       dispatch({
         type: WISHLIST_UPDATE_SUCCESS,
         payload: data,
@@ -110,7 +127,10 @@ export const updateuserwishlist =
       console.log("hi from catch");
       dispatch({
         type: WISHLIST_UPDATE_FAIL,
-        payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
       });
     }
   };

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container, Image, Card, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { listProducts } from "../actions/productActions";
+import Header from "../components/Header";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Footer from "../components/Footer";
@@ -13,7 +13,7 @@ const HomePagev2 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [subemail, setSubEmail] = useState();
-  const { keyword } = useParams();
+
   const productList = useSelector((state) => state.productList);
 
   const { loading, error, products } = productList;
@@ -21,13 +21,15 @@ const HomePagev2 = () => {
   const startBrowsingHandler = () => {
     navigate("/products");
   };
-  useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
 
   // console.log("products", products);
   return (
     <>
+      <Row>
+        <Col>
+          <Header />
+        </Col>
+      </Row>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -44,19 +46,28 @@ const HomePagev2 = () => {
                 </Row>
                 <Row>
                   <Col>
-                    <p className="plank-makeyourHomebrief">Free delivery and assembly with flexibility to rent your furniture!</p>
+                    <p className="plank-makeyourHomebrief">
+                      Free delivery and assembly with flexibility to rent your furniture!
+                    </p>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <Button onClick={startBrowsingHandler} className=" start-browsing-btn rounded-pill mt-2">
+                    <Button
+                      onClick={startBrowsingHandler}
+                      className=" start-browsing-btn rounded-pill mt-2"
+                    >
                       Start Browsing
                     </Button>
                   </Col>
                 </Row>
               </Col>
               <Col className="plankMakeYourHomeCol2" xs={12} s={12} md={6} lg={6} xl={6}>
-                <img src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="img-responsive plankMakeYourHomeImg" alt="spacejoy-RqO6kwm4tZY-unsplash.jpg" />
+                <img
+                  src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg"
+                  className="img-responsive plankMakeYourHomeImg"
+                  alt="spacejoy-RqO6kwm4tZY-unsplash.jpg"
+                />
               </Col>
               <Col className="toggle-display" xs={12} s={12} md={6} lg={6} xl={6}>
                 <Row>
@@ -66,12 +77,17 @@ const HomePagev2 = () => {
                 </Row>
                 <Row>
                   <Col>
-                    <p className="plank-makeyourHomebrief">Free delivery and assembly with flexibility to rent your furniture!</p>
+                    <p className="plank-makeyourHomebrief">
+                      Free delivery and assembly with flexibility to rent your furniture!
+                    </p>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <Button onClick={startBrowsingHandler} className=" start-browsing-btn rounded-pill mt-2">
+                    <Button
+                      onClick={startBrowsingHandler}
+                      className=" start-browsing-btn rounded-pill mt-2"
+                    >
                       Start Browsing
                     </Button>
                   </Col>
@@ -79,48 +95,68 @@ const HomePagev2 = () => {
               </Col>
             </Row>
           </Container>
-          <Container fluid className="pb-0 plankShopByCategoryContainer" style={{ background: "#ecf0f5 0% 0% no-repeat padding-box", opacity: "1" }}>
+          <Container
+            fluid
+            className="pb-0 plankShopByCategoryContainer"
+            style={{ background: "#ecf0f5 0% 0% no-repeat padding-box", opacity: "1" }}
+          >
             <Row className="pt-2 ps-5">
               <Col className="text-start pb-3 ">
                 <h3 className="plankHomeShopByCategoryLabel text-capitalize">Shop by Room </h3>
               </Col>
             </Row>
             <Container fluid className="px-5 plankShopByCategoryContainer2">
-              <Row className="pb-5 plankHomeShopByCategoryRow d-flex justify-content-center">
-                <Col className="plankHomeShopByCategoryCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
+              <Row className=" plankHomeShopByCategoryRow d-flex justify-content-center">
+                <Col className="plankHomeShopByCategoryCol" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByCategory">
                     <Link to={"/products/living%20room"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/spacejoy-ctyssSFmXmU-unsplash.jpg" className="cardImage" />
+                      <Card.Img
+                        variant="top"
+                        src="/Images/spacejoy-ctyssSFmXmU-unsplash.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByCategory">
                         <Card.Title className="text-capitalize cardTitle">Living Room</Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
                 </Col>
-                <Col className="plankHomeShopByCategoryCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
+                <Col className="plankHomeShopByCategoryCol" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByCategory">
-                    <Link to={"/products/bed%20room"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/spacejoy-IARlbQa6Kc8-unsplash.jpg" className="cardImage" />
+                    <Link to={"/products/bedroom"} style={{ textDecoration: "none" }}>
+                      <Card.Img
+                        variant="top"
+                        src="/Images/spacejoy-IARlbQa6Kc8-unsplash.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByCategory">
                         <Card.Title className="text-capitalize cardTitle">Bed Room</Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
                 </Col>
-                <Col className="plankHomeShopByCategoryCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
+                <Col className="plankHomeShopByCategoryCol" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByCategory">
                     <Link to={"/products/dining%20room"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/spacejoy-io5Tvjh7vCc-unsplash.jpg" className="cardImage" />
+                      <Card.Img
+                        variant="top"
+                        src="/Images/spacejoy-io5Tvjh7vCc-unsplash.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByCategory">
                         <Card.Title className="text-capitalize cardTitle">Dining Room</Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
                 </Col>
-                <Col className="plankHomeShopByCategoryCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
+                <Col className="plankHomeShopByCategoryCol" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByCategory">
-                    <Link to={"/products/office"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/spacejoy-7fX2YfJIrOQ-unsplash.jpg" className="cardImage" />
+                    <Link to={"/products/accessories"} style={{ textDecoration: "none" }}>
+                      <Card.Img
+                        variant="top"
+                        src="/Images/spacejoy-7fX2YfJIrOQ-unsplash.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByCategory">
                         <Card.Title className="text-capitalize cardTitle">Accessories</Card.Title>
                       </Card.Body>
@@ -144,7 +180,10 @@ const HomePagev2 = () => {
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Free Delivery</Card.Title>
-                    <Card.Text className="featureDesc"> &nbsp; All purchases are eligible for free shipping via our delivery partners.</Card.Text>
+                    <Card.Text className="featureDesc">
+                      {" "}
+                      &nbsp; All purchases are eligible for free shipping via our delivery partners.
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -155,7 +194,9 @@ const HomePagev2 = () => {
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Easy Payments</Card.Title>
-                    <Card.Text className="featureDesc">All payments are processed instantly over a secure payment protocol.</Card.Text>
+                    <Card.Text className="featureDesc">
+                      All payments are processed instantly over a secure payment protocol.
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -166,7 +207,10 @@ const HomePagev2 = () => {
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Money-Back Guarantee</Card.Title>
-                    <Card.Text className="featureDesc">If an item arrived damaged or you've changed your mind, you can send it back for a full refund.</Card.Text>
+                    <Card.Text className="featureDesc">
+                      If an item arrived damaged or you've changed your mind, you can send it back
+                      for a full refund.
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -177,7 +221,10 @@ const HomePagev2 = () => {
                   </div>
                   <Card.Body>
                     <Card.Title className="featureText">Finest Quality</Card.Title>
-                    <Card.Text className="featureDesc">Designed to last, each of our products has been chosen from the finest materials.</Card.Text>
+                    <Card.Text className="featureDesc">
+                      Designed to last, each of our products has been chosen from the finest
+                      materials.
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -186,9 +233,20 @@ const HomePagev2 = () => {
           <Container className="plankDontPayUpFrontContainer" fluid>
             <Row className="plankDontPayUpFrontContainerRow h-100">
               <Col xs={12} s={12} md={6} lg={6} xl={6}>
-                <img src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg" className="plankDontPayUpFrontContainerRowImg img-responsive" alt="spacejoy-RqO6kwm4tZY-unsplash.jpg" />
+                <img
+                  src="/Images/spacejoy-RqO6kwm4tZY-unsplash.jpg"
+                  className="plankDontPayUpFrontContainerRowImg img-responsive"
+                  alt="spacejoy-RqO6kwm4tZY-unsplash.jpg"
+                />
               </Col>
-              <Col className="plankDontPayUpFrontContainerRowCol2 text-left" xs={12} s={12} md={6} lg={6} xl={6}>
+              <Col
+                className="plankDontPayUpFrontContainerRowCol2 text-left"
+                xs={12}
+                s={12}
+                md={6}
+                lg={6}
+                xl={6}
+              >
                 <Container className=" ms-5">
                   <Row>
                     <Col>
@@ -216,10 +274,16 @@ const HomePagev2 = () => {
               </Col>
             </Row>
           </Container>
-          <Container fluid className="pb-0 plankShopByPopularContainer" style={{ background: "#ffffff 0% 0% no-repeat padding-box", opacity: "1" }}>
+          <Container
+            fluid
+            className="pb-0 plankShopByPopularContainer"
+            style={{ background: "#ffffff 0% 0% no-repeat padding-box", opacity: "1" }}
+          >
             <Row className="pt-2 ps-5">
               <Col className="text-start pb-3 ">
-                <h3 className="plankHomeShopByPopularLabel text-capitalize">Shop by most popular </h3>
+                <h3 className="plankHomeShopByPopularLabel text-capitalize">
+                  Shop by most popular{" "}
+                </h3>
               </Col>
             </Row>
             <Container fluid className="px-5">
@@ -227,9 +291,15 @@ const HomePagev2 = () => {
                 <Col className="plankHomeShopByPopularCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByPopular">
                     <Link to={"/products/living%20room"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/ogdenbookcase.jpg" className="cardImage" />
+                      <Card.Img
+                        variant="top"
+                        src="/Images/ogdenbookcase.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByPopular">
-                        <Card.Title className="text-capitalize cardTitle">Ogden Bookcase</Card.Title>
+                        <Card.Title className="text-capitalize cardTitle">
+                          Ogden Bookcase
+                        </Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
@@ -237,9 +307,15 @@ const HomePagev2 = () => {
                 <Col className="plankHomeShopByPopularCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByPopular">
                     <Link to={"/products/bed%20room"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/nicobartablelamp.jpg" className="cardImage" />
+                      <Card.Img
+                        variant="top"
+                        src="/Images/nicobartablelamp.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByPopular">
-                        <Card.Title className="text-capitalize cardTitle">Nicobar Table Lamp</Card.Title>
+                        <Card.Title className="text-capitalize cardTitle">
+                          Nicobar Table Lamp
+                        </Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
@@ -247,9 +323,15 @@ const HomePagev2 = () => {
                 <Col className="plankHomeShopByPopularCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByPopular">
                     <Link to={"/products/dining%20room"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/bowerfloorlamb.jpg" className="cardImage" />
+                      <Card.Img
+                        variant="top"
+                        src="/Images/bowerfloorlamb.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByPopular">
-                        <Card.Title className="text-capitalize cardTitle">Bower Floor Lamp</Card.Title>
+                        <Card.Title className="text-capitalize cardTitle">
+                          Bower Floor Lamp
+                        </Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
@@ -257,9 +339,15 @@ const HomePagev2 = () => {
                 <Col className="plankHomeShopByPopularCol pe-2" xs={6} sm={6} md={4} lg={3} xl={3}>
                   <Card className="cardInplankHomeShopByPopular">
                     <Link to={"/products/office"} style={{ textDecoration: "none" }}>
-                      <Card.Img variant="top" src="/Images/barrowconsole.jpg" className="cardImage" />
+                      <Card.Img
+                        variant="top"
+                        src="/Images/barrowconsole.jpg"
+                        className="cardImage"
+                      />
                       <Card.Body className="px-0 cardBodyInplankHomeShopByPopular">
-                        <Card.Title className="text-capitalize cardTitle">Barrow Console</Card.Title>
+                        <Card.Title className="text-capitalize cardTitle">
+                          Barrow Console
+                        </Card.Title>
                       </Card.Body>
                     </Link>
                   </Card>
@@ -284,7 +372,11 @@ const HomePagev2 = () => {
                 </Row>
                 <Row>
                   <Col>
-                    <p className="plank-HowItWorksbrief ">We move a lot. There are countless floor plans and roommates (oh, and your evolving tastes) between here and there. With Plank, furnish your space without breaking a sweat or reaching for a screwdriver.</p>
+                    <p className="plank-HowItWorksbrief ">
+                      We move a lot. There are countless floor plans and roommates (oh, and your
+                      evolving tastes) between here and there. With Plank, furnish your space
+                      without breaking a sweat or reaching for a screwdriver.
+                    </p>
                   </Col>
                 </Row>
                 <Row>
@@ -294,7 +386,11 @@ const HomePagev2 = () => {
                 </Row>
               </Col>
               <Col xs={12} s={12} md={6} lg={6} xl={6}>
-                <img src="/Images/pexels-blue-bird-7217789_copy.jpg" className="plankHowItWorksImg img-responsive" alt="pexels-blue-bird-7217789_copy.jpg" />
+                <img
+                  src="/Images/pexels-blue-bird-7217789_copy.jpg"
+                  className="plankHowItWorksImg img-responsive"
+                  alt="pexels-blue-bird-7217789_copy.jpg"
+                />
               </Col>
             </Row>
           </Container>
@@ -311,7 +407,13 @@ const HomePagev2 = () => {
                   <Row>
                     <Col className="pe-3 " lg={5}>
                       <Form.Group controlId="email">
-                        <Form.Control className="rounded-pill control-styling" type="email" placeholder="Enter your email" value={subemail} onChange={(e) => setSubEmail(e.target.value)}></Form.Control>
+                        <Form.Control
+                          className="rounded-pill control-styling"
+                          type="email"
+                          placeholder="Enter your email"
+                          value={subemail}
+                          onChange={(e) => setSubEmail(e.target.value)}
+                        ></Form.Control>
                       </Form.Group>
                     </Col>
                     <Col lg={7}>
@@ -325,7 +427,10 @@ const HomePagev2 = () => {
             </Row>
           </Container>
           <Row>
-            <Col>{window.location.pathname !== "/login" && window.location.pathname !== "/register" && <Footer />}</Col>
+            <Col>
+              {window.location.pathname !== "/login" &&
+                window.location.pathname !== "/register" && <Footer />}
+            </Col>
           </Row>
         </Container>
       )}

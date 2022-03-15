@@ -8,7 +8,7 @@
 
 .plankMakeYourHomeImg {
   width: 100%;
-  height: 85vh;
+  min-height: 85vh;
   object-fit: cover;
 }
 .plankMakeYourHomeCol1 {
@@ -63,21 +63,14 @@
 }
 
 .plankShopByCategoryContainer {
-  margin-bottom: 5%;
   padding-left: 7%;
   padding-right: 3%;
+  padding-bottom: 7% !important;
 }
-.plankShopByCategoryContainer2 {
-  padding-bottom: 2%;
-}
-.plankHomeShopByCategoryCol {
-  display: flex;
-  justify-content: center;
-  padding-right: 3% !important;
-}
+
 .plankHomeShopByCategoryLabel {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.6rem;
+  font-size: 3.3rem;
   font-weight: 600;
   margin-top: 5%;
   margin-bottom: 0;
@@ -85,24 +78,27 @@
   color: #333333;
   opacity: 1;
 }
+.plankHomeShopByCategoryCol {
+  display: flex;
+  justify-content: start;
+  padding-right: 1% !important;
+}
 
 .cardInplankHomeShopByCategory {
   width: 100%;
-  height: 100%;
   background-color: transparent;
   border: none;
 }
 
 .cardInplankHomeShopByCategory .cardImage {
   object-fit: cover;
-  width: 110%;
-  height: 22rem;
-  padding-right: 1rem;
+  width: 100%;
+  height: 25rem;
 }
 .cardBodyInplankHomeShopByCategory .cardTitle {
   text-align: left;
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-size: x-large;
   letter-spacing: 0px;
   color: #333333;
@@ -120,7 +116,7 @@
 
 .whyPlankIconContainer {
   width: 6.25rem;
-  height: 6.25rem;
+  min-height: 6.25rem;
   display: flex;
   align-items: center;
   margin: 0 auto;
@@ -131,7 +127,7 @@
 
 .whyPlankIcon {
   width: 5.9375rem;
-  height: 5.9375rem;
+  min-height: 5.9375rem;
   margin: 0 auto;
   border-radius: 2.96875rem;
   opacity: 1;

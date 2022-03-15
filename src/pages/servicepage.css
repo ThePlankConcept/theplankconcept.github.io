@@ -1,0 +1,149 @@
+.servicefirstRow1 {
+  background-color: #c2cfde;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+.servicefirstRow2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.servicefirstRow3 {
+  background-color: #c2cfde;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.servicefirstRow4 {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.servicefirstRow5 {
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background-color: #c2cfde;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.serviceHeading {
+  text-transform: none !important;
+  text-align: center;
+  font-family: Roboto;
+
+  letter-spacing: 1.28px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.fontConfig1 {
+  font-size: 5rem;
+}
+
+.fontConfig2 {
+  font-size: 3.3rem;
+}
+.serviceSubHeading {
+  text-transform: none !important;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 3rem;
+  letter-spacing: 1.28px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.serviceHeading2 {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: 1.28px;
+  line-height: 130%;
+  color: #333333;
+  opacity: 1;
+}
+
+.servicePara {
+  text-align: center;
+  text-transform: none;
+
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  color: #333333;
+}
+
+.rentOptionService {
+  background: #edf1f5 0% 0% no-repeat padding-box;
+  border-radius: 40px;
+  opacity: 1;
+  height: 12rem;
+  width: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.periodNumberService {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 8rem;
+  font-weight: 900;
+  letter-spacing: 2.4px;
+  color: #333333;
+  opacity: 1;
+}
+
+.ortag {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+}
+
+.ortag h3 {
+  font-family: Roboto;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.servicePara2 {
+  text-align: center;
+  text-transform: none;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #ffffff;
+  opacity: 1;
+}
+.servicePara3 {
+  text-align: center;
+  text-transform: none;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: #ffffff;
+  opacity: 1;
+}
+.parainWhatHappens {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #333333;
+  letter-spacing: 1px;
+  line-height: 170%;
+}
+.headinginwhathappens {
+  font-family: "Roboto";
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333333;
+}

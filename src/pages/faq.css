@@ -1,0 +1,76 @@
+.faqMainContainer {
+  padding: 5% 8% 0% 5.4%;
+}
+.plankfaqhr {
+  border-color: #dcd8d5;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.plankfaqContentHr {
+  border-color: #dcd8d5;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.plankfaqquote {
+  font-family: "Roboto";
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: black;
+}
+
+.plankfaqquote a {
+  font-weight: 500;
+}
+
+.plankfaqindexh2 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.plankfaqtopics {
+  font-family: "Roboto";
+  font-size: 2.125rem;
+  font-weight: 500;
+  color: #333333;
+  opacity: 1;
+  letter-spacing: 0px;
+}
+
+.plankfaqtopicname {
+  text-transform: none;
+  font-family: "Roboto";
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: 0px;
+  padding-top: 1%;
+  padding-bottom: 3%;
+}
+
+.plankFaqQuestion {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-transform: none;
+  text-align: left;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 2.5rem;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+
+.plankFaqAnswer {
+  padding-bottom: 1%;
+  text-transform: none;
+  text-align: left;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+}
+
+.queansContainer {
+  padding-top: 6%;
+}

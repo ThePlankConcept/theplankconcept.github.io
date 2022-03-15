@@ -1,0 +1,121 @@
+.plankCheckoutBacktoCart {
+  white-space: nowrap;
+  width: fit-content;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: "Poppins";
+  color: rgb(130, 130, 130);
+  background-color: transparent;
+  text-decoration: underline;
+  text-transform: none;
+}
+
+.checkoutHeader {
+  background: rgba(194, 207, 222, 0.3) 0% 0% no-repeat padding-box;
+}
+
+.plankCheckoutBacktoCart-primary:hover,
+.plankCheckoutBacktoCart-primary:focus,
+.plankCheckoutBacktoCart-primary:active,
+.plankCheckoutBacktoCart-primary:active:focus:not(:disabled):not(.disabled),
+.plankCheckoutBacktoCart:focus,
+.plankCheckoutBacktoCart:active,
+.plankCheckoutBacktoCart:hover {
+  color: rgb(130, 130, 130);
+  background-color: transparent;
+  box-shadow: none !important;
+  outline: 0;
+  text-decoration: none;
+}
+
+.plankCheckOrderSummaryHeading {
+  font-family: "Poppins";
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+.promoAddBtn {
+  white-space: nowrap;
+  width: fit-content;
+  font-size: 1rem;
+  line-height: 20px;
+  font-weight: 500;
+  color: black;
+  font-family: "Poppins";
+  background-color: transparent;
+  text-transform: none;
+  padding: 0;
+  margin: 0;
+}
+.promoAddBtn-primary:hover,
+.promoAddBtn-primary:focus,
+.promoAddBtn-primary:active,
+.promoAddBtn-primary:active:focus:not(:disabled):not(.disabled),
+.promoAddBtn:focus,
+.promoAddBtn:active,
+.promoAddBtn:hover {
+  color: rgb(130, 130, 130);
+  background-color: transparent;
+  box-shadow: none !important;
+  outline: 0;
+}
+
+.promoCode-btn {
+  background-color: #c2cfde;
+  color: white;
+  border: 1px solid;
+  font-family: Circe-Rounded-Bold;
+  font-size: 1rem !important;
+  letter-spacing: 1px;
+  font-size: 110%;
+  text-transform: none;
+}
+
+.promoCode-btn-primary:hover,
+.promoCode-btn-primary:focus,
+.promoCode-btn-primary:active,
+.promoCode-btn-primary:active:focus:not(:disabled):not(.disabled),
+.promoCode-btn:focus,
+.promoCode-btn:active,
+.promoCode-btn:hover {
+  color: rgb(130, 130, 130);
+  background-color: transparent;
+  box-shadow: none !important;
+  outline: 0;
+}
+
+.briefing {
+  width: fit-content;
+  display: flex;
+}
+.checkouthr {
+  flex: 1 1 0%;
+  margin: 0 10px;
+  border-color: rgb(189, 189, 189);
+  align-self: center !important;
+}
+
+.parainCheckout {
+  font-family: "Poppins";
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parainCheckout1 {
+  font-family: "Poppins";
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cartCheckoutContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0 !important;
+}

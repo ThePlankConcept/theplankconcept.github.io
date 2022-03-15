@@ -11,7 +11,6 @@ function GoogleAuthCallback() {
   const dispatch = useDispatch();
   const { loading, error, userInfo } = userLogin;
   const redirect = "/";
-
   {
     /* <script>
   window.fbAsyncInit = function() {
@@ -43,8 +42,6 @@ function GoogleAuthCallback() {
     dispatch(googleLogin(search));
 
     if (userInfo) {
-      console.log("Home screen", userInfo);
-      console.log("redirect", redirect);
       navigate(redirect);
     }
 

@@ -1,6 +1,19 @@
 import axios from "axios";
 import qs from "qs";
-import { PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_REQUEST, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_FILTER_REQUEST, PRODUCT_FILTER_SUCCESS, PRODUCT_FILTER_FAIL, PRODUCT_RELATED_ITEMS_REQUEST, PRODUCT_RELATED_ITEMS_SUCCESS, PRODUCT_RELATED_ITEMS_FAIL } from "../constants/productConstants";
+import {
+  PRODUCT_LIST_FAIL,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_DETAILS_REQUEST,
+  PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_DETAILS_FAIL,
+  PRODUCT_FILTER_REQUEST,
+  PRODUCT_FILTER_SUCCESS,
+  PRODUCT_FILTER_FAIL,
+  PRODUCT_RELATED_ITEMS_REQUEST,
+  PRODUCT_RELATED_ITEMS_SUCCESS,
+  PRODUCT_RELATED_ITEMS_FAIL,
+} from "../constants/productConstants";
 
 export const listProducts = (keyword) => async (dispatch) => {
   let query = "";
@@ -15,7 +28,11 @@ export const listProducts = (keyword) => async (dispatch) => {
       fields: ["category_name"],
     },
     product_inventories: {
-      populate: "*",
+      populate: {
+        images: {
+          fields: ["url"],
+        },
+      },
     },
   };
   const filter = {
@@ -56,17 +73,14 @@ export const listProducts = (keyword) => async (dispatch) => {
       populate: populate,
     });
   }
-  // console.log("query", query, keyword);
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get(`/api/products?${query}`);
-    // console.log("response", data);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data.data,
     });
   } catch (error) {
-    // console.log(error);
     dispatch({
       type: PRODUCT_LIST_FAIL,
       payload: error,
@@ -75,11 +89,9 @@ export const listProducts = (keyword) => async (dispatch) => {
 };
 
 export const listProductDetails = (slug) => async (dispatch) => {
-  console.log("details action called");
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(`/api/products/product/${slug}`);
-    console.log("response", { ...data.data });
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: { ...data.data },
@@ -107,7 +119,11 @@ export const filterProducts =
         fields: ["category_name"],
       },
       product_inventories: {
-        populate: "*",
+        populate: {
+          images: {
+            fields: ["formats"],
+          },
+        },
       },
     };
     const filter = {
@@ -145,17 +161,14 @@ export const filterProducts =
         populate: populate,
       });
     }
-    // console.log("query", query, keyword);
     try {
       dispatch({ type: PRODUCT_FILTER_REQUEST });
       const { data } = await axios.get(`/api/products?${query}`);
-      // console.log("response", data.data);
       dispatch({
         type: PRODUCT_FILTER_SUCCESS,
         payload: data.data,
       });
     } catch (error) {
-      // console.log(error);
       dispatch({
         type: PRODUCT_FILTER_FAIL,
         payload: error,
@@ -164,7 +177,6 @@ export const filterProducts =
   };
 
 export const relatedItems = (category) => async (dispatch) => {
-  console.log("relatedItems action called");
   const filter = {
     categories: {
       id: {
@@ -175,15 +187,22 @@ export const relatedItems = (category) => async (dispatch) => {
   const query = qs.stringify({
     populate: {
       product_inventories: {
-        populate: "*",
+        populate: {
+          images: {
+            fields: ["formats"],
+          },
+        },
       },
     },
     filters: filter,
+    pagination: {
+      start: 0,
+      limit: 10,
+    },
   });
   try {
     dispatch({ type: PRODUCT_RELATED_ITEMS_REQUEST });
     const { data } = await axios.get(`/api/products?${query}`);
-    console.log("related items", { ...data.data });
     dispatch({
       type: PRODUCT_RELATED_ITEMS_SUCCESS,
       payload: [...data.data],

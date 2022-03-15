@@ -1,24 +1,39 @@
-import React, { useState, useEffect } from "react";
-import "./header.css";
+import React, { useState } from "react";
 
+import "./header.css";
+import AboutUs from "./AboutUs";
 import { LinkContainer } from "react-router-bootstrap";
-import { Nav, Badge, Navbar, Container, Button, Image, Dropdown, NavDropdown, Col, Row } from "react-bootstrap";
+import {
+  Nav,
+  Badge,
+  Navbar,
+  Container,
+  Button,
+  Image,
+  Dropdown,
+  NavDropdown,
+  Col,
+  Row,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RoomsMenu from "./RoomsMenu";
 import ProductMenu from "./ProductsMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const cart = useSelector((state) => state.cart2);
+  const { subscribed, purchase } = cart;
   const [menu, setMenu] = useState();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
+  const [onShow, setOnShow] = useState(false);
+  const navigate = useNavigate();
   // console.log("header", userInfo);
   const logoutHandler = () => {
     dispatch(logout());
+    navigate("/");
   };
   function chbg(value) {
     // display: none;
@@ -29,6 +44,7 @@ const Header = () => {
     // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     // z-index: 1;
     setMenu(value);
+    setOnShow(true);
     document.getElementById("b").style.maxHeight = "500px";
     document.getElementById("b").style.display = "";
     document.getElementById("b").style.position = "absolute";
@@ -38,7 +54,7 @@ const Header = () => {
   }
   window.onscroll = function (e) {
     // print "false" if direction is down and "true" if up
-    console.log(this.oldScroll > this.scrollY);
+    // console.log(this.oldScroll > this.scrollY);
     this.oldScroll = this.scrollY;
     if (this.oldScroll > this.scrollY) {
     } else {
@@ -60,21 +76,25 @@ const Header = () => {
                       Products
                     </Nav.Link>
                   </Nav.Item>
-                  <Nav.Item as="li" onMouseOver={() => chbg("rooms")} className="listing text-capitalize">
-                    <Nav.Link href="/products/living%20room" active>
+                  <Nav.Item as="li" className="listing text-capitalize">
+                    <Nav.Link
+                      href="/products/living%20room"
+                      active
+                      onMouseOver={() => chbg("rooms")}
+                    >
                       Rooms
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item as="li" className="listing text-capitalize">
-                    <Nav.Link href="/services" active>
-                      Services
+                    <Nav.Link href="/services" active onMouseOver={() => chbg("aboutus")}>
+                      About Us
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
 
                 <LinkContainer to="/" className="d-flex justify-content-center">
-                  <Navbar.Brand className=" ">
-                    <img width="70%" height="80%" className=" " src="/logo.ico" alt="logo" />
+                  <Navbar.Brand>
+                    <Image src="/logo.ico" alt="logo" fluid className="navbranding" />
                   </Navbar.Brand>
                 </LinkContainer>
 
@@ -95,26 +115,49 @@ const Header = () => {
                       <Nav.Link>
                         <div className="cartIcon">
                           <Image src="/cartIcon.svg" alt="cart" width="100%" height="100%" />
-                          {cartItems.length > 0 ? <Badge className="cart-basket">{cartItems.length}</Badge> : <></>}
+                          {subscribed.length || purchase.length ? (
+                            <Badge className="cart-basket">
+                              {subscribed.length + purchase.length}
+                            </Badge>
+                          ) : (
+                            <></>
+                          )}
                         </div>
                       </Nav.Link>
                     </LinkContainer>
                     {userInfo ? (
-                      <NavDropdown title={<img src="/avatarIcon.svg" alt="login" width="100%" />} id="basic-nav-dropdown">
+                      <NavDropdown
+                        title={<img src="/avatarIcon.svg" alt="login" width="100%" />}
+                        id="basic-nav-dropdown"
+                        className="bdnav"
+                      >
                         <LinkContainer to="/profile">
-                          <NavDropdown.Item className="dropdownheader px-2 m-3">Profile</NavDropdown.Item>
+                          <NavDropdown.Item className="dropdownheader px-2 m-3">
+                            Profile
+                          </NavDropdown.Item>
                         </LinkContainer>
-                        <NavDropdown.Item className="dropdownheader px-2 m-3" onClick={logoutHandler}>
+                        <NavDropdown.Item
+                          className="dropdownheader px-2 m-3"
+                          onClick={logoutHandler}
+                        >
                           Logout
                         </NavDropdown.Item>
                       </NavDropdown>
                     ) : (
-                      <NavDropdown title={<img src="/avatarIcon.svg" alt="login" width="100%" />} id="basic-nav-dropdown">
+                      <NavDropdown
+                        title={<img src="/avatarIcon.svg" alt="login" width="100%" />}
+                        id="basic-nav-dropdown"
+                        className="bdnav"
+                      >
                         <LinkContainer to="/register">
-                          <NavDropdown.Item className="dropdownheader px-2 m-3">Create an Account</NavDropdown.Item>
+                          <NavDropdown.Item className="dropdownheader px-2 m-3">
+                            Create an Account
+                          </NavDropdown.Item>
                         </LinkContainer>
                         <LinkContainer to="/login">
-                          <NavDropdown.Item className="dropdownheader px-2 m-3">Login</NavDropdown.Item>
+                          <NavDropdown.Item className="dropdownheader px-2 m-3">
+                            Login
+                          </NavDropdown.Item>
                         </LinkContainer>
                       </NavDropdown>
                     )}
@@ -125,7 +168,12 @@ const Header = () => {
           </Col>
         </Row>
         <Row id="b" className="specialDropDown">
-          <Col>{menu == "rooms" ? <RoomsMenu /> : <ProductMenu />}</Col>
+          {/* <Col>{menu == "rooms" ? <RoomsMenu /> : <ProductMenu />}</Col> */}
+          {onShow && (
+            <Col onMouseLeave={() => setOnShow(false)} className="py-5">
+              {menu == "rooms" ? <RoomsMenu /> : menu == "products" ? <ProductMenu /> : <AboutUs />}
+            </Col>
+          )}
         </Row>
       </Container>
     </header>

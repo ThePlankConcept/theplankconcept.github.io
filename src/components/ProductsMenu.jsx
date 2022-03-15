@@ -2,11 +2,11 @@ import React from "react";
 import "./header.css";
 
 import { Link } from "react-router-dom";
-import { Nav, Navbar, Container, Button, Image, Dropdown, NavDropdown, Col, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Container, Col, Row } from "react-bootstrap";
+
 const ProductsMenu = () => {
   return (
-    <Container className="py-4">
+    <Container className="pb-5">
       <Row>
         <Col>
           <Container>
@@ -22,7 +22,7 @@ const ProductsMenu = () => {
           <Container>
             <Row className="pb-2">
               <Col className="bold-text">
-                <Link to="/products/living%20room">
+                <Link to="/products/living%20room" style={{ textDecoration: "none" }}>
                   <span className="underline"> LIVING ROOM </span>
                 </Link>
               </Col>
@@ -63,7 +63,7 @@ const ProductsMenu = () => {
         <Col>
           <Container>
             <Row className="pb-2">
-              <Link to="/products/dining%20room">
+              <Link to="/products/dining%20room" style={{ textDecoration: "none" }}>
                 <Col className="bold-text">DINING ROOM</Col>
               </Link>
             </Row>
@@ -92,9 +92,9 @@ const ProductsMenu = () => {
                 <span className="underline"> Side Boards </span>
               </Col>
             </Row>
-            <Row className="pb-2 pt-1">
-              <Col className="bold-text">BED ROOM</Col>
-            </Row>
+            <Link to="/products/bedroom" style={{ textDecoration: "none" }}>
+              <Col className="bold-text">BEDROOM</Col>
+            </Link>
             <Row>
               <Col className="pb-1">
                 <span className="underline"> Bed Frames </span>
@@ -119,9 +119,9 @@ const ProductsMenu = () => {
         </Col>
         <Col>
           <Container>
-            <Row className="pb-2">
+            <Link to="/products/accessories" style={{ textDecoration: "none" }}>
               <Col className="bold-text">ACCESSORIES</Col>
-            </Row>
+            </Link>
             <Row>
               <Col className="pb-1">
                 <span className="underline"> Lighting </span>

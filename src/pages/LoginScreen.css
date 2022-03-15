@@ -1,52 +1,57 @@
 .login-account-btn {
-    background-color: #C2CFDE;
-    color: white;
-    max-width: 100%;
-    border: 1px solid;
-    white-space: nowrap;
+  background-color: #c2cfde;
+  color: white;
+  max-width: 100%;
+  border: 1px solid;
+  white-space: nowrap;
 }
-.facebook-btn{
-  background-color: #85B2EF;
+.facebook-btn {
+  background-color: #85b2ef;
   color: white;
   border: 1px solid;
   white-space: nowrap;
 }
-.hide{
+.hide {
   display: none;
 }
-.facebook-btn:hover{
-color: #85B2EF;
-background-color: white;
-border-color: #85B2EF;
-white-space: nowrap;
+.facebook-btn:hover {
+  color: #85b2ef;
+  background-color: white;
+  border-color: #85b2ef;
+  white-space: nowrap;
 }
 
-
-
-.the-login{
+.the-login {
   object-fit: cover;
   height: 100vh;
 }
 .login-account-btn:hover {
-    background-color: white;
-    color:#C2CFDE;
-    border-color: #C2CFDE;
-    border: 1px solid;
+  background-color: white;
+  color: #c2cfde;
+  border-color: #c2cfde;
+  border: 1px solid;
 }
-.google-btn{
-  background-color: #E39292;
+.google-btn {
+  background-color: #e39292;
   color: white;
   white-space: nowrap;
   border: 1px solid;
 }
-.google-btn:hover{
+.google-btn:hover {
   background-color: white;
   border: 1px solid;
-  border-color: #E39292;
-  color: #E39292;
-  
+  border-color: #e39292;
+  color: #e39292;
 }
-.hr-login-margin{
+.hr-login-margin {
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.plankloginForm .form-control,
+.plankloginForm .form-control:hover,
+.plankloginForm .form-control:focus {
+  box-shadow: none;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: transparent;
 }

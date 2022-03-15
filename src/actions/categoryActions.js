@@ -1,6 +1,13 @@
 import axios from "axios";
 import qs from "qs";
-import { CATEGORY_LIST_FAIL, CATEGORY_LIST_SUCCESS, CATEGORY_LIST_REQUEST, ALL_PRODUCT_CATEGORY_REQUEST, ALL_PRODUCT_CATEGORY_SUCCESS, ALL_PRODUCT_CATEGORY_FAIL } from "../constants/categoryConstants";
+import {
+  CATEGORY_LIST_FAIL,
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_LIST_REQUEST,
+  ALL_PRODUCT_CATEGORY_REQUEST,
+  ALL_PRODUCT_CATEGORY_SUCCESS,
+  ALL_PRODUCT_CATEGORY_FAIL,
+} from "../constants/categoryConstants";
 
 export const listCategory = (keyword) => async (dispatch) => {
   if (keyword) {
@@ -13,7 +20,15 @@ export const listCategory = (keyword) => async (dispatch) => {
         fields: ["type_name"],
       },
       products: {
-        populate: "product_inventories.images",
+        populate: {
+          product_inventories: {
+            populate: {
+              images: {
+                fields: ["formats"],
+              },
+            },
+          },
+        },
       },
     };
     const filter = {
@@ -96,13 +111,21 @@ export const allProductCategories = (keyword) => async (dispatch) => {
   let query = "";
   const populate = {
     images: {
-      populate: "*",
+      populate: {
+        images: {
+          fields: ["formats"],
+        },
+      },
     },
     brands: {
       fields: ["brand_name"],
     },
     types: {
-      populate: "*",
+      populate: {
+        images: {
+          fields: ["formats"],
+        },
+      },
     },
   };
 

@@ -1,81 +1,87 @@
-.control-styling{
-    background-color: white;
-    border: 1px solid;
-    border-color: #7070707C;
-    color: #7070707C;
+.control-styling {
+  background-color: white;
+  border: 1px solid;
+  border-color: #7070707c;
+  color: #7070707c;
 }
-.bg-image{
+.bg-image {
   background-image: "./signup.jpg";
 }
 .create-account-btn {
-    background-color: #C2CFDE;
-    color: white;
+  background-color: #c2cfde;
+  color: white;
   margin-left: 23%;
-    margin-right: 23%;
-    border: 1px solid;
+  margin-right: 23%;
+  border: 1px solid;
 }
 .login-btn {
-   color: #C2CFDE;
-   background-color: white;
-   border: 1px solid;
-   border-color: #7070707C;
+  color: #c2cfde;
+  background-color: white;
+  border: 1px solid;
+  border-color: #7070707c;
 }
-.login-btn:hover{
-    color:white;
-    background-color:  #C2CFDE ;
-    border: 1px solid;
-    border-color: #7070707C;
-    border-color: white;
- }
+.login-btn:hover {
+  color: white;
+  background-color: #c2cfde;
+  border: 1px solid;
+  border-color: #7070707c;
+  border-color: white;
+}
 
 .create-account-btn:hover {
-    background-color: white;
-    color:#C2CFDE;
-    border-color: #C2CFDE;
-    border: 1px solid;
+  background-color: white;
+  color: #c2cfde;
+  border-color: #c2cfde;
+  border: 1px solid;
 }
-.reddo{
-    
-background-color: blue;
+.reddo {
+  background-color: blue;
 }
-.hr-margin{
-    margin-left: 16%;
-    margin-right: 16%;
+.hr-margin {
+  margin-left: 16%;
+  margin-right: 16%;
 }
 .form-inline {
-    width: 100%;
-  }
-  
-  .form-group {
-    width: 100%;
-  }
-  
-  .input-group {
-    width: 100% !important;
-  }
-  
-  .form-control {
-    width: 100% !important;
- 
-  }
-  .adding-margins{
-      margin-left: 20%;
-      margin-right: 20%;
-  }  
-  .create-account-text{
-      font-size:xx-large;
-      color: #333333;
-      font-weight: 900;
-      letter-spacing: 0;
-      font-family: "Adrianna-5";
-  }
-  .already-account-text{
-    font: normal normal normal 13px/34px Adrianna-5;
-letter-spacing: 0px;
-  }
-  
-  .the-login{
-    object-fit: cover;
-    height: 150%;
-    width: 100%;
-  }
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.input-group {
+  width: 100% !important;
+}
+
+.form-control {
+  width: 100% !important;
+}
+.adding-margins {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.create-account-text {
+  font-size: xx-large;
+  color: #333333;
+  font-weight: 900;
+  letter-spacing: 0;
+  font-family: "Adrianna-5";
+}
+.already-account-text {
+  font: normal normal normal 13px/34px Adrianna-5;
+  letter-spacing: 0px;
+}
+
+.the-login {
+  object-fit: cover;
+  height: 150%;
+  width: 100%;
+}
+
+.plankRegisterForm .form-control,
+.plankRegisterForm .form-control:hover,
+.plankRegisterForm .form-control:focus {
+  box-shadow: none;
+  border: 1px solid rgb(189, 189, 189);
+  color: black;
+}
