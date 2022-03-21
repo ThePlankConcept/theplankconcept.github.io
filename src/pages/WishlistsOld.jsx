@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "../components/Header";
 import {
   Card,
   Row,
@@ -32,7 +33,7 @@ const Wishlists = () => {
   const [tizi, setTizi] = useState(false);
   const getUserWishlist = useSelector((state) => state.getUserWishlist);
   const { loading, error, userWishList } = getUserWishlist;
-  console.log(userWishList);
+  // console.log(userWishList);
   //  dispatch(createWishlist())
   const sleep = (milliseconds) => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -101,13 +102,18 @@ const Wishlists = () => {
   const { height, width } = useWindowDimensions();
   return (
     <>
+      <Row>
+        <Col>
+          <Header />
+        </Col>
+      </Row>
       <Container fluid>
         <Row className="ps-5 ms-3">
           <Col>
             <p className="wishlists-header pt-5 pb-3">Wishlists</p>
           </Col>
         </Row>
-        <Row className="px-5 ">
+        <Row className="px-5">
           <Col lg={4}>
             <Container
               className="add-new-wishlist py-5 ms-3   "
@@ -128,16 +134,9 @@ const Wishlists = () => {
           </Col>
           {loading == false && userWishList ? (
             <>
-              {userWishList.data.map((data) => {
+              {userWishList.data.map((data, i) => {
                 return (
-                  <Col
-                    lg={4}
-                    sm={12}
-                    className="px-2  ps-5 wishlist-box "
-                    onClick={() => {
-                      navigate("/wishlist/" + data.attributes.slug);
-                    }}
-                  >
+                  <Col lg={4} sm={12} className="mx-5" key={i}>
                     <Container fluid>
                       <Row className="view-images">
                         {data.attributes.products.data.map((product, index) => {
@@ -148,16 +147,18 @@ const Wishlists = () => {
                                 <Col lg={6} md={6} sm={6}>
                                   <Container fluid>
                                     <Row>
-                                      <Col className="image-col">
+                                      <Col>
                                         {" "}
                                         <img
+                                          className="responsive"
                                           src={
                                             product.attributes.product_inventories.data[0]
-                                              .attributes.images.data[0].attributes.formats.small
-                                              .url
+                                              .attributes.images.data[0].attributes.url
                                           }
-                                          height={"100%"}
-                                          width={"100%"}
+                                          // height={height * 0.236}
+                                          // width={width * 0.149}
+                                          height="150rem"
+                                          width="100%"
                                         />
                                       </Col>
                                     </Row>
@@ -170,32 +171,36 @@ const Wishlists = () => {
                                       <Col lg={3} md={3} sm={3}>
                                         <Container fluid>
                                           <Row>
-                                            <Col className="image-col">
+                                            <Col>
                                               {" "}
                                               <img
+                                                className="responsive-2"
                                                 src={
                                                   product.attributes.product_inventories.data[0]
-                                                    .attributes.images.data[0].attributes.formats
-                                                    .small.url
+                                                    .attributes.images.data[0].attributes.url
                                                 }
-                                                height={"100%"}
-                                                width={"100%"}
+                                                // height={height * 0.118}
+                                                // width={width * 0.07343}
+                                                height="75rem"
+                                                width="100%"
                                               />
                                             </Col>
                                           </Row>
                                           <Row>
-                                            <Col className="image-col">
+                                            <Col>
                                               {" "}
                                               {data.attributes.products.data[index + 1] ? (
                                                 <img
+                                                  className="responsive-2"
                                                   src={
                                                     data.attributes.products.data[index + 1]
                                                       .attributes.product_inventories.data[0]
-                                                      .attributes.images.data[0].attributes.formats
-                                                      .small.url
+                                                      .attributes.images.data[0].attributes.url
                                                   }
-                                                  width={"100%"}
-                                                  height={"100%"}
+                                                  // width={width * 0.07343}
+                                                  // height={height * 0.118}
+                                                  height="75rem"
+                                                  width="100%"
                                                 />
                                               ) : (
                                                 <></>

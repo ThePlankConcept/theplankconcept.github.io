@@ -31,7 +31,20 @@ const HomePagev2 = () => {
         </Col>
       </Row>
       {loading ? (
-        <Loader />
+        <>
+          <Row
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <Col>
+              <Loader />
+            </Col>
+          </Row>
+        </>
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (

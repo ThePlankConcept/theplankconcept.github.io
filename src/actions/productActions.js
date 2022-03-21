@@ -13,6 +13,9 @@ import {
   PRODUCT_RELATED_ITEMS_REQUEST,
   PRODUCT_RELATED_ITEMS_SUCCESS,
   PRODUCT_RELATED_ITEMS_FAIL,
+  PRODUCT_SEARCH_REQUEST,
+  PRODUCT_SEARCH_SUCCESS,
+  PRODUCT_SEARCH_FAIL,
 } from "../constants/productConstants";
 
 export const listProducts = (keyword) => async (dispatch) => {
@@ -210,6 +213,42 @@ export const relatedItems = (category) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_RELATED_ITEMS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+export const productsSearch = (name) => async (dispatch) => {
+  console.log("relatedItems action called");
+  const filter = {
+    product_name: {
+      $containsi: name,
+    },
+  };
+  const populate = {
+    product_inventories: {
+      populate: {
+        images: {
+          fields: ["url", "formats"],
+        },
+      },
+    },
+  };
+  const query = qs.stringify({
+    populate: populate,
+    filters: filter,
+  });
+  try {
+    dispatch({ type: PRODUCT_SEARCH_REQUEST });
+    //   const { data } = await axios.get(`/api/products?${query}`);
+    const { data } = await axios.get(`/api/products?${query}`);
+    console.log("product search ", data);
+    dispatch({
+      type: PRODUCT_SEARCH_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_SEARCH_FAIL,
       payload: error.message,
     });
   }

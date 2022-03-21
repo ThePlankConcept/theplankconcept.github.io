@@ -15,9 +15,6 @@ import { checkoutCartInfo, savePromoInfo } from "../actions/checkoutActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 const CheckoutPage = () => {
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
-
   const checkoutCart = useSelector((state) => state.checkoutCart);
   const { loading, error, cartcheckout } = checkoutCart;
   // console.log("checkoutcart", cartcheckout);
@@ -31,10 +28,11 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     dispatch(checkoutCartInfo());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (loading === false && cartcheckout) {
+      console.log("debug", cartcheckout);
       const sub = cartcheckout[0].attributes.cart_items.data.filter(
         (item) => item.attributes.period !== "0"
       );
@@ -63,21 +61,28 @@ const CheckoutPage = () => {
     );
   };
   const calculateRentingAmount = () => {
-    return subscribedProducts.reduce(
+    const total = subscribedProducts.reduce(
       (acc, item) =>
         Number(acc) +
         Number(item.attributes.quantity) *
           Number(
             item.attributes.period === "six_month_price"
-              ? Number(
-                  item.attributes.product_inventory.data.attributes.product.data.attributes
-                    .six_month_price
-                ) / 6
-              : item.attributes.product_inventory.data.attributes.product.data.attributes
-                  .twelve_month_price / 12
+              ? addDecimals(
+                  Number(
+                    item.attributes.product_inventory.data.attributes.product.data.attributes
+                      .six_month_price
+                  ) / 6
+                )
+              : addDecimals(
+                  Number(
+                    item.attributes.product_inventory.data.attributes.product.data.attributes
+                      .twelve_month_price
+                  ) / 12
+                )
           ),
       0
     );
+    return total;
   };
 
   const pid = location.pathname.split("/").pop();
@@ -155,6 +160,7 @@ const CheckoutPage = () => {
                                 .attributes.six_month_price
                             ) / 6
                           ))}
+                    <small>/mo</small>
                   </Col>
                 </Row>
               ))}
@@ -245,27 +251,40 @@ const CheckoutPage = () => {
           </Navbar>
         </Col>
       </Row>
-      <Container fluid>
-        <Row className="h-100">
-          <Col xs={12} sm={12} md={6} lg={7} xl={7}>
-            {pid === "checkout" ? (
-              <CustomerInfo />
-            ) : pid === "deliveryinfo" ? (
-              <DeliveryInfo />
-            ) : pid === "billinginfo" ? (
-              <BillingInfo />
-            ) : (
-              <PaymentInfo />
-            )}
-          </Col>
-
-          <Col xs={12} sm={12} md={6} lg={5} xl={5}>
-            {loading ? (
+      {loading ? (
+        <>
+          <Row
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <Col>
               <Loader />
-            ) : error ? (
-              <Message variant="danger">{error}</Message>
-            ) : (
-              <>
+            </Col>
+          </Row>
+        </>
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <>
+          <Container fluid>
+            <Row className="h-100">
+              <Col xs={12} sm={12} md={6} lg={7} xl={7}>
+                {pid === "checkout" ? (
+                  <CustomerInfo />
+                ) : pid === "deliveryinfo" ? (
+                  <DeliveryInfo />
+                ) : pid === "billinginfo" ? (
+                  <BillingInfo />
+                ) : (
+                  <PaymentInfo />
+                )}
+              </Col>
+
+              <Col xs={12} sm={12} md={6} lg={5} xl={5}>
                 <Container className="pt-3 pe-5">
                   <Row>
                     <Col className="text-end plankCheckoutBacktoCart">
@@ -425,11 +444,11 @@ const CheckoutPage = () => {
                     </Container>
                   </Container>
                 </Row>
-              </>
-            )}
-          </Col>
-        </Row>
-      </Container>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      )}
     </>
   );
 };

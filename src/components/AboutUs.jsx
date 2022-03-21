@@ -34,7 +34,7 @@ const AboutUs = () => {
           </Row>
           <Row className="py-3">
             <Link
-              to="/ourstory"
+              to="/faq"
               style={{
                 textDecoration: "none",
                 fontFamily: "Roboto",

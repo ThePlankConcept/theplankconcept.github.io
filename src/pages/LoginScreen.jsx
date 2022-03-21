@@ -60,7 +60,7 @@ const LoginScreen = () => {
                 <Col>
                   <Container>
                     <Row>
-                      <Col>
+                      <Col className="d-flex justify-content-center">
                         {message && <Message variant="danger">{message}</Message>}
                         {error && <Message variant="danger">{error}</Message>}
                         {loading && <Loader />}

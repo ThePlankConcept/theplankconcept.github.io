@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Message from "../components/Message";
 import Header from "../components/Header";
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Button, CardGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { allProductCategories } from "../actions/categoryActions";
@@ -28,11 +28,43 @@ const AllProductPage = () => {
         </Col>
       </Row>
       {loading ? (
-        <Loader />
+        <>
+          <Row
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <Col>
+              <Loader />
+            </Col>
+          </Row>
+        </>
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <Container className="mainAllProductPageContainer pb-3" fluid>
+          <Row>
+            <Col>
+              <Container
+                className="pt-5"
+                style={{ boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px" }}
+              >
+                <Row>
+                  <Col>
+                    <Breadcrumb>
+                      <Breadcrumb.Item href="/products" active style={{ color: "black" }}>
+                        All Items
+                      </Breadcrumb.Item>
+                    </Breadcrumb>
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
+
           <Container fluid>
             <Row className="pb-5">
               <Container fluid>
@@ -46,7 +78,6 @@ const AllProductPage = () => {
                     <Row>
                       {category.map((c) => {
                         if (c.id !== 4) {
-                          console.log(c);
                           return (
                             <Col
                               key={c.id}
@@ -88,50 +119,58 @@ const AllProductPage = () => {
               </Col>
             </Row>
             {category.map((c) => {
-              return (
-                <Row key={c.id}>
-                  <Row>
-                    <Col className="py-3 pt-3">
-                      <p className="shopbyitem-plank-label">{c.attributes.category_name}</p>
-                    </Col>
-                  </Row>
-                  <Row className="px-0">
-                    {c.attributes.types.data.map((ptype) => {
-                      return (
-                        <Col
-                          key={ptype.id}
-                          className="allProductsShopbyItemCol px-0 mb-3 pe-4"
-                          xs={6}
-                          sm={6}
-                          md={6}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Card className="cardInAllProductstypes pb-3" style={{ width: "100%" }}>
-                            <Link
-                              to={`/products/${c.attributes.category_name}?type=${ptype.attributes.type_name}`}
-                            >
-                              <Card.Img
-                                variant="top"
-                                src={ptype.attributes.images.data[0].attributes.formats.medium.url}
-                                className="cardIimage"
-                              />
-                            </Link>
-                            <Card.Body className="px-0 cardBodyInAllProductstypes">
-                              <Card.Link
-                                href={`/products/${c.attributes.category_name}?type=${ptype.attributes.type_name}`}
-                                className="text-capitalize cardTitleItem"
+              if (c.attributes.types.data.length > 0) {
+                return (
+                  <Row key={c.id}>
+                    <Row>
+                      <Col className="py-3 pt-3">
+                        <p className="shopbyitem-plank-label">{c.attributes.category_name}</p>
+                      </Col>
+                    </Row>
+                    <Row className="px-0">
+                      {c.attributes.types.data.map((ptype) => {
+                        return (
+                          <Col
+                            key={ptype.id}
+                            className="allProductsShopbyItemCol px-0 mb-3 pe-4"
+                            xs={6}
+                            sm={6}
+                            md={6}
+                            lg={3}
+                            xl={3}
+                          >
+                            <Card className="cardInAllProductstypes pb-3" style={{ width: "100%" }}>
+                              <Link
+                                to={`/products/${
+                                  c.attributes.category_name
+                                }?type=${ptype.attributes.type_name.toLowerCase()}`}
                               >
-                                {ptype.attributes.type_name}
-                              </Card.Link>
-                            </Card.Body>
-                          </Card>
-                        </Col>
-                      );
-                    })}
+                                <Card.Img
+                                  variant="top"
+                                  src={
+                                    ptype.attributes.images.data[0].attributes.formats.medium.url
+                                  }
+                                  className="cardIimage"
+                                />
+                              </Link>
+                              <Card.Body className="px-0 cardBodyInAllProductstypes">
+                                <Card.Link
+                                  href={`/products/${
+                                    c.attributes.category_name
+                                  }?type=${ptype.attributes.type_name.toLowerCase()}`}
+                                  className="text-capitalize cardTitleItem"
+                                >
+                                  {ptype.attributes.type_name}
+                                </Card.Link>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
                   </Row>
-                </Row>
-              );
+                );
+              }
             })}
           </Container>
 

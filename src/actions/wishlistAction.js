@@ -8,9 +8,16 @@ import {
   WISHLIST_UPDATE_REQUEST,
   WISHLIST_UPDATE_SUCCESS,
   WISHLIST_UPDATE_FAIL,
+  WISHLIST_DEL_REQUEST,
+  WISHLIST_DEL_SUCCESS,
+  WISHLIST_DEL_FAIL,
+  ONE_WISHLIST_GET_REQUEST,
+  ONE_WISHLIST_GET_SUCCESS,
+  ONE_WISHLIST_GET_FAIL,
 } from "../constants/wishlistConstants";
 import axios from "axios";
 import qs from "qs";
+
 export const createWishlist =
   ({ name }) =>
   async (dispatch, getState) => {
@@ -28,7 +35,7 @@ export const createWishlist =
         },
       };
       const { data } = await axios.post(
-        "http://localhost:1337/api/wishlists",
+        "/api/wishlists",
         { data: { wishlist_name: name, user: userInfo.user.id } },
         config
       );
@@ -73,11 +80,10 @@ export const getUserWishListAction = (userInfo) => async (dispatch) => {
     });
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.get(`http://localhost:1337/api/wishlists?${query}`, config);
+    const { data } = await axios.get(`/api/wishlists?${query}`, config);
     // console.log("getUserWishListAction", data);
     dispatch({
       type: WISHLIST_GET_SUCCESS,
@@ -114,7 +120,7 @@ export const updateuserwishlist =
         },
       };
       const { data } = await axios.put(
-        `http://localhost:1337/api/wishlists/${wishlistid.id}`,
+        `/api/wishlists/${wishlistid.id}`,
         { data: { products: usercurrentwishlist } },
         config
       );
@@ -134,3 +140,106 @@ export const updateuserwishlist =
       });
     }
   };
+
+export const getWishlistBySlug = (slug, userInfo) => async (dispatch) => {
+  let query = "";
+  const populate = {
+    products: {
+      populate: {
+        product_inventories: {
+          populate: {
+            images: {
+              fields: ["formats", "url"],
+            },
+          },
+        },
+      },
+    },
+  };
+  const filter = {
+    slug: {
+      $eq: slug,
+    },
+  };
+  query = qs.stringify({
+    populate: populate,
+    filters: filter,
+  });
+  try {
+    console.log("filter", filter);
+    dispatch({
+      type: ONE_WISHLIST_GET_REQUEST,
+    });
+    console.log("user infooo ", userInfo);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + userInfo.userInfo.jwt,
+      },
+    };
+    const { data } = await axios.get(`/api/wishlists?${query}`, config);
+    console.log("r", data);
+    dispatch({
+      type: ONE_WISHLIST_GET_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("hi from catch");
+    dispatch({
+      type: ONE_WISHLIST_GET_FAIL,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+export const deleteWishlist = (id, userInfo) => async (dispatch) => {
+  // let query = "";
+  // const populate = {
+  //   products: {
+  //       populate: {
+  //         product_inventories : {
+  //           populate :{
+  //             images :{
+  //               fields: ["formats","url"]
+  //             }
+  //           }
+  //         }
+  //       } ,
+  //   }
+  // };
+  // const filter = {
+  //     slug: {
+  //       $eq: slug
+  //     }
+  // };
+  // query = qs.stringify({
+  //   populate: populate,
+  //   filters: filter,
+  // });
+  try {
+    // console.log("filter", filter);
+    dispatch({
+      type: WISHLIST_DEL_REQUEST,
+    });
+    //  console.log("user infooo ", userInfo)
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + userInfo.userInfo.jwt,
+      },
+    };
+    const { data } = await axios.delete(`/api/wishlists/${id}`, config);
+    console.log(data);
+    dispatch({
+      type: WISHLIST_DEL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("hi from catch");
+    dispatch({
+      type: WISHLIST_DEL_FAIL,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};

@@ -1,0 +1,28 @@
+
+
+.wishlist-heading{
+    background-color: #f5f5f5 ;
+    padding-left:10% ;
+    padding-right: 10%;
+}
+
+.wishlist-name-heading{
+    font-size: xx-large;
+    font-weight: 900;
+}
+.delete-list-icon{
+    color: #39302a;
+}
+.products-row{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.saved-items-title{
+    font-weight: bold;
+    font-size: xx-large;
+}
+.delete-list-text{
+    white-space: nowrap;
+    color: #39302a ;
+
+}

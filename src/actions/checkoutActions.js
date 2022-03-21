@@ -23,11 +23,10 @@ export const checkoutCartInfo = () => async (dispatch, getState) => {
     });
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.get("http://localhost:1337/api/carts/getcarts/getall", config);
+    const { data } = await axios.get("/api/carts/getcarts/getall", config);
     console.log("cartincloud", data);
     dispatch({
       type: CHECKOUT_CART_SUCCESS,
@@ -93,7 +92,7 @@ export const createDeliveryAddress =
         },
       };
       const { data } = await axios.post(
-        "http://localhost:1337/api/address/createAddressByUser",
+        "/api/address/createAddressByUser",
         { data: { street_name, building_name, emirate, notes, flat_number, area } },
         config
       );

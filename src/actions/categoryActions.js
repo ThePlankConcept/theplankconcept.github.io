@@ -50,7 +50,7 @@ export const listCategory = (keyword) => async (dispatch) => {
     try {
       dispatch({ type: CATEGORY_LIST_REQUEST });
       const { data } = await axios.get(`/api/categories?${query}`);
-      console.log("response", data);
+      console.log("responseqq", data);
       dispatch({
         type: CATEGORY_LIST_SUCCESS,
         payload: data.data,

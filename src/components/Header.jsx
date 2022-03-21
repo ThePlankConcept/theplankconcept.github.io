@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./header.css";
 import AboutUs from "./AboutUs";
+import Search from "./Search";
 import { LinkContainer } from "react-router-bootstrap";
 import {
   Nav,
@@ -29,6 +30,7 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [onShow, setOnShow] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   // console.log("header", userInfo);
   const logoutHandler = () => {
@@ -94,18 +96,22 @@ const Header = () => {
 
                 <LinkContainer to="/" className="d-flex justify-content-center">
                   <Navbar.Brand>
-                    <Image src="/logo.ico" alt="logo" fluid className="navbranding" />
+                    <Image src="/logo.ico" alt="logo" fluid className="navbranding pe-5" />
                   </Navbar.Brand>
                 </LinkContainer>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav cls " className="ms-5" justify="true">
                   <Nav className="ms-auto  navItems" flush="true">
-                    <LinkContainer className="d-flex justify-content-center" to="/cart">
-                      <Nav.Link>
-                        <img src="/searchIcon.svg" alt="search" width="100%" />
-                      </Nav.Link>
-                    </LinkContainer>
+                    <Nav.Link>
+                      <img
+                        src="/searchIcon.svg"
+                        alt="search"
+                        width="100%"
+                        onClick={() => setShow(true)}
+                      />
+                    </Nav.Link>
+
                     <LinkContainer to="/wishlists">
                       <Nav.Link>
                         <img src="/heart-regular.svg" alt="cart" width="40px" />
@@ -131,7 +137,7 @@ const Header = () => {
                         id="basic-nav-dropdown"
                         className="bdnav"
                       >
-                        <LinkContainer to="/profile">
+                        <LinkContainer to="/user/edit">
                           <NavDropdown.Item className="dropdownheader px-2 m-3">
                             Profile
                           </NavDropdown.Item>
@@ -174,6 +180,11 @@ const Header = () => {
               {menu == "rooms" ? <RoomsMenu /> : menu == "products" ? <ProductMenu /> : <AboutUs />}
             </Col>
           )}
+        </Row>
+        <Row>
+          <Col>
+            <Search show={show} onHide={() => setShow(false)} />
+          </Col>
         </Row>
       </Container>
     </header>

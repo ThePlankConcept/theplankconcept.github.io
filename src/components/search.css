@@ -1,0 +1,41 @@
+.modal-fullscreen .modal-content {
+  height: 75%;
+  border: 0;
+}
+.search-bar {
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+.form-control,
+.form-control:hover,
+.form-control:focus,
+.form-select,
+.form-select:hover,
+.form-select:focus {
+  box-shadow: none !important;
+
+  background-color: transparent !important;
+}
+.custom-margin {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.bold-item {
+  font-weight: bold;
+}
+.ul-style {
+  list-style-type: none;
+  padding: 0;
+}
+.items {
+  font: black;
+}
+.items:hover {
+  cursor: pointer;
+}
+.centertheList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

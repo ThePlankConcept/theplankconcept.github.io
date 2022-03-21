@@ -1,10 +1,17 @@
 import React from "react";
 import "./header.css";
-
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 
 const ProductsMenu = () => {
+  const navigate = useNavigate();
+
+  const navigateTo = (e, cat) => {
+    console.log(e.target.innerHTML);
+    navigate(`/products/${cat}?type=${e.target.innerHTML.trim().toLowerCase()}`);
+  };
+
   return (
     <Container className="pb-5">
       <Row>
@@ -29,33 +36,45 @@ const ProductsMenu = () => {
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Sofas And Sectionals</span>
+                <span className="underline" onClick={(e) => navigateTo(e, "living room")}>
+                  Sofas And Sectionals
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Armchairs</span>
+                <span className="underline" onClick={(e) => navigateTo(e, "living room")}>
+                  Armchairs
+                </span>
               </Col>
             </Row>
 
             <Row>
               <Col className="pb-1 ">
-                <span className="underline"> Ottomans And Poufs</span>
+                <span className="underline" onClick={(e) => navigateTo(e, "living room")}>
+                  Ottomans & Poufs
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Coffe Tables </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "living room")}>
+                  Coffee Tables
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Side Tables </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "living room")}>
+                  Side Tables
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Tv Stands And Consoles </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "living room")}>
+                  Tv Stands And Consoles
+                </span>
               </Col>
             </Row>
           </Container>
@@ -69,50 +88,70 @@ const ProductsMenu = () => {
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline">Dining Tables</span>
+                <span className="underline" onClick={(e) => navigateTo(e, "dining room")}>
+                  Dining Tables
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Dining Chairs</span>
+                <span className="underline" onClick={(e) => navigateTo(e, "dining room")}>
+                  Dining Chairs
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Benches </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "dining room")}>
+                  Benches
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Bar Stools </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "dining room")}>
+                  Bar Stools
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Side Boards </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "dining room")}>
+                  Side Boards
+                </span>
               </Col>
             </Row>
             <Link to="/products/bedroom" style={{ textDecoration: "none" }}>
-              <Col className="bold-text">BEDROOM</Col>
+              <Col className="bold-text" onClick={(e) => navigateTo(e, "bedroom")}>
+                BEDROOM
+              </Col>
             </Link>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Bed Frames </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "bedroom")}>
+                  Bed Frames
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Dressers </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "bedroom")}>
+                  Dressers
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Nightstands </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "bedroom")}>
+                  Nightstands
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Mattresses </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "bedroom")}>
+                  Mattresses
+                </span>
               </Col>
             </Row>
           </Container>
@@ -124,32 +163,44 @@ const ProductsMenu = () => {
             </Link>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Lighting </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "accessories")}>
+                  Lighting
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Mirrors </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "accessories")}>
+                  Mirrors
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Rugs </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "accessories")}>
+                  Rugs
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Art/Decorations </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "accessories")}>
+                  Art/Decorations
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Tabletops </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "accessories")}>
+                  Tabletops
+                </span>
               </Col>
             </Row>
             <Row>
               <Col className="pb-1">
-                <span className="underline"> Outdoor </span>
+                <span className="underline" onClick={(e) => navigateTo(e, "accessories")}>
+                  Outdoor
+                </span>
               </Col>
             </Row>
           </Container>

@@ -1,0 +1,114 @@
+.delivered{
+    background-color: #5BC16B;
+} 
+.delivery-details-title{
+    text-align: left;
+font: normal normal bold 18px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+.order-number-box{
+    background-color: #EDF1F5;
+    font: normal normal normal 18px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+.customer-support-title{
+    text-align: left;
+font: normal normal normal 20px/22px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+.contact-us-bitton{
+    background: #C2CFDE 0% 0% no-repeat padding-box;
+border-radius: 50px;
+opacity: 1;
+}
+.customer-support-body{
+    text-align: left;
+font: normal normal normal 14px/22px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+.delivery-details-body{
+    text-align: left;
+    font: normal normal normal 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+
+.pricing-box{
+    background-color: #C2CFDE;
+    border: 2px white solid;
+}
+.order-history-title{
+    text-align: left;
+font: normal normal bold 44px/60px Roboto;
+letter-spacing: 0.88px;
+color: #333333;
+opacity: 1;
+}
+.delivered:hover{
+    background-color: #5BC16B;
+}
+.processing{
+    background-color: #E5BA59;
+}
+.processing:hover{
+    background-color: #E5BA59;
+}
+.view-details{
+    background-color: #333333;
+}
+.download-invoice{
+    background-color: #C2CFDE;
+}
+.accordion-body {
+    /* padding: 1rem 1.25rem; */
+}
+.accordion-body-name{
+    text-align: left;
+font: normal normal bold 18px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+.accordion-body-details{
+    text-align: left;
+font: normal normal normal 22px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+.accordion-styling{
+    background-color: #EDF1F5;
+}
+.order-number{
+    text-align: left;
+font: normal normal normal 20px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+
+.order-date{
+    text-align: right;
+font: normal normal normal 20px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+
+.order-status { 
+    
+font: normal normal normal 16px/34px Roboto;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+
+}

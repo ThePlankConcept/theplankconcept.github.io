@@ -144,12 +144,11 @@ export const pushCartAction = (leasePeriod) => async (dispatch, getState) => {
   try {
     dispatch({
       type: CART_PUSH_REQUEST,
-      payload: { loading: true },
     });
 
     console.log("datainpush action", { cart_items: { data: tempArray } });
     const { data } = await axios.post(
-      "http://localhost:1337/api/carts/createcart",
+      "/api/carts/createcart",
       { data: { cart_items: { data: tempArray } } },
       config
     );

@@ -20,6 +20,8 @@ const CartPage = () => {
   const { subscribed, purchase } = cart;
   const dispatch = useDispatch();
   const [agree, setAgree] = useState(false);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const [leasePeriod, setLeasePeriod] = useState(
     subscribed.length > 0 && subscribed[subscribed.length - 1].period
   );
@@ -28,8 +30,8 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    console.log("lp", leasePeriod);
-    console.log("sp", subscribed);
+    // console.log("lp", leasePeriod);
+    // console.log("sp", subscribed);
   }, [leasePeriod]);
 
   const removeFromCartHandler = (id, subscription) => {
@@ -38,13 +40,49 @@ const CartPage = () => {
   const addDecimals = (num) => {
     return Math.ceil(num).toLocaleString("en");
   };
+
+  const calCulateTotal = () => {
+    let total1;
+    let total2;
+    if (subscribed.length > 0) {
+      total1 = Number(
+        subscribed.reduce(
+          (acc, item) =>
+            Number(acc) +
+            Number(item.qty) *
+              Number(
+                leasePeriod === "12" ? item.twelve_month_price / 12 : item.six_month_price / 6
+              ),
+          0
+        )
+      ).toFixed(2);
+    } else {
+      total1 = 0;
+    }
+    if (purchase.length > 0) {
+      total2 = Number(
+        purchase
+          .reduce((acc, item) => Number(acc) + Number(item.qty) * Number(item.price), 0)
+          .toFixed(2)
+      );
+    } else {
+      total2 = 0;
+    }
+
+    return addDecimals(total1 + total2);
+  };
+
   const changeQuantityHandler = (id, qty, subscription, period) => {
-    console.log(id, qty, subscription);
+    // console.log(id, qty, subscription);
     dispatch(addToCart2({ id, qty, subscription, period }));
   };
-  const checkOutHandler = () => {
-    dispatch(pushCartAction(leasePeriod));
-    navigate(`/login?redirect=/checkout`);
+  const checkOutHandler = async () => {
+    if (userInfo) {
+      await dispatch(pushCartAction(leasePeriod));
+      navigate("/checkout");
+    } else {
+      navigate(`/login?redirect=/checkout`);
+    }
   };
 
   return (
@@ -54,7 +92,7 @@ const CartPage = () => {
           <Header />
         </Col>
       </Row>
-      <Container fluid className="cartMainContainer">
+      <Container fluid className="cartMainContainer" style={{ minHeight: "70vh" }}>
         <Row className="h-100">
           <Col xs={12} sm={12} md={7} lg={8} xl={8} className="pe-5">
             <Row>
@@ -147,9 +185,9 @@ const CartPage = () => {
                                             )
                                           }
                                         >
-                                          {[...Array(item.countInStock).keys()].map((x) => (
-                                            <option key={x + 1} value={x + 1}>
-                                              {x + 1}
+                                          {[1, 2, 3, 4, 5].map((x) => (
+                                            <option key={x} value={x}>
+                                              {x}
                                             </option>
                                           ))}
                                         </Form.Control>
@@ -188,6 +226,7 @@ const CartPage = () => {
                                         (leasePeriod === "12"
                                           ? addDecimals(item.twelve_month_price / 12)
                                           : addDecimals(item.six_month_price / 6))}
+                                      /mo
                                     </Col>
                                   </Row>
                                 </ListGroup.Item>
@@ -253,9 +292,9 @@ const CartPage = () => {
                                             )
                                           }
                                         >
-                                          {[...Array(item.countInStock).keys()].map((x) => (
-                                            <option key={x + 1} value={x + 1}>
-                                              {x + 1}
+                                          {[1, 2, 3, 4, 5].map((x) => (
+                                            <option key={x} value={x}>
+                                              {x}
                                             </option>
                                           ))}
                                         </Form.Control>
@@ -304,215 +343,199 @@ const CartPage = () => {
               </Col>
             </Row>
           </Col>
-          <Col xs={12} sm={12} md={5} lg={4} xl={4} className="cartPageCheckoutCol ps-3 pe-3">
-            <Card
-              className="pt-4 text-center"
-              style={{ background: "transparent", border: "none" }}
-            >
-              <Card.Title
-                className="text-capitalize pb-4 text-center"
-                style={{
-                  fontFamily: "Poppins",
-                  fontSize: "1.8rem",
-                  letterSpacing: "0px",
-                }}
+          {subscribed.length === 0 && purchase.length === 0 ? (
+            <Col></Col>
+          ) : (
+            <Col xs={12} sm={12} md={5} lg={4} xl={4} className="cartPageCheckoutCol ps-3 pe-3">
+              <Card
+                className="pt-4 text-center"
+                style={{ background: "transparent", border: "none" }}
               >
-                Order Summary
-              </Card.Title>
-              <ListGroup variant="flush" className="text-start">
-                <ListGroup.Item className="d-flex flex-column py-3">
-                  {subscribed.length > 0 && (
-                    <Row className="py-2">
-                      <Col
-                        style={{
-                          fontFamily: "Poppins",
-                          fontSize: "1rem",
-                          letterSpacing: "0px",
-                          fontWeight: "300",
-                        }}
-                      >
-                        <p>Monthly Furniture Total:</p>
-                      </Col>
-                      <Col
-                        className="text-end"
-                        style={{
-                          fontFamily: "Poppins",
-                          fontSize: "1rem",
-                          letterSpacing: "0px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        AED&nbsp;
-                        {addDecimals(
-                          subscribed
-                            .reduce(
-                              (acc, item) =>
-                                Number(acc) +
-                                Number(item.qty) *
-                                  Number(
-                                    leasePeriod === "12"
-                                      ? item.twelve_month_price / 12
-                                      : item.six_month_price / 6
-                                  ),
-                              0
-                            )
-                            .toFixed(2)
-                        )}
-                      </Col>
-                    </Row>
-                  )}
-                  {purchase.length > 0 && (
-                    <Row className="py-2">
-                      <Col
-                        style={{
-                          fontFamily: "Poppins",
-                          fontSize: "1rem",
-                          letterSpacing: "0px",
-                          fontWeight: "300",
-                        }}
-                      >
-                        <p>Purchase Items</p>
-                      </Col>
-                      <Col
-                        className="text-end"
-                        style={{
-                          fontFamily: "Poppins",
-                          fontSize: "1rem",
-                          letterSpacing: "0px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        AED&nbsp;
-                        {addDecimals(
-                          purchase.reduce(
-                            (acc, item) => Number(acc) + Number(item.qty) * Number(item.price),
-                            0
-                          )
-                        )}
-                      </Col>
-                    </Row>
-                  )}
-                  <Row className="py-2">
-                    <Col
-                      style={{
-                        fontFamily: "Poppins",
-                        fontSize: "1rem",
-                        letterSpacing: "0px",
-                        fontWeight: "300",
-                      }}
-                    >
-                      <p>Delivery & Assembly:</p>
-                    </Col>
-                    <Col
-                      className="text-end"
-                      style={{
-                        fontFamily: "Poppins",
-                        fontSize: "1rem",
-                        letterSpacing: "0px",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Free
-                    </Col>
-                  </Row>
-                  <Row className="py-2">
-                    <Col
-                      style={{
-                        fontFamily: "Poppins",
-                        fontSize: "1rem",
-                        letterSpacing: "0px",
-                        fontWeight: "300",
-                      }}
-                    >
-                      <p>Plan Lease:</p>
-                    </Col>
-                    <Col xs={6} sm={8} md={3} lg={3} xl={3}>
-                      <Form.Select
-                        size="sm"
-                        className="selectleaseperiod"
-                        defaultValue={leasePeriod}
-                        onChange={(e) => {
-                          setLeasePeriod(e.target.value);
-                        }}
-                      >
-                        <option value={"6"}>6 Month</option>
-                        <option value={"12"}>12 Month</option>
-                      </Form.Select>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item
+                <Card.Title
+                  className="text-capitalize pb-4 text-center"
                   style={{
                     fontFamily: "Poppins",
-                    fontSize: "1rem",
+                    fontSize: "1.8rem",
                     letterSpacing: "0px",
-                    fontWeight: "600",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    paddingTop: "4%",
-                    paddingBottom: "4%",
                   }}
                 >
-                  <p className="p-0 m-0">Subtotal</p>AED
-                  {addDecimals(
-                    subscribed
-                      .reduce(
-                        (acc, item) =>
-                          Number(acc) +
-                          Number(item.qty) *
-                            Number(
-                              leasePeriod === 12
-                                ? item.twelve_month_price / 12
-                                : item.six_month_price / 6
-                            ),
-                        0
-                      )
-                      .toFixed(2)
-                  ) +
-                    Number(
-                      purchase
-                        .reduce(
-                          (acc, item) => Number(acc) + Number(item.qty) * Number(item.price),
-                          0
-                        )
-                        .toFixed(2)
+                  Order Summary
+                </Card.Title>
+                <ListGroup variant="flush" className="text-start">
+                  <ListGroup.Item className="d-flex flex-column py-3">
+                    {subscribed.length > 0 && (
+                      <Row className="py-2">
+                        <Col
+                          style={{
+                            fontFamily: "Poppins",
+                            fontSize: "1rem",
+                            letterSpacing: "0px",
+                            fontWeight: "300",
+                          }}
+                        >
+                          <p>Monthly Furniture Total:</p>
+                        </Col>
+                        <Col
+                          className="text-end"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontSize: "1rem",
+                            letterSpacing: "0px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          AED&nbsp;
+                          {addDecimals(
+                            subscribed
+                              .reduce(
+                                (acc, item) =>
+                                  Number(acc) +
+                                  Number(item.qty) *
+                                    Number(
+                                      leasePeriod === "12"
+                                        ? item.twelve_month_price / 12
+                                        : item.six_month_price / 6
+                                    ),
+                                0
+                              )
+                              .toFixed(2)
+                          )}
+                        </Col>
+                      </Row>
                     )}
-                </ListGroup.Item>
-                <ListGroup.Item className="d-flex flex-column">
-                  <Row className="py-3">
-                    <Col>
-                      <div>
-                        <input type="checkbox" id="agree" onChange={checkboxHandler} />
-                        <label htmlFor="agree" className="ps-3">
-                          I agree to{" "}
-                          <a href="#" style={{ color: "blue" }}>
-                            terms and conditions
-                          </a>
-                        </label>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row className="pb-0">
-                    <Button
-                      type="button"
-                      className="text-capitalize checkOutBtn rounded-pill mt-2"
-                      disabled={(subscribed.length === 0 && purchase.length === 0) || !agree}
-                      onClick={checkOutHandler}
-                    >
-                      Proceed To Checkout
-                    </Button>
-                  </Row>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card>
-          </Col>
+                    {purchase.length > 0 && (
+                      <Row className="py-2">
+                        <Col
+                          style={{
+                            fontFamily: "Poppins",
+                            fontSize: "1rem",
+                            letterSpacing: "0px",
+                            fontWeight: "300",
+                          }}
+                        >
+                          <p>Purchase Items</p>
+                        </Col>
+                        <Col
+                          className="text-end"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontSize: "1rem",
+                            letterSpacing: "0px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          AED&nbsp;
+                          {addDecimals(
+                            purchase.reduce(
+                              (acc, item) => Number(acc) + Number(item.qty) * Number(item.price),
+                              0
+                            )
+                          )}
+                        </Col>
+                      </Row>
+                    )}
+                    <Row className="py-2">
+                      <Col
+                        style={{
+                          fontFamily: "Poppins",
+                          fontSize: "1rem",
+                          letterSpacing: "0px",
+                          fontWeight: "300",
+                        }}
+                      >
+                        <p>Delivery & Assembly:</p>
+                      </Col>
+                      <Col
+                        className="text-end"
+                        style={{
+                          fontFamily: "Poppins",
+                          fontSize: "1rem",
+                          letterSpacing: "0px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        Free
+                      </Col>
+                    </Row>
+                    {subscribed.length > 0 && (
+                      <Row className="py-2">
+                        <Col
+                          style={{
+                            fontFamily: "Poppins",
+                            fontSize: "1rem",
+                            letterSpacing: "0px",
+                            fontWeight: "300",
+                          }}
+                        >
+                          <p>Plan Lease:</p>
+                        </Col>
+                        <Col xs={6} sm={8} md={3} lg={3} xl={3}>
+                          <Form.Select
+                            size="sm"
+                            className="selectleaseperiod"
+                            defaultValue={leasePeriod}
+                            onChange={(e) => {
+                              setLeasePeriod(e.target.value);
+                            }}
+                          >
+                            <option value={"6"}>6 Month</option>
+                            <option value={"12"}>12 Month</option>
+                          </Form.Select>
+                        </Col>
+                      </Row>
+                    )}
+                  </ListGroup.Item>
+                  <ListGroup.Item
+                    style={{
+                      fontFamily: "Poppins",
+                      fontSize: "1rem",
+                      letterSpacing: "0px",
+                      fontWeight: "600",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      paddingTop: "4%",
+                      paddingBottom: "4%",
+                    }}
+                  >
+                    <p className="p-0 m-0">Subtotal</p>AED
+                    {calCulateTotal()}
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex flex-column">
+                    <Row className="py-3">
+                      <Col>
+                        <div>
+                          <input type="checkbox" id="agree" onChange={checkboxHandler} />
+                          <label htmlFor="agree" className="ps-3">
+                            I agree to{" "}
+                            <a href="#" style={{ color: "blue" }}>
+                              terms and conditions
+                            </a>
+                          </label>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row className="pb-0">
+                      <Button
+                        type="button"
+                        className="text-capitalize checkOutBtn rounded-pill mt-2"
+                        disabled={(subscribed.length === 0 && purchase.length === 0) || !agree}
+                        onClick={checkOutHandler}
+                      >
+                        Proceed To Checkout
+                      </Button>
+                    </Row>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+          )}
         </Row>
-        <Container fluid>
+        {/* <Container fluid>
           <Row className="py-5 mt-5">
             <RelatedProductsComponent />
           </Row>
-        </Container>
+        </Container> */}
       </Container>
       <Row>
         <Col>

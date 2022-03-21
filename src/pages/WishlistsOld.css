@@ -12,24 +12,6 @@
     
 
 }
-.rent-price{
-  font-size: medium ;
-  font-weight: 900;
-  font-family: Roboto;
-
-}
-.buy-price{
-  font-size: small;
-  font-weight:500 ;
-  font-family: Roboto;
-  white-space: nowrap;
-}
-.delete-btn{
-  
-}
-.delete-btn:hover{
-  cursor: pointer;
-}
 .wishlists-header{
   font-size: xx-large;
   font-weight: 600;
@@ -79,22 +61,6 @@ input[type="text"] {
   /* height: 155px; */
   object-fit: cover;
 }
-.wishlist-box{
-  cursor: pointer;
-
-   
-   
-    
-    
-  }
-  .image-col{
-    border: 1px solid white;
-  }
-
- 
-
-  
-
 .responsive-2 {
   /* //  width: 101.25px; */
     /* height: 77.5px; */

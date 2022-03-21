@@ -3,6 +3,29 @@
   font-size: 1.2rem;
 }
 
+.productcard {
+  min-height: 100% !important;
+}
+.createNewWishListForm .form-control,
+.createNewWishListForm .form-control:hover,
+.createNewWishListForm .form-control:focus,
+.createNewWishListForm .form-select,
+.createNewWishListForm .form-select:hover,
+.createNewWishListForm .form-select:focus {
+  box-shadow: none;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: transparent;
+  border-radius: 25px;
+}
+.cardImageProductListing {
+  cursor: pointer;
+  height: 100%;
+}
+.cardImageProductListing .card-img-top {
+  min-height: 100%;
+  object-fit: fill;
+}
+
 .productprice {
   text-align: left;
   font-family: Adrianna-5;
@@ -40,8 +63,12 @@
   z-index: 0;
   width: 24px !important;
   height: 24px !important;
+  opacity: 0;
 }
 
+.productCard:hover .icon-tag {
+  opacity: 1;
+}
 .modal-heading {
   padding-bottom: 5px;
   font-family: "Poppins";
@@ -52,12 +79,12 @@
 .plank-wishlist-create-button {
   text-transform: none;
   font-family: "Poppins";
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.8rem;
   letter-spacing: 1px;
   border: 1px dotted #c2cfde;
-  background-color: transparent;
-  color: black;
+  background-color: #c2cfde;
+  color: white;
 }
 .plank-wishlist-create-button-primary:hover,
 .plank-wishlist-create-button-primary:focus,
@@ -143,15 +170,25 @@
 }
 
 .popup-submit-btn {
-  background-color: #f68e65;
-  color: white;
-  border: 1px solid #f68e65;
+  background-color: #c2cfde !important;
+  color: black;
+  border: 1px solid #c2cfde !important;
 }
+
+.popup-submit-btn-primary:hover,
+.popup-submit-btn-primary:focus,
+.popup-submit-btn-primary:active,
+.popup-submit-btn-primary:active:focus:not(:disabled):not(.disabled),
+.popup-submit-btn:focus,
+.popup-submit-btn:active,
 .popup-submit-btn:hover {
-  background-color: white;
-  color: #f68e65;
-  border: 1px solid #f68e65;
+  background-color: transparent !important;
+  color: black !important;
+  box-shadow: none !important;
+  border: 1px solid #c2cfde !important;
+  outline: 0;
 }
+
 .cancel {
   background-color: white;
   color: black;

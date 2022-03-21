@@ -56,7 +56,7 @@ export const createDeliveryAddressReducer = (state = {}, action) => {
 export const checkoutCartReducer = (state = { cartcheckout: [] }, action) => {
   switch (action.type) {
     case CHECKOUT_CART_REQUEST:
-      return { loading: true };
+      return { loading: true, cartcheckout: [] };
     case CHECKOUT_CART_SUCCESS:
       return { loading: false, cartcheckout: action.payload };
     case CHECKOUT_CART_FAIL:

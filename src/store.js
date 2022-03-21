@@ -6,6 +6,7 @@ import {
   productListReducer,
   productFilterReducer,
   relatedProductsReducers,
+  searchProductsReducer,
 } from "../src/reducers/productReducers";
 import { cartReducer, cartReducer2 } from "./reducers/cartReducers";
 import {
@@ -18,11 +19,14 @@ import {
 } from "./reducers/userReducers";
 import { categoryListReducer, allProductCategoryReducer } from "./reducers/categoryReducers";
 import {
+  deleteWishlistReducer,
   getUserWishlistReducer,
+  getWishlistBySlugReducer,
   updateUserWishlistReducer,
   wishlistCreateReducer,
 } from "./reducers/wishlistReducers";
 import { checkoutCartReducer, checkoutDetailsReducer } from "./reducers/checkoutReducers";
+import { getOrdersReducers, populatedOrdersReducers } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -40,9 +44,14 @@ const reducer = combineReducers({
   getUserWishlist: getUserWishlistReducer,
   updateUserWishList: updateUserWishlistReducer,
   relatedProducts: relatedProductsReducers,
+  getWishlistBySlugReducer: getWishlistBySlugReducer,
+  deleteWishlistReducer: deleteWishlistReducer,
   checkoutDetails: checkoutDetailsReducer,
   checkoutCart: checkoutCartReducer,
   updateUser: updateUserReducer,
+  searchProductsReducer: searchProductsReducer,
+  getOrdersReducer: getOrdersReducers,
+  populatedOrderReducer: populatedOrdersReducers,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
