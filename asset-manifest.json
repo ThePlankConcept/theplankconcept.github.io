@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.350ab318.css",
+    "main.js": "/react-gh-pages/static/js/main.e98cee1f.js",
+    "static/media/CirceRounded-Light.otf": "/react-gh-pages/static/media/CirceRounded-Light.bee4cf44694a05bdd393.otf",
+    "static/media/CirceRounded-Bold.otf": "/react-gh-pages/static/media/CirceRounded-Bold.63f1293bc8249ff6b698.otf",
+    "static/media/CirceRounded-Alt-ExtraBold.otf": "/react-gh-pages/static/media/CirceRounded-Alt-ExtraBold.da69134cebd0bf4455ff.otf",
+    "static/media/Poppins-Regular.ttf": "/react-gh-pages/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
+    "static/media/Adrianna 8.otf": "/react-gh-pages/static/media/Adrianna 8.3173b3ff5ada0b8f792b.otf",
+    "static/media/Adrianna 9.otf": "/react-gh-pages/static/media/Adrianna 9.94ca8d87cea6af03a598.otf",
+    "static/media/Adrianna 7.otf": "/react-gh-pages/static/media/Adrianna 7.2cb609dd0debe69bcab9.otf",
+    "static/media/Adrianna 2.otf": "/react-gh-pages/static/media/Adrianna 2.12f144e62855006625c6.otf",
+    "static/media/Adrianna 6.otf": "/react-gh-pages/static/media/Adrianna 6.82bc49391c33505b6012.otf",
+    "static/media/Adrianna 5.otf": "/react-gh-pages/static/media/Adrianna 5.8d16f1d5fccb0a8ad12e.otf",
+    "static/media/Adrianna 1.otf": "/react-gh-pages/static/media/Adrianna 1.8cf8ec49fdf5daba1f00.otf",
+    "static/media/Adrianna 3.otf": "/react-gh-pages/static/media/Adrianna 3.9a61b900477e351489d8.otf",
+    "static/media/line3.png": "/react-gh-pages/static/media/line3.d6b74dea9b91c7ff360e.png",
+    "static/media/Adrianna 4.otf": "/react-gh-pages/static/media/Adrianna 4.ce308a2dad2fcbd2b273.otf",
+    "static/media/revicons.eot": "/react-gh-pages/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/react-gh-pages/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/react-gh-pages/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/react-gh-pages/index.html",
+    "main.350ab318.css.map": "/react-gh-pages/static/css/main.350ab318.css.map",
+    "main.e98cee1f.js.map": "/react-gh-pages/static/js/main.e98cee1f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.350ab318.css",
+    "static/js/main.e98cee1f.js"
+  ]
+}
