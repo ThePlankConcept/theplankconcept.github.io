@@ -282,65 +282,63 @@ const ProductPage2 = () => {
     );
   }
 
-  const CustomPopovers = (props) => {
-    return (
-      <Popover id="popover-basic" {...props} style={{ left: "20%", minWidth: "60%" }}>
-        <Popover.Header
-          as="p"
-          className="text-start"
-          style={{
-            background: "transparent",
-            fontFamily: "Poppins",
-            fontSize: "100%",
-            fontWeight: "600",
-            paddingRight: "2rem",
-          }}
-        >
-          Save this item to a wishlist
-        </Popover.Header>
+  const CustomPopovers = React.forwardRef((props, ref) => (
+    <Popover id="popover-basic" innerRef={ref} {...props} style={{ left: "20%", minWidth: "60%" }}>
+      <Popover.Header
+        as="p"
+        className="text-start"
+        style={{
+          background: "transparent",
+          fontFamily: "Poppins",
+          fontSize: "100%",
+          fontWeight: "600",
+          paddingRight: "2rem",
+        }}
+      >
+        Save this item to a wishlist
+      </Popover.Header>
 
-        <Popover.Body className="px-4">
-          <Container>
-            <Container
-              className="overflow-auto"
-              style={{ maxHeight: "6rem", borderBottom: ".5px solid" }}
-            >
-              {!loading &&
-                userWishList &&
-                userWishList.data.map((list) => {
-                  return (
-                    <Row key={list.id} className="py-1">
-                      <Col>
-                        <Button
-                          className="wishlistButton"
-                          style={{ width: "100%", textTransform: "none" }}
-                          onClick={() => {
-                            addProductToWishlisthandler(list);
-                          }}
-                        >
-                          {list.attributes.wishlist_name}
-                        </Button>
-                      </Col>
-                    </Row>
-                  );
-                })}
-            </Container>
-
-            <Row className="pt-2">
-              <Col>
-                <Button
-                  className="plank-wishlist-create-button btn text-center w-100 rounded-pill"
-                  onClick={() => setModal2Show(true)}
-                >
-                  <FontAwesomeIcon icon={faPlus} /> Create a new Wishlist
-                </Button>
-              </Col>
-            </Row>
+      <Popover.Body className="px-4">
+        <Container>
+          <Container
+            className="overflow-auto"
+            style={{ maxHeight: "6rem", borderBottom: ".5px solid" }}
+          >
+            {!loading &&
+              userWishList &&
+              userWishList.data.map((list) => {
+                return (
+                  <Row key={list.id} className="py-1">
+                    <Col>
+                      <Button
+                        className="wishlistButton"
+                        style={{ width: "100%", textTransform: "none" }}
+                        onClick={() => {
+                          addProductToWishlisthandler(list);
+                        }}
+                      >
+                        {list.attributes.wishlist_name}
+                      </Button>
+                    </Col>
+                  </Row>
+                );
+              })}
           </Container>
-        </Popover.Body>
-      </Popover>
-    );
-  };
+
+          <Row className="pt-2">
+            <Col>
+              <Button
+                className="plank-wishlist-create-button btn text-center w-100 rounded-pill"
+                onClick={() => setModal2Show(true)}
+              >
+                <FontAwesomeIcon icon={faPlus} /> Create a new Wishlist
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </Popover.Body>
+    </Popover>
+  ));
   let variable = "";
   const setTheFirstImage = (imgUrl) => {};
   const formSubmit_buy = (e) => {
@@ -402,20 +400,18 @@ const ProductPage2 = () => {
         </Col>
       </Row>
       {loading ? (
-        <>
-          <Row
-            style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <Col>
-              <Loader />
-            </Col>
-          </Row>
-        </>
+        <Row
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Col>
+            <Loader />
+          </Col>
+        </Row>
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (

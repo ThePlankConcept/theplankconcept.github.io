@@ -23,6 +23,7 @@ import "./Wishlists.css";
 import { faArrowRight, faPlus, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "./../hooks/ScreenSizeHook";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const Wishlists = () => {
   const navigate = useNavigate();
@@ -101,6 +102,11 @@ const Wishlists = () => {
   const { height, width } = useWindowDimensions();
   return (
     <>
+      <Row>
+        <Col>
+          <Header />
+        </Col>
+      </Row>
       <Container fluid>
         <Row className="ps-5 ms-3">
           <Col>

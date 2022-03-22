@@ -188,6 +188,10 @@
   border: 1px solid #c2cfde !important;
   outline: 0;
 }
+.fade:not(.show) {
+  opacity: 0;
+  pointer-events: none;
+}
 
 .cancel {
   background-color: white;

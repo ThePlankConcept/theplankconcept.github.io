@@ -44,7 +44,7 @@ export const getUserWishlistReducer = (state = {}, action) => {
 export const updateUserWishlistReducer = (state = {}, action) => {
   switch (action.type) {
     case WISHLIST_UPDATE_REQUEST:
-      return { loading: true };
+      return { ...state, loading: true };
     case WISHLIST_UPDATE_SUCCESS:
       return { loading: false, userWishList: action.payload, success: true };
     case WISHLIST_UPDATE_FAIL:

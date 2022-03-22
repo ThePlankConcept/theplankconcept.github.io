@@ -22,7 +22,7 @@ import { debounce } from "lodash";
 function Search(props) {
   const searchResult = useSelector((state) => state.searchProductsReducer);
   const { loading, error, product } = searchResult;
-  console.log("products", product);
+  // console.log("products", product);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const [show, setShow] = useState(false);

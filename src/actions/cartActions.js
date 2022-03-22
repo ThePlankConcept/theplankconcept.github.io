@@ -9,27 +9,6 @@ import {
   CART_REMOVE_ITEM2,
 } from "../constants/cartConstant";
 import qs from "qs";
-// export const addToCart = (slug, qty) => async (dispatch, getState) => {
-//   const { data } = await axios.get(`/api/products/product/${slug}`);
-//   // console.log("cart", { ...data.data }, qty);
-//   dispatch({
-//     type: CART_ADD_ITEM,
-//     payload: {
-//       product: data.data[0].attributes.product_name,
-//       name: data.data[0].attributes.product_name,
-//       image:
-//         data.data[0].attributes.product_inventories.data[0].attributes.images.data[0].attributes
-//           .formats.thumbnail.url,
-//       price: data.data[0].attributes.price,
-//       countInStock: data.data[0].attributes.product_inventories.data[0].attributes.quantity,
-//       category: data.data[0].attributes.categories.data[0].id,
-//       slug: slug,
-//       qty,
-//     },
-//   });
-
-//   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
-// };
 
 export const addToCart = (slug, qty, subscription, inventory) => async (dispatch, getState) => {
   console.log("incartaction", slug, qty, subscription, inventory);
@@ -123,9 +102,9 @@ export const pushCartAction = (leasePeriod) => async (dispatch, getState) => {
     userLogin: { userInfo },
     cart2: { subscribed, purchase },
   } = getState();
-  console.log("subscribed", subscribed);
-  console.log("purchase", purchase);
-  console.log("leasePeriod", leasePeriod);
+  // console.log("subscribed", subscribed);
+  // console.log("purchase", purchase);
+  // console.log("leasePeriod", leasePeriod);
   const config = {
     headers: {
       "Content-Type": "application/json",

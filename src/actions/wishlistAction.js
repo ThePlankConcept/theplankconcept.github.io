@@ -14,6 +14,9 @@ import {
   ONE_WISHLIST_GET_REQUEST,
   ONE_WISHLIST_GET_SUCCESS,
   ONE_WISHLIST_GET_FAIL,
+  WISHLIST_DEL_ITEM_REQUEST,
+  WISHLIST_DEL_ITEM_SUCCESS,
+  WISHLIST_DEL_ITEM_FAIL,
 } from "../constants/wishlistConstants";
 import axios from "axios";
 import qs from "qs";
@@ -56,25 +59,29 @@ export const createWishlist =
     }
   };
 
-export const getUserWishListAction = (userInfo) => async (dispatch) => {
-  let query = "";
-  const populate = {
-    products: {
-      populate: "product_inventories.images",
-    },
-  };
-  const filter = {
-    user: {
-      id: {
-        $eq: userInfo.user.id,
-      },
-    },
-  };
-  query = qs.stringify({
-    populate: populate,
-    filters: filter,
-  });
+export const getUserWishListAction = () => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+
   try {
+    let query = "";
+    const populate = {
+      products: {
+        populate: "product_inventories.images",
+      },
+    };
+    const filter = {
+      user: {
+        id: {
+          $eq: userInfo.user.id,
+        },
+      },
+    };
+    query = qs.stringify({
+      populate: populate,
+      filters: filter,
+    });
     dispatch({
       type: WISHLIST_GET_REQUEST,
     });
@@ -105,11 +112,22 @@ export const updateuserwishlist =
     const {
       userLogin: { userInfo },
     } = getState();
-    let usercurrentwishlist = [product];
-    wishlistid.attributes.products.data.map((prod) => {
-      usercurrentwishlist.push(prod.id);
-    });
+
     try {
+      let query = "";
+      const populate = {
+        products: {
+          populate: "product_inventories.images",
+        },
+      };
+
+      query = qs.stringify({
+        populate: populate,
+      });
+      let usercurrentwishlist = [product];
+      wishlistid.attributes.products.data.map((prod) => {
+        usercurrentwishlist.push(prod.id);
+      });
       dispatch({
         type: WISHLIST_UPDATE_REQUEST,
       });
@@ -120,17 +138,17 @@ export const updateuserwishlist =
         },
       };
       const { data } = await axios.put(
-        `/api/wishlists/${wishlistid.id}`,
+        `/api/wishlists/${wishlistid.id}?${query}`,
         { data: { products: usercurrentwishlist } },
         config
       );
-      console.log("updateuserwishlist", data);
       dispatch({
         type: WISHLIST_UPDATE_SUCCESS,
         payload: data,
       });
+      dispatch(getUserWishListAction());
     } catch (error) {
-      console.log("hi from catch");
+      console.log("hi from catch", error);
       dispatch({
         type: WISHLIST_UPDATE_FAIL,
         payload:
@@ -238,6 +256,58 @@ export const deleteWishlist = (id, userInfo) => async (dispatch) => {
     console.log("hi from catch");
     dispatch({
       type: WISHLIST_DEL_FAIL,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+
+export const removeItemFromWishlist = (pid) => async (dispatch, getState) => {
+  try {
+    let query = "";
+    const {
+      userLogin: { userInfo },
+      getUserWishlist: { userWishList },
+    } = getState();
+    dispatch({
+      type: WISHLIST_DEL_ITEM_REQUEST,
+    });
+    const config = {
+      headers: {
+        Authorization: "Bearer " + userInfo.jwt,
+      },
+    };
+
+    console.log("getUserWishListAction", userWishList);
+    let newWishlist = [];
+    userWishList.data.map((wishlist, index) => {
+      let wishlistId = wishlist.id;
+      const p = wishlist.attributes.products.data.filter((p) => p.id !== pid);
+
+      newWishlist.push({ id: wishlistId, products: p.map((item) => item.id) });
+    });
+    let promisesp = [];
+    newWishlist.map((item) => {
+      console.log(`/api/wishlists/${item.id}`, { data: { products: item.products } });
+      promisesp.push(
+        axios.put(`/api/wishlists/${item.id}`, { data: { products: item.products } }),
+        config
+      );
+    });
+
+    axios.all(promisesp.map((promise) => promise)).then(
+      axios.spread((response) => {
+        dispatch({
+          type: WISHLIST_DEL_ITEM_SUCCESS,
+          payload: { success: true },
+        });
+      })
+    );
+    dispatch(getUserWishListAction());
+  } catch (error) {
+    console.log("hi from catch", error);
+    dispatch({
+      type: WISHLIST_DEL_ITEM_FAIL,
       payload:
         error.response && error.response.data.message ? error.response.data.message : error.message,
     });

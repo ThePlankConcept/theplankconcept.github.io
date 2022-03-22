@@ -22,6 +22,7 @@ const ProductsListingPage = () => {
   const [isBrandOpen, setIsBrandOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
   const [updateView, setUpdateView] = useState(false);
+  const [wishListProduct, setWishlistProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +32,8 @@ const ProductsListingPage = () => {
   const { category } = categoryList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
+  const getUserWishList = useSelector((state) => state.getUserWishlist);
+  const { userWishList } = getUserWishList;
   const { keyword } = useParams();
   const location = useLocation();
   const search = location.search;
@@ -49,16 +51,19 @@ const ProductsListingPage = () => {
     fbrand.indexOf(",") > -1 ? fbrand.split(",") : fbrand[0] === "" ? [] : fbrand
   );
 
+  let wishlistAndProducts = [];
   useEffect(() => {
+    dispatch(getUserWishListAction());
     dispatch(filterProducts({ keyword, type: filtertypeOption, brand: filterbrandOption }));
-    // console.log("filtertype and filterbrandoptions", filtertypeOption, filterbrandOption);
-    // console.log("typeoffilter", typeof filtertypeOption);
-  }, [dispatch, keyword, filtertypeOption, filterbrandOption]);
-
-  useEffect(() => {
-    dispatch(getUserWishListAction(userInfo));
-    // console.log("userw", userWishList);
-  }, [dispatch, userInfo, updateView]);
+    let tempObj = {};
+    if (userWishList && userWishList.data.length > 0) {
+      userWishList.data.map((wish) => {
+        tempObj[wish.id] = wish.attributes.products.data.map((p) => p.id);
+        return wishlistAndProducts.push(tempObj);
+      });
+    }
+    setWishlistProducts(wishlistAndProducts);
+  }, [dispatch, keyword, filtertypeOption, filterbrandOption, updateView]);
 
   useEffect(() => {
     dispatch(listCategory(keyword));
@@ -389,7 +394,7 @@ const ProductsListingPage = () => {
                           <Button className="text-capitalize">Brand</Button>
                         </Col>
                         <Col md={1} lg={1} sm={1} xs={1}>
-                          <FontAwesomeIcon className={brandIconRotate} i icon={faChevronDown} />
+                          <FontAwesomeIcon className={brandIconRotate} icon={faChevronDown} />
                         </Col>
                       </Row>
                       <Row>
@@ -537,7 +542,11 @@ const ProductsListingPage = () => {
                         xl={4}
                         className=" mb-5 d-flex justify-content-center"
                       >
-                        <Product product={product} updateMethod={updateWishlist} />
+                        <Product
+                          product={product}
+                          updateMethod={updateWishlist}
+                          wishlistItem={wishListProduct}
+                        />
                       </Col>
                     );
                   })}

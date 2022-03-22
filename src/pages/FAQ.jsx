@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, ListGroup, Image } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Image, Accordion } from "react-bootstrap";
 import Header from "../components/Header";
 import "./faq.css";
 const FAQ = () => {
@@ -128,38 +128,29 @@ const FAQ = () => {
                 <h3 className="plankfaqtopicname">Overview</h3>
               </Col>
             </Row>
-            <Container fluid className="plankfaqqueanswerContainer py-3">
-              <Row>
-                <Col>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion"> What is Plank?</h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     Plank is a monthly subscription service for your home that lets you easily get
                     the furniture you need, for the amount of time you need it. You can subscribe to
                     individual pieces such as beds or sofas, or get an entire dining room or bedroom
                     set-up, all for a low monthly price that works for you.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     What are the benefits of subscribing to home furnishings?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     Moving and furnishing your home can be overwhelming, time-consuming, and
                     stressful. We make it easy to find and enjoy the right pieces that suit your
@@ -169,87 +160,59 @@ const FAQ = () => {
                     home. Need a style refresh? We have you covered! You can swap your items, buy
                     them out, or simply have us pick them up!
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">What cities do you Plank in?</h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">Currently, we are Planking homes in Dubai only.</p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     How does Plank help ease my moving experience?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     Let us worry about the heavy lifting—literally. You pick out what you want, and
                     we’ll bring it to your new place, set it up, and put it where you want it. By
                     the time we leave your home, all you need to think about is which side of the
                     sofa you’re claiming to be yours.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     Can I subscribe to decor, kitchenware, air conditioning units, and electronics?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     Right now, we only offer furniture, select decor, and televisions. Create an
                     account to be notified of additional items in the future.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     Where can I find the Wishlists I’ve created so I can share it with my friends?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     All of your Wishlists can be found at&nbsp;
                     <a href="/wishlists">https://plank/wishlists</a>. From there, you'll be able to
@@ -257,14 +220,9 @@ const FAQ = () => {
                     categories within the wishlist to organize the items you love, along with
                     changing the name of the list, and editing the items on your list.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </Container>
           <Container id="subscription" fluid className="queansContainer">
             <Row>
@@ -272,14 +230,12 @@ const FAQ = () => {
                 <h3 className="plankfaqtopicname">The Subscription</h3>
               </Col>
             </Row>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">How does a Plank Subscription work?</h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">Subscribing to the furniture you want is simple!</p>
                   <p></p>
                   <ol className="plankFaqAnswer ps-4">
@@ -305,93 +261,65 @@ const FAQ = () => {
                     before your delivery. If you need to modify your subscription, Just&nbsp;
                     <a href="/contactus">contact us</a>!
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     What are the minimum amounts and terms for the subscription?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     Plank subscriptions require a minimum payment of $75 per month, and must last
                     for at least 2 months. If you need your items for less than 2 months, we can
                     pick them up sooner, however, we will still need to process payment for at least
                     2 months.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">How do I update my billing information?</h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     You can change your payment method by going to&nbsp;
                     <a href="#">https://plank.com/dashboard/edit_billing</a>. This will update your
                     default method for all future payments.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     When will I be charged? When does my subscription officially begin?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     During your checkout process, we’ll collect the first month’s subscription
                     payment. After that, your monthly subscription fee will be charged on the same
                     day of the month that your furniture is delivered, starting one month after your
                     delivery date.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     What if I need to cancel my subscription before the original end date?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     No problem. If your circumstances change and you need to cancel your
                     subscription earlier than anticipated, simply contact us and we can adjust your
@@ -402,24 +330,17 @@ const FAQ = () => {
                     Your last payment will either reflect the remaining payments of your contract or
                     a flat fee of AED300- whichever is less!
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
-            <Container fluid className="plankfaqqueanswerContainer">
-              <Row>
-                <Col>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            <Accordion className="plankfaqqueanswerContainer py-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <h3 className="plankFaqQuestion">
                     What happens at the end of my subscription period?
                   </h3>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </Accordion.Header>
+                <Accordion.Body>
                   <p className="plankFaqAnswer">
                     What happens next should be as easy as when you first signed up! At the end of
                     your initial contract, you’ll have several options:
@@ -448,14 +369,9 @@ const FAQ = () => {
                     If you’re entirely done with your furniture subscription, we’ll coordinate with
                     you on a date to pick it up.
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr className="plankfaqContentHr" />
-                </Col>
-              </Row>
-            </Container>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </Container>
           <Container id="furniture" fluid className="queansContainer">
             <Row>

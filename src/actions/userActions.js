@@ -17,6 +17,7 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_FAIL,
 } from "../constants/userConstant";
+import qs from "qs";
 
 export const facebookLogin = (token) => async (dispatch) => {
   try {
@@ -86,9 +87,17 @@ export const login = (email, password) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-
+    let query = "";
+    const populate = {
+      cart: {
+        fields: ["ID"],
+      },
+    };
+    query = qs.stringify({
+      populate: "*",
+    });
     const { data } = await axios.post(
-      "/api/auth/local",
+      `/api/auth/local?${query}`,
       { identifier: email, password: password },
       config
     );
@@ -96,7 +105,7 @@ export const login = (email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
-
+    console.log("user", data);
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({

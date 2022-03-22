@@ -165,9 +165,13 @@ select::-ms-expand {
   position: absolute;
   background: none;
   z-index: 0;
-  min-width: 2.5rem !important;
-  min-height: 2.5rem !important;
+  width: 2.2rem !important;
+  height: 2.2rem !important;
   opacity: 1;
+}
+.fade:not(.show) {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .modal-heading {
