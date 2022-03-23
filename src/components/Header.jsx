@@ -173,15 +173,15 @@ const Header = () => {
             </Navbar>
           </Col>
         </Row>
-        {/*
+
         <Row id="b" className="specialDropDown">
           {/* <Col>{menu == "rooms" ? <RoomsMenu /> : <ProductMenu />}</Col> */}
-        {/* {onShow && (
+          {onShow && (
             <Col onMouseLeave={() => setOnShow(false)} className="py-5">
               {menu == "rooms" ? <RoomsMenu /> : menu == "products" ? <ProductMenu /> : <AboutUs />}
             </Col>
-          )} */}
-        {/* </Row> */}
+          )}
+        </Row>
 
         <Row>
           <Col>
