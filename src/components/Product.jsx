@@ -15,6 +15,7 @@ import {
 import "./product.css";
 import { useEffect } from "react";
 import Message from "./Message";
+import Loader from "./Loader";
 const Product = ({ product, updateMethod, wishlistItem }) => {
   const [modal1Show, setModal1Show] = useState(false);
   const [modal2Show, setModal2Show] = useState(false);
@@ -50,7 +51,7 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
         setToggler(true);
       }
     }
-  }, [wishlist, success]);
+  }, [wishlist]);
 
   const createWishlistHandler = (e) => {
     e.preventDefault();
@@ -239,45 +240,47 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
       </Popover.Header>
 
       <Popover.Body className="px-4">
-        <Container>
-          <Container
-            className="overflow-auto"
-            style={{ maxHeight: "6rem", borderBottom: ".5px solid" }}
-          >
-            {!loading &&
-              !updateWishlistLoading &&
-              userWishList &&
-              userWishList.data.map((list) => {
-                return (
-                  <Row key={list.id} className="py-1">
-                    <Col>
-                      <Button
-                        className="wishlistButton rounded-pill"
-                        style={{ width: "100%", textTransform: "none" }}
-                        onClick={() => {
-                          addProductToWishlisthandler(list);
-                        }}
-                      >
-                        {list.attributes.wishlist_name}
-                      </Button>
-                    </Col>
-                  </Row>
-                );
-              })}
-          </Container>
+        {loading || updateWishlistLoading ? (
+          <Loader />
+        ) : (
+          <Container>
+            <Container
+              className="overflow-auto"
+              style={{ maxHeight: "6rem", borderBottom: ".5px solid" }}
+            >
+              {userWishList &&
+                userWishList.data.map((list) => {
+                  return (
+                    <Row key={list.id} className="py-1">
+                      <Col>
+                        <Button
+                          className="wishlistButton rounded-pill"
+                          style={{ width: "100%", textTransform: "none" }}
+                          onClick={() => {
+                            addProductToWishlisthandler(list);
+                          }}
+                        >
+                          {list.attributes.wishlist_name}
+                        </Button>
+                      </Col>
+                    </Row>
+                  );
+                })}
+            </Container>
 
-          <Row className="pt-2">
-            <Col>
-              <Button
-                className="plank-wishlist-create-button btn text-center w-100 rounded-pill"
-                onClick={() => setModal2Show(true)}
-                style={{ borderRadius: "15px" }}
-              >
-                <FontAwesomeIcon icon={faPlus} /> Create a new Wishlist
-              </Button>
-            </Col>
-          </Row>
-        </Container>
+            <Row className="pt-2">
+              <Col>
+                <Button
+                  className="plank-wishlist-create-button btn text-center w-100 rounded-pill"
+                  onClick={() => setModal2Show(true)}
+                  style={{ borderRadius: "15px" }}
+                >
+                  <FontAwesomeIcon icon={faPlus} /> Create a new Wishlist
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        )}
       </Popover.Body>
     </Popover>
   ));

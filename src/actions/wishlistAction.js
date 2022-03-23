@@ -288,10 +288,14 @@ export const removeItemFromWishlist = (pid) => async (dispatch, getState) => {
     });
     let promisesp = [];
     newWishlist.map((item) => {
-      console.log(`/api/wishlists/${item.id}`, { data: { products: item.products } });
       promisesp.push(
-        axios.put(`/api/wishlists/${item.id}`, { data: { products: item.products } }),
-        config
+        axios.put(
+          `https://plank-strapi.herokuapp.com/api/wishlists/${item.id}`,
+          {
+            data: { products: item.products },
+          },
+          config
+        )
       );
     });
 

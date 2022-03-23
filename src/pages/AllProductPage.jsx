@@ -77,7 +77,7 @@ const AllProductPage = () => {
                   <Col className="allProductsShopbyRoomCol">
                     <Row>
                       {category.map((c) => {
-                        if (c.id !== 4) {
+                        if (c.id !== 5) {
                           return (
                             <Col
                               key={c.id}
