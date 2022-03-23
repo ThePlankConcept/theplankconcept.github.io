@@ -49,7 +49,9 @@ export const listCategory = (keyword) => async (dispatch) => {
     // console.log("query", query, keyword);
     try {
       dispatch({ type: CATEGORY_LIST_REQUEST });
-      const { data } = await axios.get(`/api/categories?${query}`);
+      const { data } = await axios.get(
+        `https://plank-strapi.herokuapp.com/api/categories?${query}`
+      );
       // console.log("responseqq", data);
       dispatch({
         type: CATEGORY_LIST_SUCCESS,
@@ -83,7 +85,10 @@ export const listCategory = (keyword) => async (dispatch) => {
     );
 
     // console.log("query", query1, keyword);
-    let promises = [`/api/types?${query1}`, `/api/brands?${query2}`];
+    let promises = [
+      `https://plank-strapi.herokuapp.com/api/types?${query1}`,
+      `https://plank-strapi.herokuapp.com/api/brands?${query2}`,
+    ];
 
     try {
       dispatch({ type: CATEGORY_LIST_REQUEST });
@@ -135,7 +140,7 @@ export const allProductCategories = (keyword) => async (dispatch) => {
   // console.log("query", query, keyword);
   try {
     dispatch({ type: ALL_PRODUCT_CATEGORY_REQUEST });
-    const { data } = await axios.get(`/api/categories?${query}`);
+    const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/categories?${query}`);
     console.log("response", data);
     dispatch({
       type: ALL_PRODUCT_CATEGORY_SUCCESS,

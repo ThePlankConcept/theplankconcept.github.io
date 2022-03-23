@@ -41,7 +41,7 @@ export const createWishlist =
         },
       };
       const { data } = await axios.post(
-        "/api/wishlists",
+        "https://plank-strapi.herokuapp.com/api/wishlists",
         { data: { wishlist_name: name, user: userInfo.user.id } },
         config
       );
@@ -108,7 +108,10 @@ export const getUserWishListAction = (path) => async (dispatch, getState) => {
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.get(`/api/wishlists?${query}`, config);
+    const { data } = await axios.get(
+      `https://plank-strapi.herokuapp.com/api/wishlists?${query}`,
+      config
+    );
     console.log("getUserWishListAction", data);
     dispatch({
       type: WISHLIST_GET_SUCCESS,
@@ -157,7 +160,7 @@ export const updateuserwishlist =
         },
       };
       const { data } = await axios.put(
-        `/api/wishlists/${wishlistid.id}?${query}`,
+        `https://plank-strapi.herokuapp.com/api/wishlists/${wishlistid.id}?${query}`,
         { data: { products: usercurrentwishlist } },
         config
       );
@@ -216,7 +219,10 @@ export const getWishlistBySlug = (slug, userInfo) => async (dispatch, getState) 
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.get(`/api/wishlists?${query}`, config);
+    const { data } = await axios.get(
+      `https://plank-strapi.herokuapp.com/api/wishlists?${query}`,
+      config
+    );
     console.log("r", data);
     dispatch({
       type: ONE_WISHLIST_GET_SUCCESS,
@@ -245,7 +251,10 @@ export const deleteWishlist = (id) => async (dispatch, getState) => {
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.delete(`/api/wishlists/${id}`, config);
+    const { data } = await axios.delete(
+      `https://plank-strapi.herokuapp.com/api/wishlists/${id}`,
+      config
+    );
     dispatch(getUserWishListAction("wishlist"));
     dispatch({
       type: WISHLIST_DEL_SUCCESS,
@@ -289,7 +298,7 @@ export const removeItemFromWishlist = (pid) => async (dispatch, getState) => {
     newWishlist.map((item) => {
       promisesp.push(
         axios.put(
-          `https://plank-strapi.herokuapp.com/api/wishlists/${item.id}`,
+          `https://plank-strapi.herokuapp.comhttps://plank-strapi.herokuapp.com/api/wishlists/${item.id}`,
           {
             data: { products: item.products },
           },
@@ -337,7 +346,7 @@ export const removeItemFromWishlist2 = (pid, wishlistId) => async (dispatch, get
     const p = wishlist.data[0].attributes.products.data.filter((p) => p.id !== pid);
 
     const { data } = await axios.put(
-      `/api/wishlists/${wishlistId}`,
+      `https://plank-strapi.herokuapp.com/api/wishlists/${wishlistId}`,
       {
         data: { products: p.map((item) => item.id) },
       },

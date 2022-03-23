@@ -26,7 +26,10 @@ export const checkoutCartInfo = () => async (dispatch, getState) => {
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.get("/api/carts/getcarts/getall", config);
+    const { data } = await axios.get(
+      "https://plank-strapi.herokuapp.com/api/carts/getcarts/getall",
+      config
+    );
     console.log("cartincloud", data);
     dispatch({
       type: CHECKOUT_CART_SUCCESS,
@@ -93,7 +96,7 @@ export const createDeliveryAddress =
       };
       console.log("here", { street_name, building_name, emirate, notes, flat_number, area });
       const { data } = await axios.post(
-        "/api/address/createAddressByUser",
+        "https://plank-strapi.herokuapp.com/api/address/createAddressByUser",
         { data: { street_name, building_name, emirate, notes, flat_number, area } },
         config
       );

@@ -31,7 +31,7 @@ export const facebookLogin = (token) => async (dispatch) => {
     };
     const { data } = await axios({
       method: "GET",
-      url: `/api/auth/facebook/callback${token}`,
+      url: `https://plank-strapi.herokuapp.com/api/auth/facebook/callback${token}`,
     });
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -60,7 +60,7 @@ export const googleLogin = (token) => async (dispatch) => {
     };
     const { data } = await axios({
       method: "GET",
-      url: `/api/auth/google/callback?${token}`,
+      url: `https://plank-strapi.herokuapp.com/api/auth/google/callback?${token}`,
     });
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -97,7 +97,7 @@ export const login = (email, password) => async (dispatch) => {
       populate: "*",
     });
     const { data } = await axios.post(
-      `/api/auth/local?${query}`,
+      `https://plank-strapi.herokuapp.com/api/auth/local?${query}`,
       { identifier: email, password: password },
       config
     );
@@ -140,7 +140,7 @@ export const register = (fname, lname, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/auth/local/register",
+      "https://plank-strapi.herokuapp.com/api/auth/local/register",
       { first_name: fname, last_name: lname, email: email, password: password },
       config
     );
@@ -183,7 +183,10 @@ export const getAddresses = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/address/addressesByUserId", config);
+    const { data } = await axios.get(
+      "https://plank-strapi.herokuapp.com/api/address/addressesByUserId",
+      config
+    );
     dispatch({
       type: USER_ADDRESSES_SUCCESS,
       payload: data.data,
@@ -223,7 +226,7 @@ export const createAddress =
         },
       };
       const { data } = await axios.post(
-        "/api/address/createAddressByUser",
+        "https://plank-strapi.herokuapp.com/api/address/createAddressByUser",
         { data: { street_name, building_name, emirate, notes, flat_number, area } },
         config
       );
@@ -258,7 +261,11 @@ export const updateUser = (data1) => async (dispatch, getState) => {
         Authorization: "Bearer " + userInfo.jwt,
       },
     };
-    const { data } = await axios.put("/api/users/" + userInfo.user.id, data1, config);
+    const { data } = await axios.put(
+      "https://plank-strapi.herokuapp.com/api/users/" + userInfo.user.id,
+      data1,
+      config
+    );
     console.log("addresses", data);
     let x = localStorage.getItem("userInfo");
     console.log("x", userInfo);

@@ -12,7 +12,9 @@ import qs from "qs";
 
 export const addToCart = (slug, qty, subscription, inventory) => async (dispatch, getState) => {
   console.log("incartaction", slug, qty, subscription, inventory);
-  const { data } = await axios.get(`/api/products/product/${slug}`);
+  const { data } = await axios.get(
+    `https://plank-strapi.herokuapp.com/api/products/product/${slug}`
+  );
   console.log("Inventory", inventory);
   dispatch({
     type: CART_ADD_ITEM,
@@ -71,7 +73,9 @@ export const addToCart2 =
       populate: populate,
     });
 
-    const { data } = await axios.get(`/api/product-inventories/${id}?${query}`);
+    const { data } = await axios.get(
+      `https://plank-strapi.herokuapp.com/api/product-inventories/${id}?${query}`
+    );
     console.log("cart action", data);
     dispatch({
       type: CART_ADD_ITEM2,
@@ -127,7 +131,7 @@ export const pushCartAction = (leasePeriod) => async (dispatch, getState) => {
 
     console.log("datainpush action", { cart_items: { data: tempArray } });
     const { data } = await axios.post(
-      "/api/carts/createcart",
+      "https://plank-strapi.herokuapp.com/api/carts/createcart",
       { data: { cart_items: { data: tempArray } } },
       config
     );

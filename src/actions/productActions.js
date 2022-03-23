@@ -78,7 +78,7 @@ export const listProducts = (keyword) => async (dispatch) => {
   }
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get(`/api/products?${query}`);
+    const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data.data,
@@ -94,7 +94,9 @@ export const listProducts = (keyword) => async (dispatch) => {
 export const listProductDetails = (slug) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/products/product/${slug}`);
+    const { data } = await axios.get(
+      `https://plank-strapi.herokuapp.com/api/products/product/${slug}`
+    );
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: { ...data.data },
@@ -166,7 +168,7 @@ export const filterProducts =
     }
     try {
       dispatch({ type: PRODUCT_FILTER_REQUEST });
-      const { data } = await axios.get(`/api/products?${query}`);
+      const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
       dispatch({
         type: PRODUCT_FILTER_SUCCESS,
         payload: data.data,
@@ -205,7 +207,7 @@ export const relatedItems = (category) => async (dispatch) => {
   });
   try {
     dispatch({ type: PRODUCT_RELATED_ITEMS_REQUEST });
-    const { data } = await axios.get(`/api/products?${query}`);
+    const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
     dispatch({
       type: PRODUCT_RELATED_ITEMS_SUCCESS,
       payload: [...data.data],
@@ -239,8 +241,8 @@ export const productsSearch = (name) => async (dispatch) => {
   });
   try {
     dispatch({ type: PRODUCT_SEARCH_REQUEST });
-    //   const { data } = await axios.get(`/api/products?${query}`);
-    const { data } = await axios.get(`/api/products?${query}`);
+    //   const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
+    const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
     console.log("product search ", data);
     dispatch({
       type: PRODUCT_SEARCH_SUCCESS,

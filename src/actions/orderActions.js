@@ -53,7 +53,10 @@ export const getOrderById = (id) => async (dispatch, getState) => {
     const query = qs.stringify({
       populate: populate,
     });
-    const { data } = await axios.get("/api/orders/orderById/" + id, config);
+    const { data } = await axios.get(
+      "https://plank-strapi.herokuapp.com/api/orders/orderById/" + id,
+      config
+    );
     console.log("orders populated", data);
     //   let x = localStorage.getItem("userInfo")
     //   console.log("x" , userInfo)
@@ -101,7 +104,10 @@ export const getOrderByUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/orders/user/" + id, config);
+    const { data } = await axios.get(
+      "https://plank-strapi.herokuapp.com/api/orders/user/" + id,
+      config
+    );
     console.log("orders", data);
     //   let x = localStorage.getItem("userInfo")
     //   console.log("x" , userInfo)
