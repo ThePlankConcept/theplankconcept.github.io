@@ -113,12 +113,12 @@ export const pushCartAction = (leasePeriod) => async (dispatch, getState) => {
   };
 
   let tempArray = [];
-  subscribed.map((s) => {
-    tempArray.push({ product_inventory: s.inventory_id, quantity: s.qty, period: leasePeriod });
-  });
-  purchase.map((p) => {
-    tempArray.push({ product_inventory: p.inventory_id, quantity: p.qty, period: null });
-  });
+  subscribed.map((s) =>
+    tempArray.push({ product_inventory: s.inventory_id, quantity: s.qty, period: leasePeriod })
+  );
+  purchase.map((p) =>
+    tempArray.push({ product_inventory: p.inventory_id, quantity: p.qty, period: null })
+  );
 
   try {
     dispatch({
