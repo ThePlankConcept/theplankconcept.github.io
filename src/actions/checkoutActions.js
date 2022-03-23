@@ -91,6 +91,7 @@ export const createDeliveryAddress =
           Authorization: "Bearer " + userInfo.jwt,
         },
       };
+      console.log("here", { street_name, building_name, emirate, notes, flat_number, area });
       const { data } = await axios.post(
         "/api/address/createAddressByUser",
         { data: { street_name, building_name, emirate, notes, flat_number, area } },
@@ -102,6 +103,7 @@ export const createDeliveryAddress =
         payload: data,
       });
     } catch (error) {
+      console.log("hi from catch", error);
       dispatch({
         type: CREATE_DELIVERY_ADDRESS_FAILURE,
         payload:

@@ -17,6 +17,9 @@ import {
   WISHLIST_DEL_ITEM_REQUEST,
   WISHLIST_DEL_ITEM_SUCCESS,
   WISHLIST_DEL_ITEM_FAIL,
+  WISHLIST_DEL_ITEM_FROM_WISHLIST_REQUEST,
+  WISHLIST_DEL_ITEM_FROM_WISHLIST_SUCCESS,
+  WISHLIST_DEL_ITEM_FROM_WISHLIST_FAIL,
 } from "../constants/wishlistConstants";
 import axios from "axios";
 import qs from "qs";
@@ -42,11 +45,12 @@ export const createWishlist =
         { data: { wishlist_name: name, user: userInfo.user.id } },
         config
       );
-      console.log("createWish", data);
+
       dispatch({
         type: WISHLIST_CREATE_SUCCESS,
         payload: data,
       });
+      dispatch(getUserWishListAction());
     } catch (error) {
       console.log("hi from catch");
       dispatch({
@@ -59,7 +63,7 @@ export const createWishlist =
     }
   };
 
-export const getUserWishListAction = () => async (dispatch, getState) => {
+export const getUserWishListAction = (path) => async (dispatch, getState) => {
   const {
     userLogin: { userInfo },
   } = getState();
@@ -71,6 +75,11 @@ export const getUserWishListAction = () => async (dispatch, getState) => {
         populate: "product_inventories.images",
       },
     };
+    const populate1 = {
+      products: {
+        populate: "product_inventories.images",
+      },
+    };
     const filter = {
       user: {
         id: {
@@ -78,10 +87,19 @@ export const getUserWishListAction = () => async (dispatch, getState) => {
         },
       },
     };
-    query = qs.stringify({
-      populate: populate,
-      filters: filter,
-    });
+
+    if (path === "wishlist") {
+      query = qs.stringify({
+        populate: populate,
+        filters: filter,
+      });
+    } else {
+      query = qs.stringify({
+        populate: populate1,
+        filters: filter,
+      });
+    }
+
     dispatch({
       type: WISHLIST_GET_REQUEST,
     });
@@ -91,13 +109,13 @@ export const getUserWishListAction = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(`/api/wishlists?${query}`, config);
-    // console.log("getUserWishListAction", data);
+    console.log("getUserWishListAction", data);
     dispatch({
       type: WISHLIST_GET_SUCCESS,
       payload: data,
     });
   } catch (error) {
-    console.log("hi from catch");
+    console.log("hi from catch", error);
     dispatch({
       type: WISHLIST_GET_FAIL,
       payload:
@@ -125,6 +143,7 @@ export const updateuserwishlist =
         populate: populate,
       });
       let usercurrentwishlist = [product];
+      console.log(wishlistid);
       wishlistid.attributes.products.data.map((prod) => {
         usercurrentwishlist.push(prod.id);
       });
@@ -146,7 +165,7 @@ export const updateuserwishlist =
         type: WISHLIST_UPDATE_SUCCESS,
         payload: data,
       });
-      dispatch(getUserWishListAction());
+      dispatch(getUserWishListAction("products"));
     } catch (error) {
       console.log("hi from catch", error);
       dispatch({
@@ -159,7 +178,7 @@ export const updateuserwishlist =
     }
   };
 
-export const getWishlistBySlug = (slug, userInfo) => async (dispatch) => {
+export const getWishlistBySlug = (slug, userInfo) => async (dispatch, getState) => {
   let query = "";
   const populate = {
     products: {
@@ -184,15 +203,17 @@ export const getWishlistBySlug = (slug, userInfo) => async (dispatch) => {
     filters: filter,
   });
   try {
+    const {
+      userLogin: { userInfo },
+    } = getState();
     console.log("filter", filter);
     dispatch({
       type: ONE_WISHLIST_GET_REQUEST,
     });
-    console.log("user infooo ", userInfo);
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + userInfo.userInfo.jwt,
+        Authorization: "Bearer " + userInfo.jwt,
       },
     };
     const { data } = await axios.get(`/api/wishlists?${query}`, config);
@@ -210,44 +231,22 @@ export const getWishlistBySlug = (slug, userInfo) => async (dispatch) => {
     });
   }
 };
-export const deleteWishlist = (id, userInfo) => async (dispatch) => {
-  // let query = "";
-  // const populate = {
-  //   products: {
-  //       populate: {
-  //         product_inventories : {
-  //           populate :{
-  //             images :{
-  //               fields: ["formats","url"]
-  //             }
-  //           }
-  //         }
-  //       } ,
-  //   }
-  // };
-  // const filter = {
-  //     slug: {
-  //       $eq: slug
-  //     }
-  // };
-  // query = qs.stringify({
-  //   populate: populate,
-  //   filters: filter,
-  // });
+export const deleteWishlist = (id) => async (dispatch, getState) => {
   try {
-    // console.log("filter", filter);
+    const {
+      userLogin: { userInfo },
+    } = getState();
     dispatch({
       type: WISHLIST_DEL_REQUEST,
     });
-    //  console.log("user infooo ", userInfo)
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + userInfo.userInfo.jwt,
+        Authorization: "Bearer " + userInfo.jwt,
       },
     };
     const { data } = await axios.delete(`/api/wishlists/${id}`, config);
-    console.log(data);
+    dispatch(getUserWishListAction("wishlist"));
     dispatch({
       type: WISHLIST_DEL_SUCCESS,
       payload: data,
@@ -307,11 +306,50 @@ export const removeItemFromWishlist = (pid) => async (dispatch, getState) => {
         });
       })
     );
-    dispatch(getUserWishListAction());
+    dispatch(getUserWishListAction("products"));
   } catch (error) {
     console.log("hi from catch", error);
     dispatch({
       type: WISHLIST_DEL_ITEM_FAIL,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+
+export const removeItemFromWishlist2 = (pid, wishlistId) => async (dispatch, getState) => {
+  try {
+    let query = "";
+    const {
+      userLogin: { userInfo },
+      getWishlistBySlugReducer: { wishlist },
+    } = getState();
+    console.log("sss", wishlist);
+    dispatch({
+      type: WISHLIST_DEL_ITEM_FROM_WISHLIST_REQUEST,
+    });
+    const config = {
+      headers: {
+        Authorization: "Bearer " + userInfo.jwt,
+      },
+    };
+
+    const p = wishlist.data[0].attributes.products.data.filter((p) => p.id !== pid);
+
+    const { data } = await axios.put(
+      `/api/wishlists/${wishlistId}`,
+      {
+        data: { products: p.map((item) => item.id) },
+      },
+      config
+    );
+    console.log("response", data);
+    dispatch(getWishlistBySlug(wishlist.data[0].attributes.slug));
+    dispatch(getUserWishListAction("products"));
+  } catch (error) {
+    console.log("hi from catch", error);
+    dispatch({
+      type: WISHLIST_DEL_ITEM_FROM_WISHLIST_FAIL,
       payload:
         error.response && error.response.data.message ? error.response.data.message : error.message,
     });

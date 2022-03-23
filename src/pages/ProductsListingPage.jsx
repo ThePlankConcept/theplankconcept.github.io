@@ -53,7 +53,7 @@ const ProductsListingPage = () => {
 
   let wishlistAndProducts = [];
   useEffect(() => {
-    dispatch(getUserWishListAction());
+    dispatch(getUserWishListAction("product"));
     dispatch(filterProducts({ keyword, type: filtertypeOption, brand: filterbrandOption }));
     let tempObj = {};
     if (userWishList && userWishList.data.length > 0) {
@@ -63,7 +63,7 @@ const ProductsListingPage = () => {
       });
     }
     setWishlistProducts(wishlistAndProducts);
-  }, [dispatch, keyword, filtertypeOption, filterbrandOption, updateView]);
+  }, [dispatch, keyword, filtertypeOption, filterbrandOption]);
 
   useEffect(() => {
     dispatch(listCategory(keyword));

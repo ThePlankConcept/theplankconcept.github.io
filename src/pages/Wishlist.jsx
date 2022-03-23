@@ -6,7 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../src/components/Loader";
 import Message from "./../components/Message";
-import { deleteWishlist, getWishlistBySlug } from "../actions/wishlistAction";
+import {
+  deleteWishlist,
+  getWishlistBySlug,
+  removeItemFromWishlist2,
+} from "../actions/wishlistAction";
 
 import "./Wishlist.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,13 +24,16 @@ const Wishlist = () => {
   const { slug } = useParams();
   const { wishlists_loading, error, wishlist } = wishlistData;
   const deleteList = (wishlist) => {
-    console.log(wishlist);
-    dispatch(deleteWishlist(wishlist.data[0].id, userLogin));
+    dispatch(deleteWishlist(wishlist.data[0].id));
     navigate("/wishlists");
   };
   useEffect(() => {
     dispatch(getWishlistBySlug(slug, userLogin));
   }, [dispatch]);
+
+  const itemremoveHandler = (id) => {
+    dispatch(removeItemFromWishlist2(id, wishlist.data[0].id));
+  };
   return (
     <>
       <Row>
@@ -121,14 +128,23 @@ const Wishlist = () => {
                                   <Container fluid>
                                     <Row>
                                       <Col>
+                                        <span className="buy-price">
+                                          AED {product.attributes.price} to buy
+                                        </span>
+                                      </Col>
+                                    </Row>
+                                    <Row>
+                                      <Col>
                                         <span className="rent-price">
                                           AED {product.attributes.twelve_month_price / 12}/mo
                                         </span>
                                       </Col>
-                                      <Col>
-                                        <span className="buy-price">
-                                          AED {product.attributes.price} to buy
-                                        </span>
+                                      <Col lg={1}>
+                                        <FontAwesomeIcon
+                                          onClick={() => itemremoveHandler(product.id)}
+                                          icon={faTrash}
+                                          style={{ cursor: "pointer" }}
+                                        />
                                       </Col>
                                     </Row>
                                   </Container>

@@ -16,11 +16,11 @@ import {
 // import Rating from "../components/Rating";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { createWishlist, getUserWishListAction } from "../actions/wishlistAction";
+import { createWishlist, deleteWishlist, getUserWishListAction } from "../actions/wishlistAction";
 
 import "./Wishlists.css";
 
-import { faArrowRight, faPlus, faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "./../hooks/ScreenSizeHook";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -41,7 +41,7 @@ const Wishlists = () => {
   const [modalShow, setModalShow] = useState(false);
   useEffect(() => {
     if (userInfo) {
-      dispatch(getUserWishListAction(userInfo));
+      dispatch(getUserWishListAction("wishlist"));
     } else {
       // navigate("/login")
     }
@@ -98,7 +98,10 @@ const Wishlists = () => {
       </Modal>
     );
   }
-
+  const deleteList = (wishlist) => {
+    console.log(wishlist);
+    dispatch(deleteWishlist(wishlist));
+  };
   const { height, width } = useWindowDimensions();
   return (
     <>
@@ -136,16 +139,14 @@ const Wishlists = () => {
             <>
               {userWishList.data.map((data) => {
                 return (
-                  <Col
-                    lg={4}
-                    sm={12}
-                    className="px-2  ps-5 wishlist-box "
-                    onClick={() => {
-                      navigate("/wishlist/" + data.attributes.slug);
-                    }}
-                  >
+                  <Col lg={4} sm={12} className="px-2  ps-5 wishlist-box ">
                     <Container fluid>
-                      <Row className="view-images">
+                      <Row
+                        className="view-images"
+                        onClick={() => {
+                          navigate("/wishlist/" + data.attributes.slug);
+                        }}
+                      >
                         {data.attributes.products.data.map((product, index) => {
                           //.images.data[0].attributes.url
                           return (
@@ -251,8 +252,11 @@ const Wishlists = () => {
                    </Container>
                     </Col> */}
                       </Row>
-                      <Row>
+                      <Row className="pt-2">
                         <Col>{data.attributes.wishlist_name}</Col>
+                        <Col md={1} className="text-end">
+                          <FontAwesomeIcon icon={faTrash} onClick={() => deleteList(data.id)} />
+                        </Col>
                       </Row>
                     </Container>
                   </Col>

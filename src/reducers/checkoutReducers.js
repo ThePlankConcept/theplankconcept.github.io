@@ -44,7 +44,7 @@ export const checkoutDetailsReducer = (
 export const createDeliveryAddressReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_DELIVERY_ADDRESS_REQUEST:
-      return { loading: true, checkoutDeliveryInfo: {} };
+      return { loadingAddress: true };
     case CREATE_DELIVERY_ADDRESS_SUCCESS:
       return { loadingAddress: false, checkoutDeliveryInfo: action.payload };
     case CREATE_DELIVERY_ADDRESS_FAILURE:

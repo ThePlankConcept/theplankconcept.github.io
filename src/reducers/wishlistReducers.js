@@ -14,6 +14,9 @@ import {
   WISHLIST_DEL_REQUEST,
   WISHLIST_DEL_SUCCESS,
   WISHLIST_DEL_FAIL,
+  WISHLIST_DEL_ITEM_FROM_WISHLIST_REQUEST,
+  WISHLIST_DEL_ITEM_FROM_WISHLIST_SUCCESS,
+  WISHLIST_DEL_ITEM_FROM_WISHLIST_FAIL,
 } from "../constants/wishlistConstants";
 
 export const wishlistCreateReducer = (state = {}, action) => {
@@ -73,6 +76,19 @@ export const deleteWishlistReducer = (state = {}, action) => {
     case WISHLIST_DEL_SUCCESS:
       return { wishlists_loading: false, wishlist: action.payload };
     case WISHLIST_DEL_FAIL:
+      return { wishlists_loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const removeWishlistBySlugReducer = (state = {}, action) => {
+  switch (action.type) {
+    case WISHLIST_DEL_ITEM_FROM_WISHLIST_REQUEST:
+      return { wishlists_loading: true };
+    case WISHLIST_DEL_ITEM_FROM_WISHLIST_SUCCESS:
+      return { wishlists_loading: false, wishlist: action.payload };
+    case WISHLIST_DEL_ITEM_FROM_WISHLIST_FAIL:
       return { wishlists_loading: false, error: action.payload };
     default:
       return state;
