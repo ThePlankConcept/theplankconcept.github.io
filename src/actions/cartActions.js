@@ -11,11 +11,11 @@ import {
 import qs from "qs";
 
 export const addToCart = (slug, qty, subscription, inventory) => async (dispatch, getState) => {
-  console.log("incartaction", slug, qty, subscription, inventory);
+  // // console.log("incartaction", slug, qty, subscription, inventory);
   const { data } = await axios.get(
     `https://plank-strapi.herokuapp.com/api/products/product/${slug}`
   );
-  console.log("Inventory", inventory);
+  // // console.log("Inventory", inventory);
   dispatch({
     type: CART_ADD_ITEM,
     payload: {
@@ -58,7 +58,7 @@ export const removeFromCart2 = (id, subscription) => (dispatch, getState) => {
 export const addToCart2 =
   ({ id, qty, subscription, period }) =>
   async (dispatch, getState) => {
-    console.log("incartaction", id, qty, subscription, period);
+    // console.log("incartaction", id, qty, subscription, period);
 
     let query = "";
     const populate = {
@@ -76,7 +76,7 @@ export const addToCart2 =
     const { data } = await axios.get(
       `https://plank-strapi.herokuapp.com/api/product-inventories/${id}?${query}`
     );
-    console.log("cart action", data);
+    // console.log("cart action", data);
     dispatch({
       type: CART_ADD_ITEM2,
       payload: {
@@ -106,9 +106,9 @@ export const pushCartAction = (leasePeriod) => async (dispatch, getState) => {
     userLogin: { userInfo },
     cart2: { subscribed, purchase },
   } = getState();
-  // console.log("subscribed", subscribed);
-  // console.log("purchase", purchase);
-  // console.log("leasePeriod", leasePeriod);
+  // // console.log("subscribed", subscribed);
+  // // console.log("purchase", purchase);
+  // // console.log("leasePeriod", leasePeriod);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -129,13 +129,13 @@ export const pushCartAction = (leasePeriod) => async (dispatch, getState) => {
       type: CART_PUSH_REQUEST,
     });
 
-    console.log("datainpush action", { cart_items: { data: tempArray } });
+    // console.log("datainpush action", { cart_items: { data: tempArray } });
     const { data } = await axios.post(
       "https://plank-strapi.herokuapp.com/api/carts/createcart",
       { data: { cart_items: { data: tempArray } } },
       config
     );
-    console.log("cartCreated", data);
+    // console.log("cartCreated", data);
     dispatch({
       type: CART_PUSH_SUCCESS,
       payload: data,

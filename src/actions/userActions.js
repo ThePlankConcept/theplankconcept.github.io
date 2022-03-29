@@ -105,7 +105,7 @@ export const login = (email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
-    console.log("user", data);
+    // console.log("user", data);
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
@@ -156,7 +156,7 @@ export const register = (fname, lname, email, password) => async (dispatch) => {
 
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
-    console.log(error.response.data.error.message);
+    // console.log(error.response.data.error.message);
     dispatch({
       type: USER_REGISTER_FAIL,
       payload:
@@ -171,7 +171,7 @@ export const getAddresses = () => async (dispatch, getState) => {
   const {
     userLogin: { userInfo },
   } = getState();
-  console.log("address action");
+  // console.log("address action");
   try {
     dispatch({
       type: USER_ADDRESSES_REQUEST,
@@ -194,7 +194,7 @@ export const getAddresses = () => async (dispatch, getState) => {
 
     localStorage.setItem("userAddress", JSON.stringify(data.data));
   } catch (error) {
-    console.log("hi from catch");
+    // console.log("hi from catch");
     dispatch({
       type: USER_ADDRESSES_FAIL,
       payload:
@@ -213,9 +213,9 @@ export const createAddress =
       userAddresses: { userAddress },
     } = getState();
 
-    console.log("useras", userAddress);
+    // console.log("useras", userAddress);
     try {
-      console.log("hi from create address");
+      // console.log("hi from create address");
       dispatch({
         type: CREATE_ADDRESS_REQUEST,
       });
@@ -230,7 +230,7 @@ export const createAddress =
         { data: { street_name, building_name, emirate, notes, flat_number, area } },
         config
       );
-      console.log("addresses", data);
+      // console.log("addresses", data);
       dispatch({
         type: CREATE_ADDRESS_SUCCESS,
         payload: data,
@@ -251,7 +251,7 @@ export const updateUser = (data1) => async (dispatch, getState) => {
     userLogin: { userInfo },
   } = getState();
   try {
-    console.log("hi");
+    // console.log("hi");
     dispatch({
       type: USER_UPDATE_REQUEST,
     });
@@ -266,14 +266,14 @@ export const updateUser = (data1) => async (dispatch, getState) => {
       data1,
       config
     );
-    console.log("addresses", data);
+    // console.log("addresses", data);
     let x = localStorage.getItem("userInfo");
-    console.log("x", userInfo);
+    // console.log("x", userInfo);
     const token = {
       jwt: userInfo.jwt,
       user: data,
     };
-    console.log("token", token);
+    // console.log("token", token);
     localStorage.setItem("userInfo", JSON.stringify(token));
     dispatch({
       type: USER_UPDATE_SUCCESS,
@@ -285,7 +285,7 @@ export const updateUser = (data1) => async (dispatch, getState) => {
     });
     // localStorage.setItem("userAddresses", JSON.stringify(data));
   } catch (error) {
-    console.log("hi from catch", error);
+    // console.log("hi from catch", error);
     dispatch({
       type: USER_UPDATE_FAIL,
       payload:

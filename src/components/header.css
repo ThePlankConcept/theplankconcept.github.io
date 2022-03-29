@@ -70,6 +70,7 @@
   transition: max-height 0.1s ease-out;
   opacity: 0;
   max-height: 0;
+  z-index: 1080;
   overflow: hidden;
   background: white;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;

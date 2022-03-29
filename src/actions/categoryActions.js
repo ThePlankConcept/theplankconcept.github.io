@@ -46,19 +46,19 @@ export const listCategory = (keyword) => async (dispatch) => {
         populate: populate,
       });
     }
-    // console.log("query", query, keyword);
+    // // console.log("query", query, keyword);
     try {
       dispatch({ type: CATEGORY_LIST_REQUEST });
       const { data } = await axios.get(
         `https://plank-strapi.herokuapp.com/api/categories?${query}`
       );
-      // console.log("responseqq", data);
+      // // console.log("responseqq", data);
       dispatch({
         type: CATEGORY_LIST_SUCCESS,
         payload: data.data,
       });
     } catch (error) {
-      // console.log(error);
+      // // console.log(error);
       dispatch({
         type: CATEGORY_LIST_FAIL,
         payload: error,
@@ -84,7 +84,7 @@ export const listCategory = (keyword) => async (dispatch) => {
       }
     );
 
-    // console.log("query", query1, keyword);
+    // // console.log("query", query1, keyword);
     let promises = [
       `https://plank-strapi.herokuapp.com/api/types?${query1}`,
       `https://plank-strapi.herokuapp.com/api/brands?${query2}`,
@@ -95,7 +95,7 @@ export const listCategory = (keyword) => async (dispatch) => {
 
       axios.all(promises.map((promise) => axios.get(promise))).then(
         axios.spread((types, brands) => {
-          // console.log("res", { types, brands });
+          // // console.log("res", { types, brands });
           dispatch({
             type: CATEGORY_LIST_SUCCESS,
             payload: { types: types.data, brands: brands.data },
@@ -103,7 +103,7 @@ export const listCategory = (keyword) => async (dispatch) => {
         })
       );
     } catch (error) {
-      // console.log(error);
+      // // console.log(error);
       dispatch({
         type: CATEGORY_LIST_FAIL,
         payload: error,
@@ -137,17 +137,17 @@ export const allProductCategories = (keyword) => async (dispatch) => {
   query = qs.stringify({
     populate: populate,
   });
-  // console.log("query", query, keyword);
+  // // console.log("query", query, keyword);
   try {
     dispatch({ type: ALL_PRODUCT_CATEGORY_REQUEST });
     const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/categories?${query}`);
-    console.log("response", data);
+    // console.log("response", data);
     dispatch({
       type: ALL_PRODUCT_CATEGORY_SUCCESS,
       payload: data.data,
     });
   } catch (error) {
-    // console.log(error);
+    // // console.log(error);
     dispatch({
       type: ALL_PRODUCT_CATEGORY_FAIL,
       payload: error,

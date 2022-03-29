@@ -19,6 +19,7 @@ import {
 } from "./reducers/userReducers";
 import { categoryListReducer, allProductCategoryReducer } from "./reducers/categoryReducers";
 import {
+  deleteItemFromWishlistReducer,
   deleteWishlistReducer,
   getUserWishlistReducer,
   getWishlistBySlugReducer,
@@ -52,6 +53,7 @@ const reducer = combineReducers({
   searchProductsReducer: searchProductsReducer,
   getOrdersReducer: getOrdersReducers,
   populatedOrderReducer: populatedOrdersReducers,
+  deleteItemFromWishlist: deleteItemFromWishlistReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

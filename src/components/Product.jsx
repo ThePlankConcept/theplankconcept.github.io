@@ -8,13 +8,11 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import {
   createWishlist,
-  getUserWishListAction,
   updateuserwishlist,
   removeItemFromWishlist,
 } from "../actions/wishlistAction";
 import "./product.css";
 import { useEffect } from "react";
-import Message from "./Message";
 import Loader from "./Loader";
 const Product = ({ product, updateMethod, wishlistItem }) => {
   const [modal1Show, setModal1Show] = useState(false);
@@ -31,28 +29,43 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
   const { loading, userWishList } = getUserWishList;
   const updateUserWishList = useSelector((state) => state.updateUserWishList);
   const { loading: updateWishlistLoading, success } = updateUserWishList;
+  const deleteItemFromWishlist = useSelector((state) => state.deleteItemFromWishlist);
+  const { loading: deleteItemLoading, success: deleted } = deleteItemFromWishlist;
   const [toggler, setToggler] = useState(false);
   const item = product.attributes;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("userWooo", userWishList);
-    let tempValue = 0;
-    if (wishlistItem !== {}) {
-      wishlistItem.map((item) =>
-        Object.values(item).map((i) => {
-          if (i.includes(product.id)) {
-            tempValue += 1;
-          }
-        })
-      );
-      console.log("t", tempValue);
-      if (tempValue > 0) {
-        setToggler(true);
-      }
-    }
-  }, [wishlist]);
+    // console.log("userWooo", userWishList);
+    // let tempValue = 0;
+    // if (wishlistItem !== {}) {
+    //   wishlistItem.map((item) =>
+    //     Object.values(item).map((i) => {
+    //       if (i.includes(product.id)) {
+    //         tempValue += 1;
+    //       }
+    //     })
+    //   );
+    //   if (tempValue > 0) {
+    //     setToggler(true);
+    //   }
+    // }
+  }, [wishlist, loading, updateWishlistLoading]);
 
+  const checkItemInWishlist = () => {
+    if (userWishList) {
+      const prod = userWishList.data.map((wish) => {
+        return wish.attributes.products.data.some((p) => p.id === product.id);
+      });
+      if (prod.includes(true)) {
+        return heartSolid;
+      } else {
+        return heartRegular;
+      }
+    } else {
+      return heartRegular;
+    }
+  };
   const createWishlistHandler = (e) => {
     e.preventDefault();
     dispatch(createWishlist({ name: e.target[0].value }));
@@ -65,13 +78,18 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
     return Math.ceil(num).toLocaleString("en");
   };
   const heartIconListener = (pid) => {
-    if (toggler) {
-      dispatch(removeItemFromWishlist(pid));
-      setToggler(false);
-    } else {
-      setPopperShow(true);
-      setSelectedProduct(pid);
-    }
+    setPopperShow(true);
+    setSelectedProduct(pid);
+    // if (toggler) {
+    //   dispatch(removeItemFromWishlist(pid));
+    //   setToggler(false);
+    // } else {
+    //   setPopperShow(true);
+    //   setSelectedProduct(pid);
+    // }
+  };
+  const removeProductFromWishlist = (wish_list) => {
+    dispatch(removeItemFromWishlist({ product: product.id, wishlistId: wish_list.id }));
   };
   const addProductToWishlisthandler = (wish_list) => {
     dispatch(updateuserwishlist({ product: selectedProduct, wishlistid: wish_list }));
@@ -253,15 +271,27 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
                   return (
                     <Row key={list.id} className="py-1">
                       <Col>
-                        <Button
-                          className="wishlistButton rounded-pill"
-                          style={{ width: "100%", textTransform: "none" }}
-                          onClick={() => {
-                            addProductToWishlisthandler(list);
-                          }}
-                        >
-                          {list.attributes.wishlist_name}
-                        </Button>
+                        {list.attributes.products.data.some((prod) => prod.id === product.id) ? (
+                          <Button
+                            className="rounded-pill"
+                            style={{ width: "100%", textTransform: "none" }}
+                            onClick={() => {
+                              removeProductFromWishlist(list);
+                            }}
+                          >
+                            {list.attributes.wishlist_name}
+                          </Button>
+                        ) : (
+                          <Button
+                            className="wishlistButton rounded-pill"
+                            style={{ width: "100%", textTransform: "none" }}
+                            onClick={() => {
+                              addProductToWishlisthandler(list);
+                            }}
+                          >
+                            {list.attributes.wishlist_name}
+                          </Button>
+                        )}
                       </Col>
                     </Row>
                   );
@@ -271,7 +301,7 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
             <Row className="pt-2">
               <Col>
                 <Button
-                  className="plank-wishlist-create-button btn text-center w-100 rounded-pill"
+                  className="plank-wishlist-create-button btn text-center w-100"
                   onClick={() => setModal2Show(true)}
                   style={{ borderRadius: "15px" }}
                 >
@@ -306,10 +336,10 @@ const Product = ({ product, updateMethod, wishlistItem }) => {
                 variant="top"
               />
             </Link>
-            {userInfo ? (
+            {userInfo || deleteItemLoading ? (
               <>
                 <FontAwesomeIcon
-                  icon={toggler ? heartSolid : heartRegular}
+                  icon={checkItemInWishlist()}
                   width="100px"
                   className="the-wrapper icon-tag"
                   onClick={() => heartIconListener(product.id)}

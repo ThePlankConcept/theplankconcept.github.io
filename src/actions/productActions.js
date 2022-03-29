@@ -220,7 +220,7 @@ export const relatedItems = (category) => async (dispatch) => {
   }
 };
 export const productsSearch = (name) => async (dispatch) => {
-  console.log("relatedItems action called");
+  // console.log("relatedItems action called");
   const filter = {
     product_name: {
       $containsi: name,
@@ -243,7 +243,7 @@ export const productsSearch = (name) => async (dispatch) => {
     dispatch({ type: PRODUCT_SEARCH_REQUEST });
     //   const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
     const { data } = await axios.get(`https://plank-strapi.herokuapp.com/api/products?${query}`);
-    console.log("product search ", data);
+    // console.log("product search ", data);
     dispatch({
       type: PRODUCT_SEARCH_SUCCESS,
       payload: data.data,

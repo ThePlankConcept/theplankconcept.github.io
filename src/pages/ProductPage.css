@@ -154,6 +154,7 @@ select::-ms-expand {
   position: absolute;
   top: 5%;
   left: 52%;
+  z-index: 0;
 }
 .popover-arrow {
   display: none !important;
@@ -312,4 +313,29 @@ select::-ms-expand {
   background-color: white;
   color: black;
   text-decoration: underline;
+}
+
+.contentheading {
+  font-family: "Roboto";
+  font-size: 1rem;
+  color: #333333;
+  font-weight: bold;
+}
+
+.contentpara {
+  font-family: "Roboto";
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.contentHeading2 {
+  font-family: "Roboto";
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding-bottom: 1px;
+}
+.contentPara2 {
+  font-family: "Roboto";
+  font-size: 0.8rem;
+  font-weight: 400;
 }

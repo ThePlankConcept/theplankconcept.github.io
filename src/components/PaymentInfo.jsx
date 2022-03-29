@@ -153,92 +153,94 @@ const PaymentInfo = () => {
             <hr className="deliveryInfoHr3" />
           </Col>
         </Row>
-        <Col className="customerInfoStepContainerRowCol">
-          {userInfo.user.first_name && (
-            <Container className="customerInfoStepContainer">
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <p>
-                    Customer Info{"  "}
-                    <span>
-                      <Link to="/checkout">Edit</Link>
-                    </span>
-                  </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <small>{userInfo.user.first_name}</small>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <small>{userInfo.user.email}</small>
-                </Col>
-              </Row>
-            </Container>
-          )}
-        </Col>
-        <Col className="customerInfoStepContainerRowCol">
-          {checkoutDeliveryInfo.address && checkoutDeliveryInfo.address.attributes.building_name && (
-            <Container className="customerInfoStepContainer ">
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <p>
-                    Delivery Info&nbsp;
-                    <span>
-                      <Link to="/checkout/deliveryinfo">Edit</Link>
-                    </span>
-                  </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <small>
-                    {checkoutDeliveryInfo.address.attributes.flat_number},{" "}
-                    {checkoutDeliveryInfo.address.attributes.building_name}...
-                  </small>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <small>
-                    {checkoutDeliveryInfo.address.attributes.city}
-                    {checkoutDeliveryInfo.address.attributes.emirate}
-                  </small>
-                </Col>
-              </Row>
-            </Container>
-          )}
-        </Col>
-        <Col className="customerInfoStepContainerRowCol">
-          {checkoutBillingInfo && checkoutBillingInfo.building_name && (
-            <Container className="customerInfoStepContainer">
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <p>
-                    BillingInfo&nbsp;
-                    <span>
-                      <Link to="/checkout/billinginfo">Edit</Link>
-                    </span>
-                  </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <small>
-                    {checkoutBillingInfo.flat_number}, {checkoutBillingInfo.building_name}...
-                  </small>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <small>{checkoutBillingInfo.emirate}</small>
-                </Col>
-              </Row>
-            </Container>
-          )}
-        </Col>
+        <Row className="d-flex justify-content-between">
+          <Col className="customerInfoStepContainerRowCol" xl={3} lg={3}>
+            {userInfo.user.first_name && (
+              <Container className="customerInfoStepContainer">
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <p>
+                      Customer Info{"  "}
+                      <span>
+                        <Link to="/checkout">Edit</Link>
+                      </span>
+                    </p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <small>{userInfo.user.first_name}</small>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <small>{userInfo.user.email}</small>
+                  </Col>
+                </Row>
+              </Container>
+            )}
+          </Col>
+          <Col className="customerInfoStepContainerRowCol" xl={3} lg={3}>
+            {checkoutDeliveryInfo.address && checkoutDeliveryInfo.address.attributes.building_name && (
+              <Container className="customerInfoStepContainer ">
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <p>
+                      Delivery Info&nbsp;
+                      <span>
+                        <Link to="/checkout/deliveryinfo">Edit</Link>
+                      </span>
+                    </p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <small>
+                      {checkoutDeliveryInfo.address.attributes.flat_number},{" "}
+                      {checkoutDeliveryInfo.address.attributes.building_name}...
+                    </small>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <small>
+                      {checkoutDeliveryInfo.address.attributes.city}
+                      {checkoutDeliveryInfo.address.attributes.emirate}
+                    </small>
+                  </Col>
+                </Row>
+              </Container>
+            )}
+          </Col>
+          <Col className="customerInfoStepContainerRowCol" xl={3} lg={3}>
+            {checkoutBillingInfo && checkoutBillingInfo.building_name && (
+              <Container className="customerInfoStepContainer">
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <p>
+                      BillingInfo&nbsp;
+                      <span>
+                        <Link to="/checkout/billinginfo">Edit</Link>
+                      </span>
+                    </p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <small>
+                      {checkoutBillingInfo.flat_number}, {checkoutBillingInfo.building_name}...
+                    </small>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="xyzcol" xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <small>{checkoutBillingInfo.emirate}</small>
+                  </Col>
+                </Row>
+              </Container>
+            )}
+          </Col>
+        </Row>
       </Row>
     </Container>
   );

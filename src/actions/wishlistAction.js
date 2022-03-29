@@ -52,7 +52,7 @@ export const createWishlist =
       });
       dispatch(getUserWishListAction());
     } catch (error) {
-      console.log("hi from catch");
+      // console.log("hi from catch");
       dispatch({
         type: WISHLIST_CREATE_FAIL,
         payload:
@@ -112,13 +112,13 @@ export const getUserWishListAction = (path) => async (dispatch, getState) => {
       `https://plank-strapi.herokuapp.com/api/wishlists?${query}`,
       config
     );
-    console.log("getUserWishListAction", data);
+    // console.log("getUserWishListAction", data);
     dispatch({
       type: WISHLIST_GET_SUCCESS,
       payload: data,
     });
   } catch (error) {
-    console.log("hi from catch", error);
+    // console.log("hi from catch", error);
     dispatch({
       type: WISHLIST_GET_FAIL,
       payload:
@@ -146,7 +146,7 @@ export const updateuserwishlist =
         populate: populate,
       });
       let usercurrentwishlist = [product];
-      console.log(wishlistid);
+      console.log("ee", wishlistid, product);
       wishlistid.attributes.products.data.map((prod) => {
         usercurrentwishlist.push(prod.id);
       });
@@ -159,8 +159,9 @@ export const updateuserwishlist =
           Authorization: "Bearer " + userInfo.jwt,
         },
       };
+      console.log("in action", usercurrentwishlist, wishlistid.id);
       const { data } = await axios.put(
-        `https://plank-strapi.herokuapp.com/api/wishlists/${wishlistid.id}?${query}`,
+        `https://plank-strapi.herokuapp.com/api/wishlists/${wishlistid.id}`,
         { data: { products: usercurrentwishlist } },
         config
       );
@@ -209,7 +210,7 @@ export const getWishlistBySlug = (slug, userInfo) => async (dispatch, getState) 
     const {
       userLogin: { userInfo },
     } = getState();
-    console.log("filter", filter);
+    // console.log("filter", filter);
     dispatch({
       type: ONE_WISHLIST_GET_REQUEST,
     });
@@ -223,13 +224,13 @@ export const getWishlistBySlug = (slug, userInfo) => async (dispatch, getState) 
       `https://plank-strapi.herokuapp.com/api/wishlists?${query}`,
       config
     );
-    console.log("r", data);
+    // console.log("r", data);
     dispatch({
       type: ONE_WISHLIST_GET_SUCCESS,
       payload: data,
     });
   } catch (error) {
-    console.log("hi from catch");
+    // console.log("hi from catch");
     dispatch({
       type: ONE_WISHLIST_GET_FAIL,
       payload:
@@ -261,7 +262,7 @@ export const deleteWishlist = (id) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (error) {
-    console.log("hi from catch");
+    // console.log("hi from catch");
     dispatch({
       type: WISHLIST_DEL_FAIL,
       payload:
@@ -270,61 +271,53 @@ export const deleteWishlist = (id) => async (dispatch, getState) => {
   }
 };
 
-export const removeItemFromWishlist = (pid) => async (dispatch, getState) => {
-  try {
-    let query = "";
-    const {
-      userLogin: { userInfo },
-      getUserWishlist: { userWishList },
-    } = getState();
-    dispatch({
-      type: WISHLIST_DEL_ITEM_REQUEST,
-    });
-    const config = {
-      headers: {
-        Authorization: "Bearer " + userInfo.jwt,
-      },
-    };
-
-    console.log("getUserWishListAction", userWishList);
-    let newWishlist = [];
-    userWishList.data.map((wishlist, index) => {
-      let wishlistId = wishlist.id;
-      const p = wishlist.attributes.products.data.filter((p) => p.id !== pid);
-
-      newWishlist.push({ id: wishlistId, products: p.map((item) => item.id) });
-    });
-    let promisesp = [];
-    newWishlist.map((item) => {
-      promisesp.push(
-        axios.put(
-          `https://plank-strapi.herokuapp.comhttps://plank-strapi.herokuapp.com/api/wishlists/${item.id}`,
-          {
-            data: { products: item.products },
-          },
-          config
-        )
+export const removeItemFromWishlist =
+  ({ product, wishlistId }) =>
+  async (dispatch, getState) => {
+    try {
+      let query = "";
+      const {
+        userLogin: { userInfo },
+        getUserWishlist: { userWishList },
+      } = getState();
+      dispatch({
+        type: WISHLIST_DEL_ITEM_REQUEST,
+      });
+      const config = {
+        headers: {
+          Authorization: "Bearer " + userInfo.jwt,
+        },
+      };
+      let p = [];
+      userWishList.data.filter((list) => {
+        if (list.id === wishlistId) {
+          p = list.attributes.products.data.filter((p) => p.id !== product);
+          console.log(p);
+        }
+      });
+      const { data } = await axios.put(
+        `https://plank-strapi.herokuapp.com/api/wishlists/${wishlistId}`,
+        {
+          data: { products: p.length > 0 ? p.map((item) => item.id) : [] },
+        },
+        config
       );
-    });
-
-    axios.all(promisesp.map((promise) => promise)).then(
-      axios.spread((response) => {
-        dispatch({
-          type: WISHLIST_DEL_ITEM_SUCCESS,
-          payload: { success: true },
-        });
-      })
-    );
-    dispatch(getUserWishListAction("products"));
-  } catch (error) {
-    console.log("hi from catch", error);
-    dispatch({
-      type: WISHLIST_DEL_ITEM_FAIL,
-      payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
-    });
-  }
-};
+      dispatch({
+        type: WISHLIST_DEL_ITEM_SUCCESS,
+        payload: { success: true },
+      });
+      dispatch(getUserWishListAction("products"));
+    } catch (error) {
+      console.log("hi from catch", error);
+      dispatch({
+        type: WISHLIST_DEL_ITEM_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const removeItemFromWishlist2 = (pid, wishlistId) => async (dispatch, getState) => {
   try {
@@ -333,7 +326,7 @@ export const removeItemFromWishlist2 = (pid, wishlistId) => async (dispatch, get
       userLogin: { userInfo },
       getWishlistBySlugReducer: { wishlist },
     } = getState();
-    console.log("sss", wishlist);
+    console.log(pid, wishlistId);
     dispatch({
       type: WISHLIST_DEL_ITEM_FROM_WISHLIST_REQUEST,
     });
@@ -352,11 +345,14 @@ export const removeItemFromWishlist2 = (pid, wishlistId) => async (dispatch, get
       },
       config
     );
-    console.log("response", data);
+    dispatch({
+      type: WISHLIST_DEL_ITEM_FROM_WISHLIST_SUCCESS,
+    });
+    // console.log("response", data);
     dispatch(getWishlistBySlug(wishlist.data[0].attributes.slug));
     dispatch(getUserWishListAction("products"));
   } catch (error) {
-    console.log("hi from catch", error);
+    // console.log("hi from catch", error);
     dispatch({
       type: WISHLIST_DEL_ITEM_FROM_WISHLIST_FAIL,
       payload:
@@ -364,3 +360,59 @@ export const removeItemFromWishlist2 = (pid, wishlistId) => async (dispatch, get
     });
   }
 };
+
+// export const removeItemFromWishlist = (pid, wishlistId) => async (dispatch, getState) => {
+//   try {
+//     let query = "";
+//     const {
+//       userLogin: { userInfo },
+//       getUserWishlist: { userWishList },
+//     } = getState();
+//     dispatch({
+//       type: WISHLIST_DEL_ITEM_REQUEST,
+//     });
+//     const config = {
+//       headers: {
+//         Authorization: "Bearer " + userInfo.jwt,
+//       },
+//     };
+
+//     // console.log("getUserWishListAction", userWishList);
+//     let newWishlist = [];
+//     userWishList.data.map((wishlist, index) => {
+//       let wishlistId = wishlist.id;
+//       const p = wishlist.attributes.products.data.filter((p) => p.id !== pid);
+
+//       newWishlist.push({ id: wishlistId, products: p.map((item) => item.id) });
+//     });
+//     let promisesp = [];
+//     newWishlist.map((item) => {
+//       promisesp.push(
+//         axios.put(
+//           `https://plank-strapi.herokuapp.com/api/wishlists/${item.id}`,
+//           {
+//             data: { products: item.products },
+//           },
+//           config
+//         )
+//       );
+//     });
+
+//     axios.all(promisesp.map((promise) => promise)).then(
+//       axios.spread((response) => {
+//         dispatch({
+//           type: WISHLIST_DEL_ITEM_SUCCESS,
+//           payload: { success: true },
+//         });
+//       })
+//     );
+//     dispatch(getUserWishListAction("products"));
+//   } catch (error) {
+//     // console.log("hi from catch", error);
+//     dispatch({
+//       type: WISHLIST_DEL_ITEM_FAIL,
+//       payload:
+//         error.response && error.response.data.message ? error.response.data.message : error.message,
+//     });
+//   }
+// };

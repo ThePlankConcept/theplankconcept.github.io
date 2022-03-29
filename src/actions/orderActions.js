@@ -13,7 +13,7 @@ export const getOrderById = (id) => async (dispatch, getState) => {
     userLogin: { userInfo },
   } = getState();
   try {
-    console.log("hi");
+    // console.log("hi");
     dispatch({
       type: GET_POPULATED_ORDER_REQUEST,
     });
@@ -57,15 +57,15 @@ export const getOrderById = (id) => async (dispatch, getState) => {
       "https://plank-strapi.herokuapp.com/api/orders/orderById/" + id,
       config
     );
-    console.log("orders populated", data);
+    // console.log("orders populated", data);
     //   let x = localStorage.getItem("userInfo")
-    //   console.log("x" , userInfo)
+    //   // console.log("x" , userInfo)
 
     //     const token = {
     //       jwt : userInfo.jwt ,
     //       user : data
     //   }
-    //     console.log("token", token)
+    //     // console.log("token", token)
     // localStorage.setItem("userInfo", JSON.stringify(token));
     dispatch({
       type: GET_POPULATED_ORDER_SUCCESS,
@@ -79,7 +79,7 @@ export const getOrderById = (id) => async (dispatch, getState) => {
 
     // localStorage.setItem("userAddresses", JSON.stringify(data));
   } catch (error) {
-    console.log("hi from catch", error);
+    // console.log("hi from catch", error);
     dispatch({
       type: GET_POPULATED_ORDER_FAIL,
       payload:
@@ -93,7 +93,7 @@ export const getOrderByUser = (id) => async (dispatch, getState) => {
     userLogin: { userInfo },
   } = getState();
   try {
-    console.log("hi");
+    // console.log("hi");
     dispatch({
       type: GET_ORDER_REQUEST,
     });
@@ -108,15 +108,15 @@ export const getOrderByUser = (id) => async (dispatch, getState) => {
       "https://plank-strapi.herokuapp.com/api/orders/user/" + id,
       config
     );
-    console.log("orders", data);
+    // console.log("orders", data);
     //   let x = localStorage.getItem("userInfo")
-    //   console.log("x" , userInfo)
+    //   // console.log("x" , userInfo)
 
     //     const token = {
     //       jwt : userInfo.jwt ,
     //       user : data
     //   }
-    //     console.log("token", token)
+    //     // console.log("token", token)
     // localStorage.setItem("userInfo", JSON.stringify(token));
     dispatch({
       type: GET_ORDER_SUCCESS,
@@ -130,7 +130,7 @@ export const getOrderByUser = (id) => async (dispatch, getState) => {
 
     // localStorage.setItem("userAddresses", JSON.stringify(data));
   } catch (error) {
-    console.log("hi from catch", error);
+    // console.log("hi from catch", error);
     dispatch({
       type: GET_ORDER_FAIL,
       payload:

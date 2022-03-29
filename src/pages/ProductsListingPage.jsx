@@ -71,7 +71,7 @@ const ProductsListingPage = () => {
 
   const updateWishlist = async () => {
     if (userInfo) {
-      dispatch(getUserWishListAction(userInfo));
+      dispatch(getUserWishListAction("products"));
     }
     setUpdateView(!updateView);
     // console.log("Its called");

@@ -147,8 +147,8 @@ const CartPage = () => {
                                   key={item.inventory_id}
                                   className="cartItemsListGroup"
                                 >
-                                  <Row className="d-flex align-items-center justify-content-between">
-                                    <Col xs={2} sm={2} md={2} lg={1} xl={1}>
+                                  <Row className="align-items-center">
+                                    <Col xs={2} sm={2} md={2} lg={2} xl={1}>
                                       <Image
                                         src={item.image}
                                         alt={item.product_name}
@@ -157,7 +157,7 @@ const CartPage = () => {
                                         style={{ width: "25rem", height: "5rem" }}
                                       />
                                     </Col>
-                                    <Col xs={8} sm={8} md={8} lg={7} xl={6} className="ps-3">
+                                    <Col xs={8} sm={8} md={5} lg={5} xl={6} className="ps-3">
                                       <Link
                                         to={`/product/${item.slug}`}
                                         className="text-decoration-none ps-0"
@@ -171,7 +171,7 @@ const CartPage = () => {
                                         {item.product_name}
                                       </Link>
                                     </Col>
-                                    <Col xs={2} sm={2} md={2} lg={1} xl={1}>
+                                    <Col xs={2} sm={2} md={1} lg={1} xl={1}>
                                       <Form className="selectQty">
                                         <Form.Control
                                           as="select"
@@ -193,14 +193,7 @@ const CartPage = () => {
                                         </Form.Control>
                                       </Form>
                                     </Col>
-                                    <Col
-                                      xs={2}
-                                      sm={2}
-                                      md={2}
-                                      lg={1}
-                                      xl={1}
-                                      className="d-flex justify-content-end"
-                                    >
+                                    <Col xs={2} sm={2} md={2} lg={2} xl={2} className="text-center">
                                       <Button
                                         type="button"
                                         variant="light"
@@ -216,10 +209,10 @@ const CartPage = () => {
                                     <Col
                                       xs={6}
                                       sm={8}
-                                      md={7}
-                                      lg={1}
-                                      xl={1}
-                                      className="d-flex justify-content-end priceinCart"
+                                      md={2}
+                                      lg={2}
+                                      xl={2}
+                                      className="priceinCart text-end"
                                     >
                                       AED
                                       {item.qty *
@@ -255,8 +248,8 @@ const CartPage = () => {
                                   key={item.inventory_id}
                                   className="cartItemsListGroup"
                                 >
-                                  <Row className="d-flex align-items-center justify-content-between">
-                                    <Col xs={2} sm={2} md={2} lg={1} xl={1}>
+                                  <Row className="align-items-center">
+                                    <Col xs={2} sm={2} md={2} lg={2} xl={1}>
                                       <Image
                                         src={item.image}
                                         alt={item.product_name}
@@ -265,7 +258,7 @@ const CartPage = () => {
                                         style={{ width: "25rem", height: "5rem" }}
                                       />
                                     </Col>
-                                    <Col xs={8} sm={8} md={8} lg={6} xl={6} className="ps-3">
+                                    <Col xs={8} sm={8} md={5} lg={5} xl={6} className="ps-3">
                                       <Link
                                         to={`/product/${item.slug}`}
                                         className="text-decoration-none ps-0"
@@ -279,7 +272,7 @@ const CartPage = () => {
                                         {item.product_name}
                                       </Link>
                                     </Col>
-                                    <Col xs={2} sm={2} md={2} lg={1} xl={1}>
+                                    <Col xs={2} sm={2} md={1} lg={1} xl={1}>
                                       <Form className="selectQty">
                                         <Form.Control
                                           as="select"
@@ -300,14 +293,7 @@ const CartPage = () => {
                                         </Form.Control>
                                       </Form>
                                     </Col>
-                                    <Col
-                                      xs={2}
-                                      sm={2}
-                                      md={2}
-                                      lg={1}
-                                      xl={1}
-                                      className="d-flex justify-content-end"
-                                    >
+                                    <Col xs={2} sm={2} md={2} lg={2} xl={2} className="text-center">
                                       <Button
                                         type="button"
                                         variant="light"
@@ -323,11 +309,10 @@ const CartPage = () => {
                                     <Col
                                       xs={6}
                                       sm={8}
-                                      md={7}
-                                      lg={1}
-                                      xl={1}
-                                      style={{ fontWeight: 600, fontFamily: "Poppins" }}
-                                      className="d-flex justify-content-end"
+                                      md={2}
+                                      lg={2}
+                                      xl={2}
+                                      className="priceinCart text-end"
                                     >
                                       AED{item.qty * item.price}
                                     </Col>

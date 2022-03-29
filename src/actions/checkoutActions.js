@@ -30,7 +30,7 @@ export const checkoutCartInfo = () => async (dispatch, getState) => {
       "https://plank-strapi.herokuapp.com/api/carts/getcarts/getall",
       config
     );
-    console.log("cartincloud", data);
+    // console.log("cartincloud", data);
     dispatch({
       type: CHECKOUT_CART_SUCCESS,
       payload: data.data,
@@ -55,7 +55,7 @@ export const saveCustomerInfo =
 export const saveDeliveryInfo =
   ({ address, sameBilling }) =>
   (dispatch) => {
-    console.log(address);
+    // console.log(address);
     dispatch({
       type: SAVE_CHECKOUT_DELIVERY_INFO,
       payload: { address, sameBilling },
@@ -84,7 +84,7 @@ export const createDeliveryAddress =
     } = getState();
 
     try {
-      console.log("hi from create delivery address");
+      // console.log("hi from create delivery address");
       dispatch({
         type: CREATE_DELIVERY_ADDRESS_REQUEST,
       });
@@ -94,19 +94,19 @@ export const createDeliveryAddress =
           Authorization: "Bearer " + userInfo.jwt,
         },
       };
-      console.log("here", { street_name, building_name, emirate, notes, flat_number, area });
+      // console.log("here", { street_name, building_name, emirate, notes, flat_number, area });
       const { data } = await axios.post(
         "https://plank-strapi.herokuapp.com/api/address/createAddressByUser",
         { data: { street_name, building_name, emirate, notes, flat_number, area } },
         config
       );
-      console.log("addresses", data);
+      // console.log("addresses", data);
       dispatch({
         type: CREATE_DELIVERY_ADDRESS_SUCCESS,
         payload: data,
       });
     } catch (error) {
-      console.log("hi from catch", error);
+      // console.log("hi from catch", error);
       dispatch({
         type: CREATE_DELIVERY_ADDRESS_FAILURE,
         payload:
